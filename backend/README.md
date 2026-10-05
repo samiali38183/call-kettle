@@ -65,9 +65,9 @@ encrypted volume with automatic daily snapshots).
   all-party** (as are CA, DE, FL, IL, MA, MT, NV, NH, PA, WA). Every call opens
   with "This call may be recorded and monitored for quality" (`main.CALL_DISCLOSURE`).
 - None of this is legal advice. Have a lawyer review the service agreement
-  before signing paying clients.
+  before going live.
 
-## Adding a client (about 15 minutes)
+## Adding a config (about 15 minutes)
 
 ```bash
 cd backend
@@ -115,7 +115,7 @@ owner's phone, and a call in progress loses its conversation state. Deploy when 
 
 **Capacity** (load-tested on production): 30 simultaneous callers, AI replies under 4 s for
 95% of turns, worst case 5 s (Twilio allows 15 s), zero failures. One 512 MB machine is
-plenty for dozens of clients; move call state to Redis before running a second machine.
+plenty for this stack; move call state to Redis before running a second machine.
 
 **Secrets to rotate together:** if you ever change the Twilio auth token, update it on Fly
 (update the Fly secret `TWILIO_AUTH_TOKEN` and the fallback project on Vercel) or
@@ -138,14 +138,6 @@ webhook signatures and the fallback will start failing.
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` | booking/callback email (Gmail: smtp.gmail.com, 587, an app password) |
 | `CALLKETTLE_DB_PATH` | SQLite path (`/data/callkettle.db` on Fly) |
 | `CALLKETTLE_SKIP_SIGNATURE_CHECK` | `1` for local testing only, never in production |
-
-## Cost per call (Twilio list prices, Sept 2026)
-
-Roughly $0.20-0.30 for a 3-minute, 8-turn call: speech recognition about
-$0.02 per turn, neural voice $0.0032 per 100 characters, inbound $0.0085 per
-minute, model about $0.03. Plus $1.15/month per number. A client taking 120
-calls a month costs about $30-35 to serve; 300 calls about $75-90. That is why
-the offer includes up to 300 AI-handled calls per month.
 
 ## Development
 
