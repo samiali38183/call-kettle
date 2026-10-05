@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Set up your {{brand}} receptionist</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#0F1B2D;--text:#20293A;--mute:#5B6472;--line:#CBD3DB;--accent:#2F6FED;--accent-dark:#1F55C4;--paper:#F5F7FA;--ok:#149E7F;--err:#B3261E;}
+*{box-sizing:border-box;}
+html{font-size:18px;}
+body{margin:0;background:var(--paper);color:var(--text);font-family:'Work Sans',system-ui,sans-serif;line-height:1.55;}
+.wrap{max-width:720px;margin:0 auto;padding:22px 18px 80px;}
+.brand{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.3rem;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--ok);display:inline-block;}
+h1{font-family:'Fraunces',Georgia,serif;font-size:1.9rem;line-height:1.15;margin:16px 0 8px;color:var(--ink);}
+.lead{color:var(--mute);margin:0 0 18px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin-bottom:16px;}
+.card h2{font-size:1.15rem;margin:0 0 4px;color:var(--ink);}
+.card .hint{font-size:.9rem;color:var(--mute);margin:0 0 14px;}
+label{display:block;font-weight:600;margin:12px 0 5px;color:var(--ink);font-size:.95rem;}
+input[type=text],input[type=tel],input[type=email],input[type=time],input[type=number],textarea,select{width:100%;min-height:52px;padding:11px 13px;border:2px solid #8B96A3;border-radius:12px;font:inherit;background:#fff;color:var(--ink);}
+textarea{min-height:90px;resize:vertical;}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(47,111,237,.2);}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;} @media (max-width:520px){.row{grid-template-columns:1fr;}}
+.day{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr) auto;gap:8px;align-items:center;margin-bottom:8px;}
+.day input[type=time]{min-width:0;padding-inline:8px;font-size:16px;}
+@media (max-width:520px){.day{grid-template-columns:44px minmax(0,1fr) minmax(0,1fr);row-gap:2px;margin-bottom:14px;}.day label.cl{grid-column:2 / -1;min-height:44px;}.day input[type=time]{padding-inline:10px;text-align:center;}.day input[type=time]::-webkit-calendar-picker-indicator{display:none;}}
+@media (max-width:360px){.day{grid-template-columns:36px minmax(0,1fr) minmax(0,1fr);gap:6px;}.day input[type=time]{font-size:14px;padding-inline:4px;}}
+.day b{font-size:.95rem;} .day label.cl{margin:0;display:flex;gap:6px;align-items:center;font-weight:500;white-space:nowrap;}
+.day input[type=checkbox]{width:22px;height:22px;}
+.rep{border:1px dashed var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#FAFBFC;}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:12px 22px;border-radius:12px;font:inherit;font-weight:700;border:2px solid var(--accent);cursor:pointer;background:#fff;color:var(--accent-dark);}
+.btn.primary{background:var(--accent);color:#fff;width:100%;font-size:1.05rem;}
+.btn.primary:hover{background:var(--accent-dark);}
+.btn:disabled{opacity:.6;cursor:wait;}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden;}
+.msg{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;font-weight:600;}
+.msg.ok{display:block;background:#E4F5EF;color:#0B6B55;border:2px solid var(--ok);}
+.msg.err{display:block;background:#FDECEA;color:#7A1A14;border:2px solid var(--err);}
+.small{font-size:.85rem;color:var(--mute);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><i></i>{{brand}}</div>
+  <h1>Set up your front desk</h1>
+  <p class="lead">Share your business rules so we can review your setup. This request does not turn on phone service. We confirm the setup and testing steps with you before you forward calls.</p>
+  <p><a href="/portal/login">Already have an account? Owner sign in</a></p>
+
+  <form id="intake" novalidate>
+    <div class="card">
+      <h2>1. About your business</h2>
+      <label for="business_name">Business name</label><input id="business_name" type="text" autocomplete="organization">
+      <label for="trade">What kind of work do you do?</label><input id="trade" type="text" placeholder="Plumbing, landscaping, hair salon...">
+      <div class="row">
+        <div><label for="owner_name">Your name</label><input id="owner_name" type="text" autocomplete="name"></div>
+        <div><label for="owner_phone">Your cell phone</label><input id="owner_phone" type="tel" inputmode="tel" autocomplete="tel"></div>
+      </div>
+      <p class="hint" style="margin-top:6px">This is where callers are put through when they ask for you, so it must ring.</p>
+      <label for="owner_email">Your email (for booking alerts)</label><input id="owner_email" type="email" autocomplete="email">
+      <label for="phone_provider">Who is your phone company? (optional)</label><input id="phone_provider" type="text" placeholder="Verizon, AT&T, T-Mobile, RingCentral, Google Voice...">
+    </div>
+
+    <div class="card">
+      <h2>2. When are you open?</h2>
+      <p class="hint">Times customers can book appointments. Tick "Closed" for days off.</p>
+      <div id="days"></div>
+    </div>
+
+    <div class="card">
+      <h2>3. What do you offer?</h2>
+      <p class="hint">Each thing a customer might book, and about how long it takes.</p>
+      <div id="services"></div>
+      <button type="button" class="btn" id="addService">+ Add another</button>
+    </div>
+
+    <div class="card">
+      <h2>4. What do customers ask you?</h2>
+      <p class="hint">Write the questions you hear most, with your answer (for example: "Do you charge for estimates?" "No, estimates are free."). Please don't include anything private.</p>
+      <div id="faqs"></div>
+      <button type="button" class="btn" id="addFaq">+ Add another</button>
+    </div>
+
+    <div class="card">
+      <h2>5. Anything else?</h2>
+      <label for="never_say">Anything the receptionist should never say or promise? (optional)</label>
+      <textarea id="never_say" placeholder="For example: never quote prices over the phone."></textarea>
+      <label for="google_calendar_email">Google Calendar email (optional)</label>
+      <input id="google_calendar_email" type="email" placeholder="If you use Google Calendar and want bookings on it">
+      <label for="notes">Notes (optional)</label><textarea id="notes"></textarea>
+    </div>
+
+    <div class="hp" aria-hidden="true"><label>Website<input id="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+    <button class="btn primary" id="send" type="submit">Send my details</button>
+    <p class="small" style="margin-top:10px">By sending this you agree to our <a href="/terms">terms</a>. We only use what you enter to build your receptionist.</p>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+  </form>
+</div>
+
+<script>
+(function(){
+  var DAYS=[["mon","Mon"],["tue","Tue"],["wed","Wed"],["thu","Thu"],["fri","Fri"],["sat","Sat"],["sun","Sun"]];
+  var daysEl=document.getElementById('days');
+  DAYS.forEach(function(d,i){
+    var weekday=i<5;
+    var row=document.createElement('div'); row.className='day';
+    row.innerHTML='<b>'+d[1]+'</b><input type="time" data-d="'+d[0]+'" data-k="open" value="'+(weekday?'08:00':'')+'" aria-label="'+d[1]+' opens"><input type="time" data-d="'+d[0]+'" data-k="close" value="'+(weekday?'17:00':'')+'" aria-label="'+d[1]+' closes"><label class="cl"><input type="checkbox" data-d="'+d[0]+'" data-k="closed"'+(weekday?'':' checked')+'> Closed</label>';
+    daysEl.appendChild(row);
+  });
+  function addService(name,min){var el=document.createElement('div');el.className='rep';el.innerHTML='<div class="row"><div><label>Service</label><input type="text" class="s-name" value="'+(name||'')+'" placeholder="e.g. Drain cleaning"></div><div><label>Minutes it takes</label><input type="number" class="s-min" value="'+(min||60)+'" min="5" max="480"></div></div>';document.getElementById('services').appendChild(el);}
+  function addFaq(){var el=document.createElement('div');el.className='rep';el.innerHTML='<label>Question</label><input type="text" class="f-q" placeholder="e.g. Do you charge for estimates?"><label>Your answer</label><input type="text" class="f-a">';document.getElementById('faqs').appendChild(el);}
+  addService();addService();addFaq();addFaq();addFaq();
+  document.getElementById('addService').onclick=function(){addService();};
+  document.getElementById('addFaq').onclick=function(){addFaq();};
+
+  var msg=document.getElementById('msg'),send=document.getElementById('send');
+  function show(k,t){msg.className='msg '+k;msg.textContent=t;msg.scrollIntoView({behavior:'smooth',block:'center'});}
+  document.getElementById('intake').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return document.getElementById(id).value.trim();};
+    if(!v('business_name')||!v('trade')||!v('owner_name')||v('owner_phone').replace(/\D/g,'').length<10){show('err','Please fill in your business name, kind of work, your name, and a 10-digit cell phone.');return;}
+    var hours={};
+    DAYS.forEach(function(d){
+      var closed=document.querySelector('input[data-d="'+d[0]+'"][data-k="closed"]').checked;
+      var o=document.querySelector('input[data-d="'+d[0]+'"][data-k="open"]').value,c=document.querySelector('input[data-d="'+d[0]+'"][data-k="close"]').value;
+      hours[d[0]]=(closed||!o||!c)?'closed':(o+'-'+c);
+    });
+    var services=[];document.querySelectorAll('#services .rep').forEach(function(r){var n=r.querySelector('.s-name').value.trim();if(n)services.push({name:n,minutes:parseInt(r.querySelector('.s-min').value,10)||60});});
+    if(!services.length){show('err','Please add at least one thing you offer.');return;}
+    var faqs=[];document.querySelectorAll('#faqs .rep').forEach(function(r){var q=r.querySelector('.f-q').value.trim(),a=r.querySelector('.f-a').value.trim();if(q&&a)faqs.push({q:q,a:a});});
+    send.disabled=true;send.textContent='Sending...';msg.className='msg';
+    fetch('/intake',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      business_name:v('business_name'),trade:v('trade'),owner_name:v('owner_name'),owner_phone:v('owner_phone'),owner_email:v('owner_email'),
+      phone_provider:v('phone_provider'),hours:hours,services:services,faqs:faqs,never_say:v('never_say'),google_calendar_email:v('google_calendar_email'),notes:v('notes'),website:v('website')})})
+    .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
+    .then(function(res){
+      if(res.ok&&res.d.success){show('ok','Thank you! We have your setup request. We will review your details and confirm the next steps. Phone service is not active yet.');document.getElementById('intake').reset();send.textContent='Sent';}
+      else{var e='Something did not go through. ';if(res.d&&res.d.detail&&res.d.detail.length){e+='Please check your phone number and email.';}else{e+='Please text us instead.';}throw new Error(e);}
+    }).catch(function(err){show('err',err.message||'Something went wrong. Please text us instead.');send.disabled=false;send.textContent='Send my details';});
+  });
+})();
+</script>
+</body>
+</html>

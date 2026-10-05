@@ -1,0 +1,61 @@
+# Copy this file to clients/<their_business_name>.yaml and fill in the blanks.
+# This is the whole "personalized demo" workflow — no code changes, ever.
+# Budget: 10-20 minutes if you have the answers from a quick conversation
+# or their Google Business Profile / website.
+
+client_id: REPLACE_ME               # e.g. abc_plumbing — no spaces, used in the URL
+business_name: "REPLACE ME"         # e.g. "ABC Plumbing"
+vertical: REPLACE_ME                # e.g. plumbing, hvac, dental, salon, law, auto, cleaning, contractor
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"  # bump to claude-sonnet-5 later for a higher-tier/higher-stakes client
+
+opening_line: "Thanks for calling REPLACE ME, this is the AI receptionist — how can I help?"
+
+# Pull real hours off their Google Business Profile if you don't ask directly.
+business_hours:
+  mon: ["08:00", "17:00"]
+  tue: ["08:00", "17:00"]
+  wed: ["08:00", "17:00"]
+  thu: ["08:00", "17:00"]
+  fri: ["08:00", "17:00"]
+  sat: "closed"
+  sun: "closed"
+
+slot_minutes: 60   # 30 for quick services (haircuts, cleanings), 60+ for jobs/estimates
+
+services:
+  - name: "REPLACE ME — e.g. Emergency repair"
+    duration_minutes: 60
+  - name: "REPLACE ME — e.g. Routine service call"
+    duration_minutes: 60
+
+# 3-5 real questions their actual customers ask. Ask the owner directly:
+# "What do people usually ask when they call you?" — that's your FAQ list.
+faqs:
+  - q: "REPLACE ME — e.g. Do you offer free estimates?"
+    a: "REPLACE ME"
+  - q: "REPLACE ME — e.g. What's your service area?"
+    a: "REPLACE ME"
+
+# The owner's real cell — this is where escalation texts land AND where
+# transfer_call connects a live urgent caller. Get this right, it's the
+# trust-critical field in the whole config.
+escalation_phone: "+1REPLACE_ME"
+
+max_turns: 12
+max_call_seconds: 360
+
+# --- Optional ---------------------------------------------------------------
+# Offer appointment slots only in these hours (defaults to business_hours).
+# Use it when the business answers calls 24/7 but only schedules in office hours.
+# booking_hours:
+#   mon: ["09:00", "17:00"]
+#   sat: "closed"
+
+# Where new-booking / callback notifications go besides SMS (SMS needs Twilio
+# A2P 10DLC approval and SMS_ENABLED=1). Email needs SMTP_* env vars on Fly.
+# owner_email: "owner@example.com"
+
+# Set false for healthcare/legal-adjacent clients: calls are still answered but
+# the words spoken are not stored or summarized (Call Kettle has no HIPAA BAA).
+# record_transcripts: false

@@ -1,0 +1,33 @@
+client_id: callkettle_sales
+business_name: "Call Kettle"
+vertical: "AI receptionist consultations"
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"
+
+# Not spoken on a call — this config is used for the web booking widget only,
+# not a phone line. Kept valid against the same AI-disclosure rule as every
+# other client config for consistency, even though nothing reads it here.
+opening_line: "Thanks for reaching out to Call Kettle — this is an automated scheduling assistant."
+
+business_hours:
+  mon: ["09:00", "19:00"]
+  tue: ["09:00", "19:00"]
+  wed: ["09:00", "19:00"]
+  thu: ["09:00", "19:00"]
+  fri: ["09:00", "19:00"]
+  sat: ["10:00", "14:00"]
+  sun: "closed"
+
+slot_minutes: 30
+
+services:
+  - name: "Call Kettle Consultation"
+    duration_minutes: 30
+
+faqs: []
+
+escalation_phone: "+15555550100"
+ntfy_topic: "deskline-dxxzxrmter4jhfsw"
+owner_email: "samiali38183@gmail.com"
+max_turns: 12
+max_call_seconds: 360

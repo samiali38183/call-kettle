@@ -1,0 +1,36 @@
+client_id: demo_hvac
+business_name: "CoolFlow Heating & Air"
+vertical: hvac
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"
+
+opening_line: "Thanks for calling CoolFlow Heating and Air, this is the AI receptionist — what's going on?"
+
+business_hours:
+  mon: ["07:00", "19:00"]
+  tue: ["07:00", "19:00"]
+  wed: ["07:00", "19:00"]
+  thu: ["07:00", "19:00"]
+  fri: ["07:00", "19:00"]
+  sat: ["08:00", "14:00"]
+  sun: "closed"
+
+slot_minutes: 60
+
+services:
+  - name: "Emergency repair"
+    duration_minutes: 60
+  - name: "Routine maintenance"
+    duration_minutes: 60
+  - name: "New system quote"
+    duration_minutes: 45
+
+faqs:
+  - q: "Do you offer emergency service?"
+    a: "Yes — same-day emergency visits are available; urgent calls get flagged for the next available technician."
+  - q: "What's your service area?"
+    a: "We cover the whole county, roughly a 20 mile radius from the shop."
+
+escalation_phone: "+15555550122"
+max_turns: 10
+max_call_seconds: 300

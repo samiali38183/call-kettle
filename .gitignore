@@ -1,0 +1,14 @@
+# secrets and local state
+**/.env
+*.db
+*.db-wal
+*.db-shm
+*.log
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+.vercel/
+.fly/
+.pytest_cache/
+marketing/site/

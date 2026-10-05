@@ -1,0 +1,48 @@
+client_id: demo_nova_plumbing
+business_name: "Sample Plumbing"
+vertical: "plumbing"
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"
+
+# Demo company 3 on the public demo line (press 3). FICTIONAL placeholder name; see demo_nova_hvac.yaml for the rules.
+opening_line: "Thanks for calling Sample Plumbing, a pretend company. This is the AI receptionist, and this is a demo. How can I help?"
+
+business_hours:
+  mon: ["07:00", "17:00"]
+  tue: ["07:00", "17:00"]
+  wed: ["07:00", "17:00"]
+  thu: ["07:00", "17:00"]
+  fri: ["07:00", "17:00"]
+  sat: "closed"
+  sun: "closed"
+
+slot_minutes: 60
+
+services:
+  - name: "Leak or drain repair visit"
+    duration_minutes: 60
+  - name: "Water heater estimate"
+    duration_minutes: 45
+  - name: "General plumbing repair"
+    duration_minutes: 60
+
+faqs:
+  - q: "How much does a visit cost?"
+    a: "I can't quote prices on the phone. The plumber explains the cost and gets your approval before any work starts."
+  - q: "What area do you serve?"
+    a: "Sample Plumbing serves the Northern Virginia area. This is a pretend company, so I'd just take your zip code."
+  - q: "What do I do about a burst pipe?"
+    a: "I can't give plumbing instructions, but I can book the soonest visit or have the office called right away. If there is a gas smell, leave the house and call 911 first."
+
+escalation_phone: "+15555550100"
+ntfy_topic: "deskline-dxxzxrmter4jhfsw"
+
+demo_mode: true
+monthly_cost_ceiling_usd: 15
+ceiling_mode: message
+
+extra_instructions: |
+  THIS IS A DEMO. The caller is a business owner listening to how Call Kettle sounds; Sample Plumbing is fictional. Behave like a great receptionist for it: find out what is wrong, book a real open time, move or cancel when asked, and hand off to a person when asked.
+  Never quote a price. Never give plumbing or safety instructions. Only say a visit is booked when the booking tool says so.
+  If the caller asks about Call Kettle itself, explain briefly that Call Kettle sets up a version like this around their business and Sami can show them; offer a callback: collect name, business and phone, then call escalate_to_human with reason "demo_lead".
+  Never claim Call Kettle integrates with Google Calendar or any other calendar.

@@ -1,0 +1,44 @@
+client_id: sample_portal_hvac
+business_name: "Sample Heating & Air"
+vertical: "HVAC"
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"
+
+# FICTIONAL. The SHOW-ME owner portal for sales demos: the founder signs in on his phone and shows a prospect exactly what an owner
+# sees after calls. It is NOT on any phone number or demo menu, so no real caller ever lands here. Its calls, bookings and
+# needs-attention items are made up by scripts/seed_demo_portal.py (run on the Fly machine; see marketing/owner_kit/04_DEMO_RUNBOOK.md).
+# portal_sample: every portal page shows a "Sample business - demo data" banner and nothing can be changed (read-only).
+# Never add owner_email, ntfy_topic, webhook or calendar settings here.
+portal_sample: true
+demo_mode: true
+monthly_cost_ceiling_usd: 5
+ceiling_mode: message
+
+opening_line: "Thanks for calling Sample Heating and Air, a pretend company. This is the AI receptionist, and this is a demo. How can I help?"
+
+business_hours:
+  mon: ["08:00", "17:00"]
+  tue: ["08:00", "17:00"]
+  wed: ["08:00", "17:00"]
+  thu: ["08:00", "17:00"]
+  fri: ["08:00", "17:00"]
+  sat: "closed"
+  sun: "closed"
+
+slot_minutes: 60
+
+services:
+  - name: "AC or heating repair visit"
+    duration_minutes: 60
+  - name: "Seasonal maintenance tune-up"
+    duration_minutes: 60
+  - name: "New system estimate"
+    duration_minutes: 45
+
+faqs:
+  - q: "What area do you serve?"
+    a: "Sample Heating and Air is a pretend company. In the demo it serves Fairfax, Arlington, Alexandria and Loudoun County."
+
+# A reserved fictional number (555-01xx): nothing real can ever ring.
+escalation_phone: "+15555550100"
+weekly_recap: false

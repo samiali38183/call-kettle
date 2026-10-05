@@ -1,0 +1,561 @@
+[
+  {
+    "trade": "hvac",
+    "persona": "spanish_beta",
+    "business": "Summit Heating and Air",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Con gusto le ayudo en español. Gracias por llamar a Summit Heating and Air. ¿En qué le puedo ayudar?"
+      },
+      {
+        "who": "caller",
+        "text": "Hola, buenos días, mi aire acondicionado dejó de enfriar y necesito que alguien venga a repararlo lo antes posible."
+      },
+      {
+        "who": "ai",
+        "text": "Buenos días, entiendo que su aire acondicionado no está enfriando y necesita reparación urgente. ¿Cuál es su nombre, por favor?"
+      },
+      {
+        "who": "caller",
+        "text": "Me llamo Carlos Mendoza."
+      },
+      {
+        "who": "ai",
+        "text": "Mucho gusto, Carlos. ¿El número desde el que me llama es el cinco siete cero, cinco cinco cinco, cero uno dos tres? ¿Es el mejor número para contactarlo?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese es el número correcto."
+      },
+      {
+        "who": "ai",
+        "text": "Lamentablemente no tenemos disponibilidad hoy, pero mañana jueves tenemos citas disponibles a las siete de la mañana, ocho de la mañana, o nueve de la mañana. ¿Cuál le vendría mejor?"
+      },
+      {
+        "who": "caller",
+        "text": "A las ocho de la mañana está bien para mí, gracias."
+      },
+      {
+        "who": "ai",
+        "text": "¡Excelente, Carlos! Su cita está confirmada para mañana jueves, primero de octubre, a las ocho de la mañana. El equipo se comunicará con usted para confirmar los detalles."
+      },
+      {
+        "who": "caller",
+        "text": "Gracias, está perfecto. Adiós."
+      },
+      {
+        "who": "ai",
+        "text": "¡De nada, Carlos! Que tenga un buen día, adiós."
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Carlos Mendoza",
+      "service": "AC or heating repair",
+      "when": "Thursday, 8:00 AM"
+    },
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 18628,
+      "output_tokens": 674,
+      "model_calls": 7,
+      "model_ms": 8310,
+      "tts_chars": 780,
+      "turn_count": 11
+    },
+    "turn_latency_ms": [
+      959,
+      1139,
+      2700,
+      2525,
+      1082
+    ],
+    "failures": []
+  },
+  {
+    "trade": "plumbing",
+    "persona": "spanish_beta",
+    "business": "Harbor Plumbing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Con gusto le ayudo en español. Gracias por llamar a Harbor Plumbing. ¿En qué le puedo ayudar?"
+      },
+      {
+        "who": "caller",
+        "text": "Hola, buenos días, tengo un problema con la llave del fregadero en la cocina que está goteando debajo del gabinete."
+      },
+      {
+        "who": "ai",
+        "text": "Tenemos espacios a las siete, ocho o nueve de la mañana el jueves — ¿cuál le conviene?"
+      },
+      {
+        "who": "caller",
+        "text": "La de las ocho de la mañana está bien para mí, gracias."
+      },
+      {
+        "who": "ai",
+        "text": "Perfecto, jueves primero de octubre a las ocho de la mañana. ¿Cuál es su nombre, por favor?"
+      },
+      {
+        "who": "caller",
+        "text": "Me llamo Carlos Mendoza."
+      },
+      {
+        "who": "ai",
+        "text": "Gracias, Carlos. ¿El número donde nos llamó, cinco siete cero, cinco cinco cinco, cero uno dos tres, es el mejor para contactarlo?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese número está bien."
+      },
+      {
+        "who": "ai",
+        "text": "Su cita está confirmada para el jueves primero de octubre a las ocho de la mañana — nuestro equipo se comunicará con usted para confirmar los detalles."
+      },
+      {
+        "who": "caller",
+        "text": "Está bien, muchas gracias, adiós."
+      },
+      {
+        "who": "ai",
+        "text": "De nada, Carlos — ¡hasta pronto!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Carlos Mendoza",
+      "service": "Leak or drain repair",
+      "when": "Thursday, 8:00 AM"
+    },
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 21227,
+      "output_tokens": 630,
+      "model_calls": 8,
+      "model_ms": 9374,
+      "tts_chars": 583,
+      "turn_count": 11
+    },
+    "turn_latency_ms": [
+      3862,
+      805,
+      1128,
+      2700,
+      973
+    ],
+    "failures": []
+  },
+  {
+    "trade": "electrical",
+    "persona": "spanish_beta",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Con gusto le ayudo en español. Gracias por llamar a Bright Line Electric. ¿En qué le puedo ayudar?"
+      },
+      {
+        "who": "caller",
+        "text": "Hola, necesito que instalen algunos contactos adicionales en mi garaje y me gustaría recibir un presupuesto para el trabajo."
+      },
+      {
+        "who": "ai",
+        "text": "Tenemos disponibilidad mañana jueves a partir de las siete de la mañana. ¿Le parece bien alguno de esos horarios?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, perfecto, mañana a las siete de la mañana me viene bien."
+      },
+      {
+        "who": "ai",
+        "text": "Perfecto. Para confirmar la cita, necesito su nombre y número de teléfono. ¿Es el número desde el que me está llamando, cinco siete cero, cinco cinco cinco, cero uno dos tres, el mejor para contactarlo?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese número está bien. Mi nombre es Carlos Mendoza."
+      },
+      {
+        "who": "ai",
+        "text": "¡Su cita está confirmada para mañana jueves a las siete de la mañana! El equipo le confirmará los detalles más adelante. ¿Hay algo más en lo que pueda ayudarle?"
+      },
+      {
+        "who": "caller",
+        "text": "No, gracias. Hasta luego."
+      },
+      {
+        "who": "ai",
+        "text": "¡Que tenga un buen día!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Carlos Mendoza",
+      "service": "Free estimate",
+      "when": "Thursday, 7:00 AM"
+    },
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 15503,
+      "output_tokens": 519,
+      "model_calls": 6,
+      "model_ms": 8530,
+      "tts_chars": 596,
+      "turn_count": 9
+    },
+    "turn_latency_ms": [
+      3395,
+      1597,
+      2603,
+      1009
+    ],
+    "failures": []
+  },
+  {
+    "trade": "auto",
+    "persona": "spanish_beta",
+    "business": "Main Street Auto",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Con gusto le ayudo en español. Gracias por llamar a Main Street Auto. ¿En qué le puedo ayudar?"
+      },
+      {
+        "who": "caller",
+        "text": "Hola, buenos días, tengo una luz de check engine que acaba de encenderse en mi Honda Accord del 2016 y necesito llevarla al taller lo antes posible."
+      },
+      {
+        "who": "ai",
+        "text": "Hola, entiendo que necesita revisar esa luz de check engine lo antes posible. ¿Podría darme su nombre para agendar una cita de diagnóstico con nosotros?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, claro, mi nombre es Carlos Mendoza."
+      },
+      {
+        "who": "ai",
+        "text": "Perfecto, Carlos. ¿Es el número +15555550100 el mejor para contactarlo, o prefiere otro número?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese número está bien."
+      },
+      {
+        "who": "ai",
+        "text": "Excelente. Voy a verificar la disponibilidad para una cita de diagnóstico. ¿Qué día le vendría bien, o prefiere que le muestre las opciones de hoy o mañana?"
+      },
+      {
+        "who": "caller",
+        "text": "Mañana está bien para mí, ¿qué horarios tienen disponibles?"
+      },
+      {
+        "who": "ai",
+        "text": "Tenemos disponibilidad mañana jueves el primero de octubre a las 7 de la mañana, 8 de la mañana, o 9 de la mañana. ¿Cuál le viene mejor?"
+      },
+      {
+        "who": "caller",
+        "text": "Las 8 de la mañana me viene perfecto, gracias."
+      },
+      {
+        "who": "ai",
+        "text": "¡Perfecto! Su cita está confirmada para mañana jueves el primero de octubre a las ocho de la mañana para el diagnóstico. El equipo le seguirá confirmando los detalles."
+      },
+      {
+        "who": "caller",
+        "text": "Gracias, está bien, adiós."
+      },
+      {
+        "who": "ai",
+        "text": "¡Que tenga un excelente día!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Carlos Mendoza",
+      "service": "Diagnostic",
+      "when": "Thursday, 8:00 AM"
+    },
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20676,
+      "output_tokens": 549,
+      "model_calls": 8,
+      "model_ms": 8783,
+      "tts_chars": 831,
+      "turn_count": 13
+    },
+    "turn_latency_ms": [
+      1000,
+      954,
+      1124,
+      2032,
+      2539,
+      1235
+    ],
+    "failures": []
+  },
+  {
+    "trade": "landscaping",
+    "persona": "spanish_beta",
+    "business": "Greenway Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Con gusto le ayudo en español. Gracias por llamar a Greenway Lawn Care. ¿En qué le puedo ayudar?"
+      },
+      {
+        "who": "caller",
+        "text": "Hola, buenos días, necesito un presupuesto para el corte de pasto semanal en mi casa."
+      },
+      {
+        "who": "ai",
+        "text": "¡Hola! Gracias por llamar a Greenway Lawn Care. Para ayudarle con un presupuesto de corte de pasto, necesito saber su nombre y número de teléfono."
+      },
+      {
+        "who": "caller",
+        "text": "Me llamo Carlos Mendoza, y mi número es 555-0147."
+      },
+      {
+        "who": "ai",
+        "text": "Perfecto, Carlos. ¿Es el número cinco cinco cinco, cero uno cuatro siete el mejor para contactarlo?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese número está bien."
+      },
+      {
+        "who": "ai",
+        "text": "Tenemos disponibilidad mañana, jueves primero de octubre, a las siete de la mañana, ocho de la mañana, o nueve de la mañana. ¿Cuál le viene bien?"
+      },
+      {
+        "who": "caller",
+        "text": "La de las ocho de la mañana me viene perfecta, gracias."
+      },
+      {
+        "who": "ai",
+        "text": "Disculpe, Carlos. Necesito su número completo de diez dígitos. ¿Puedo usar el número desde el que está llamando, cinco siete cero, cinco cinco cinco, cero uno dos tres?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese número está bien."
+      },
+      {
+        "who": "ai",
+        "text": "¡Excelente! Su cita está confirmada para mañana, jueves primero de octubre, a las ocho de la mañana. Nuestro equipo se comunicará con usted para confirmar los detalles. ¡Gracias por elegir Greenway Lawn Care!"
+      },
+      {
+        "who": "caller",
+        "text": "Muchas gracias, que tenga un buen día."
+      },
+      {
+        "who": "ai",
+        "text": "¡Que tenga un excelente día, Carlos! Hasta luego."
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Carlos Mendoza",
+      "service": "Lawn care estimate",
+      "when": "Thursday, 8:00 AM"
+    },
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 24417,
+      "output_tokens": 821,
+      "model_calls": 9,
+      "model_ms": 10635,
+      "tts_chars": 911,
+      "turn_count": 13
+    },
+    "turn_latency_ms": [
+      1060,
+      946,
+      2463,
+      2716,
+      2479,
+      1079
+    ],
+    "failures": []
+  },
+  {
+    "trade": "cleaning",
+    "persona": "spanish_beta",
+    "business": "Fresh Start Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Con gusto le ayudo en español. Gracias por llamar a Fresh Start Cleaning. ¿En qué le puedo ayudar?"
+      },
+      {
+        "who": "caller",
+        "text": "Hola, buenos días. Necesito una limpieza profunda para mi casa, son tres recámaras."
+      },
+      {
+        "who": "ai",
+        "text": "¡Hola! Tenemos disponible una estimación de limpieza profunda de treinta minutos. ¿Cuándo le gustaría agendar esta cita?"
+      },
+      {
+        "who": "caller",
+        "text": "Me gustaría saber qué días tienen disponibles, prefiero algo esta semana si es posible."
+      },
+      {
+        "who": "ai",
+        "text": "Perfecto, voy a revisar la disponibilidad para esta semana. ¿Qué día le vendría mejor—mañana jueves, viernes, o el sábado?"
+      },
+      {
+        "who": "caller",
+        "text": "El viernes me viene perfecto, ¿a qué hora tienen disponible?"
+      },
+      {
+        "who": "ai",
+        "text": "Excelente, el viernes tenemos disponibles las siete de la mañana, las ocho, o las nueve. ¿Cuál le viene mejor?"
+      },
+      {
+        "who": "caller",
+        "text": "La ocho de la mañana está bien para mí."
+      },
+      {
+        "who": "ai",
+        "text": "Perfecto, el viernes a las ocho de la mañana. Antes de confirmar, necesito su nombre y número de teléfono—¿es el cinco siete cero, cinco cinco cinco, cero uno dos tres el número donde podemos contactarlo?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese número está bien. Me llamo Carlos Mendoza."
+      },
+      {
+        "who": "ai",
+        "text": "¡Listo! Su cita está confirmada para el viernes dos de octubre a las ocho de la mañana, y nuestro equipo se comunicará con usted para confirmar todos los detalles. ¿Hay algo más en lo que pueda ayudarle?"
+      },
+      {
+        "who": "caller",
+        "text": "No, gracias. Que tenga un buen día."
+      },
+      {
+        "who": "ai",
+        "text": "¡Usted también, muchas gracias por llamar a Fresh Start Cleaning! Hasta luego."
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Carlos Mendoza",
+      "service": "Deep clean estimate",
+      "when": "Friday, 8:00 AM"
+    },
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20800,
+      "output_tokens": 614,
+      "model_calls": 8,
+      "model_ms": 9006,
+      "tts_chars": 935,
+      "turn_count": 13
+    },
+    "turn_latency_ms": [
+      987,
+      940,
+      2191,
+      1276,
+      2537,
+      1182
+    ],
+    "failures": []
+  },
+  {
+    "trade": "contractor",
+    "persona": "spanish_beta",
+    "business": "Ridgeline Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Con gusto le ayudo en español. Gracias por llamar a Ridgeline Remodeling. ¿En qué le puedo ayudar?"
+      },
+      {
+        "who": "caller",
+        "text": "Hola, buenos días, necesito un presupuesto para remodelar mi baño."
+      },
+      {
+        "who": "ai",
+        "text": "¡Buenos días! Puedo ayudarle a agendar una cita para un presupuesto de remodelación de 60 minutos. ¿Qué día le vendría bien?"
+      },
+      {
+        "who": "caller",
+        "text": "Me vendría bien cualquier día que tengan disponible, no tengo problema."
+      },
+      {
+        "who": "ai",
+        "text": "Tenemos disponibilidad mañana jueves 1 de octubre a las 7, 8 o 9 de la mañana, o el viernes a la misma hora. ¿Cuál hora le conviene?"
+      },
+      {
+        "who": "caller",
+        "text": "El jueves a las 8 de la mañana está perfecto para mí."
+      },
+      {
+        "who": "ai",
+        "text": "Excelente, jueves a las 8 de la mañana. ¿Cuál es su nombre, por favor?"
+      },
+      {
+        "who": "caller",
+        "text": "Me llamo Carlos Mendoza."
+      },
+      {
+        "who": "ai",
+        "text": "Gracias, Carlos. ¿El número desde el que me llama, cinco siete cero, cinco cinco cinco, cero uno dos tres, es el mejor para contactarlo?"
+      },
+      {
+        "who": "caller",
+        "text": "Sí, ese número está bien."
+      },
+      {
+        "who": "ai",
+        "text": "¡Su cita está confirmada para el jueves 1 de octubre a las 8 de la mañana! El equipo le seguirá confirmando los detalles."
+      },
+      {
+        "who": "caller",
+        "text": "Gracias, está bien, hasta luego."
+      },
+      {
+        "who": "ai",
+        "text": "Hasta luego."
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Carlos Mendoza",
+      "service": "Remodel estimate",
+      "when": "Thursday, 8:00 AM"
+    },
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 21872,
+      "output_tokens": 640,
+      "model_calls": 8,
+      "model_ms": 9335,
+      "tts_chars": 693,
+      "turn_count": 13
+    },
+    "turn_latency_ms": [
+      1360,
+      2635,
+      824,
+      1133,
+      2481,
+      1010
+    ],
+    "failures": []
+  }
+]

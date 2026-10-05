@@ -1,0 +1,12 @@
+# Tools for developing, testing and building the marketing material (not needed on the server).
+# Install after requirements.txt:  pip install -r requirements.txt -r requirements-dev.txt
+python-dotenv==1.2.3
+pytest==9.1.1
+pypdf==6.19.0
+pillow==12.3.0
+Markdown==3.11
+websocket-client==1.9.2
+imageio-ffmpeg==0.6.0
+pyflakes==4.0.1
+pip-audit
+segno==1.6.6

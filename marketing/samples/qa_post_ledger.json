@@ -1,0 +1,3011 @@
+[
+  {
+    "trade": "plumbing",
+    "persona": "standard",
+    "business": "Harbor Plumbing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah, I'm calling because I've got a kitchen sink that's leaking underneath the cabinet and I need someone to come take a look at it."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you book a leak repair appointment. We're actually closed right now—it's late evening—but I can get you scheduled for tomorrow or another day that works for you.\n\nWhat day would be best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be perfect if you have anything available."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have morning slots available: seven a.m., eight a.m., or nine a.m. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Seven a.m. works great for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and the best phone number to reach you. Is the number you're calling from—five seven zero, five five five, zero one two three—the best one for us to use?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that number is fine. And my name is Mike Richardson."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your appointment is confirmed for tomorrow, Thursday the first, at seven a.m. for the leak repair. The team will follow up to confirm—thanks for calling Harbor Plumbing!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, appreciate it!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Mike Richardson",
+      "phone": "+15555550100",
+      "service": "Leak or drain repair",
+      "when": "Thursday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20577,
+      "output_tokens": 485,
+      "model_calls": 7,
+      "model_ms": 8228,
+      "tts_chars": 711,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1163,
+      1923,
+      1290,
+      2023,
+      1940
+    ],
+    "failures": []
+  },
+  {
+    "trade": "plumbing",
+    "persona": "change_mind",
+    "business": "Harbor Plumbing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah, I've got a kitchen sink that's leaking under the cabinet and I need someone to come take a look at it."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you schedule a leak repair appointment! We're closed right now—our hours are seven a.m. to six p.m. weekdays and eight a.m. to two p.m. on Saturdays—but I can book you for the first available time tomorrow or another day that works for you.\n\nWhat day would be best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow works great for me, whatever time you have available in the morning."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have morning slots available tomorrow, Thursday the first—how about eight a.m., nine a.m., or ten a.m.?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, let's do that."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! I just need your name and phone number to book that. Is the number you're calling from, five seven zero, five five five, zero one two three, the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. My name is Sarah."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Sarah! Your leak repair appointment is confirmed for tomorrow, Thursday the first at eight a.m. The team will follow up to confirm with you."
+      },
+      {
+        "who": "caller",
+        "text": "Actually, wait—can we move that to a different day instead? Do you have any times available on Friday?"
+      },
+      {
+        "who": "ai",
+        "text": "We have seven a.m., eight a.m., or nine a.m. on Friday the second—which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. on Friday sounds good, let's go with that."
+      },
+      {
+        "who": "ai",
+        "text": "All set! Your appointment is now scheduled for Friday, October second at eight a.m. The team will follow up to confirm."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, appreciate it. Bye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing, goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah",
+      "phone": "+15555550100",
+      "service": "Leak or drain repair",
+      "when": "Friday, 8:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 35087,
+      "output_tokens": 816,
+      "model_calls": 11,
+      "model_ms": 11490,
+      "tts_chars": 985,
+      "turn_count": 14
+    },
+    "turn_latency_ms": [
+      1343,
+      2152,
+      1233,
+      2251,
+      2134,
+      1769,
+      1028
+    ],
+    "failures": []
+  },
+  {
+    "trade": "plumbing",
+    "persona": "cancel_it",
+    "business": "Harbor Plumbing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I have a kitchen sink that's leaking underneath the cabinet and I need someone to come take a look at it."
+      },
+      {
+        "who": "ai",
+        "text": "Hi there! I can help you get that scheduled. We offer leak or drain repair appointments, which take about an hour.\n\nJust so you know, we're closed right now—it's after hours on Wednesday—but I can book you for tomorrow or another day that works for you. What day would be best?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow works great for me, what times do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "We have three times available on Thursday the first: eight a.m., nine a.m., or ten a.m. Which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, let's do that one."
+      },
+      {
+        "who": "ai",
+        "text": "Great! Before I book that, I need your name and phone number. Is the number you're calling from—five seven zero, five five five, zero one two three—the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. My name is Sarah."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is confirmed for Thursday the first at eight a.m.—the team will follow up to confirm. Thanks, Sarah!"
+      },
+      {
+        "who": "caller",
+        "text": "Sorry, something came up, please cancel that appointment."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is cancelled. Feel free to reach out if you'd like to reschedule!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks, bye!"
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, have a great day!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": false,
+    "booking": null,
+    "bookings_count": 0,
+    "cancelled_count": 1,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 27434,
+      "output_tokens": 589,
+      "model_calls": 9,
+      "model_ms": 9947,
+      "tts_chars": 796,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1395,
+      2094,
+      1220,
+      2897,
+      1605,
+      904
+    ],
+    "failures": []
+  },
+  {
+    "trade": "plumbing",
+    "persona": "offhours",
+    "business": "Harbor Plumbing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I have a kitchen sink that's leaking under the cabinet and I need to get someone out to fix it."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you schedule a leak repair appointment! We're closed right now since it's after hours, but I can get you booked for tomorrow or another time that works for you.\n\nWhat day would work best for the repair?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be great, but first what are your hours so I know when to expect someone?"
+      },
+      {
+        "who": "ai",
+        "text": "Tomorrow is Thursday — we're open from 7 a.m. to 6 p.m., and we can schedule your leak repair anytime during those hours.\n\nWhat time would you prefer?"
+      },
+      {
+        "who": "caller",
+        "text": "Morning would be best for me, so how about 9 a.m.?"
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! We have 9 a.m. available on Thursday the first. Before I book that, can I get your name?"
+      },
+      {
+        "who": "caller",
+        "text": "Sure, it's Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Great, Sarah! Is the best number to reach you the one you're calling from,+15555550100?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's correct."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is confirmed for Thursday, October 1st at 9 a.m. for your leak repair. The team will follow up to confirm the details!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it!"
+      },
+      {
+        "who": "ai",
+        "text": "Goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah Mitchell",
+      "phone": "+15555550100",
+      "service": "Leak or drain repair",
+      "when": "Thursday, 9:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 23658,
+      "output_tokens": 514,
+      "model_calls": 8,
+      "model_ms": 7853,
+      "tts_chars": 691,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1167,
+      935,
+      1908,
+      974,
+      2091,
+      890
+    ],
+    "failures": []
+  },
+  {
+    "trade": "plumbing",
+    "persona": "wrongservice",
+    "business": "Harbor Plumbing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I have a kitchen sink that's leaking under the cabinet and I was wondering if you guys could come take a look at it?"
+      },
+      {
+        "who": "ai",
+        "text": "Hi! We can definitely help with that—that sounds like a leak repair, which is one of our services. Unfortunately, we're closed right now (it's 11 p.m.), but we're open starting at 7 a.m. tomorrow, Thursday. Can I schedule you for an appointment?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh that works perfectly, yeah I can do tomorrow morning. What time would be good?"
+      },
+      {
+        "who": "ai",
+        "text": "We have 8 a.m., 10 a.m., or 11 a.m. available tomorrow—which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The 10 a.m. slot would be great for me, thanks!"
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Before I book that, I need your name and phone number. Is the number you're calling from,+15555550100, the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. And my name is Chris Patterson."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Chris! Your leak repair appointment is confirmed for tomorrow, Thursday the first, at 10 a.m. The team will follow up to confirm with you. See you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I really appreciate it. Have a good night!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing, Chris. Bye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Chris Patterson",
+      "phone": "+15555550100",
+      "service": "Leak or drain repair",
+      "when": "Thursday, 10:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20836,
+      "output_tokens": 540,
+      "model_calls": 7,
+      "model_ms": 8471,
+      "tts_chars": 679,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1309,
+      2316,
+      1031,
+      2662,
+      1676
+    ],
+    "failures": []
+  },
+  {
+    "trade": "hvac",
+    "persona": "standard",
+    "business": "Summit Heating and Air",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah, my air conditioner stopped cooling and I really need to get it fixed as soon as possible."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry to hear that—we'll get you scheduled for a repair. We're currently closed (it's after 11 p.m.), but I can book you for the earliest appointment tomorrow morning.\n\nWhat's your name?"
+      },
+      {
+        "who": "caller",
+        "text": "My name is John Martinez."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, John. Is the number you're calling from, five seven zero, five five five, zero one two three, the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's the right number."
+      },
+      {
+        "who": "ai",
+        "text": "We have seven a.m., eight a.m., or nine a.m. tomorrow—which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Seven a.m. works great for me."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is confirmed for tomorrow, Thursday the first at seven a.m. for your AC repair. The team will follow up to confirm."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I really appreciate it. Bye!"
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, John—we'll see you at seven a.m. tomorrow. Bye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "John Martinez",
+      "phone": "+15555550100",
+      "service": "AC or heating repair",
+      "when": "Thursday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20393,
+      "output_tokens": 495,
+      "model_calls": 7,
+      "model_ms": 11467,
+      "tts_chars": 595,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1438,
+      1009,
+      2341,
+      5373,
+      1402
+    ],
+    "failures": []
+  },
+  {
+    "trade": "hvac",
+    "persona": "change_mind",
+    "business": "Summit Heating and Air",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, hi, my air conditioner stopped cooling and I really need someone to come take a look at it."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry to hear your AC isn't cooling — I can definitely help you get that scheduled. We're closed right now, but we open tomorrow morning at 7 a.m. Would you like me to check availability for tomorrow or another day that works for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow works great, whatever time you have available in the morning."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have slots at 8 a.m., 9 a.m., or 10 a.m. tomorrow morning. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, let's go with that."
+      },
+      {
+        "who": "ai",
+        "text": "Awesome! Before I book that, I just need your name and the best phone number to reach you. Is the number you're calling from — five seven zero, five five five, zero one two three — the best one?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. My name is Chris."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Chris! Your AC repair appointment is confirmed for tomorrow, Thursday the first at 8 a.m. The team will follow up to confirm and answer any questions you have."
+      },
+      {
+        "who": "caller",
+        "text": "Actually, wait — can we move it to a different day? Do you have anything available later in the week?"
+      },
+      {
+        "who": "ai",
+        "text": "We have openings on Friday the second and Saturday the third. Friday has 7, 8, or 9 a.m., and Saturday has 8, 9, or 10 a.m. Which day and time work better for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Friday at 8 a.m. sounds good, let's do that."
+      },
+      {
+        "who": "ai",
+        "text": "All set! Your appointment is now moved to Friday, October second at 8 a.m. The team will follow up with you to confirm."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Goodbye."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air, and have a great day!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Chris",
+      "phone": "+15555550100",
+      "service": "AC or heating repair",
+      "when": "Friday, 8:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 35987,
+      "output_tokens": 984,
+      "model_calls": 11,
+      "model_ms": 13780,
+      "tts_chars": 1052,
+      "turn_count": 14
+    },
+    "turn_latency_ms": [
+      1218,
+      2297,
+      1299,
+      2758,
+      2998,
+      2191,
+      1192
+    ],
+    "failures": []
+  },
+  {
+    "trade": "hvac",
+    "persona": "cancel_it",
+    "business": "Summit Heating and Air",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, my air conditioner stopped cooling and I really need someone to come take a look at it."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry to hear that—we can definitely help with that. We're closed right now (it's almost 11 p.m.), but I can book you an AC repair appointment for tomorrow or later this week.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be great, what times do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "Tomorrow (Thursday the first), we have openings at 8 a.m., 9 a.m., and 10 a.m.—which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. works perfectly for me."
+      },
+      {
+        "who": "ai",
+        "text": "Great! I just need your name and phone number to book that. Is the number you're calling from, five seven zero, five five five, zero one two three, the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's correct, and my name is James Miller."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is confirmed for tomorrow at 8 a.m.! The team will follow up to confirm with you before they arrive."
+      },
+      {
+        "who": "caller",
+        "text": "Sorry, something came up, please cancel that appointment."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is cancelled. Let me know if you'd like to reschedule for a different time!"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, can you just make sure that's all cancelled?"
+      },
+      {
+        "who": "ai",
+        "text": "Yes, it's all cancelled—your AC repair appointment for tomorrow at 8 a.m. is completely off the books. If you need to reschedule later, just let me know!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks, goodbye."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome—take care!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": false,
+    "booking": null,
+    "bookings_count": 0,
+    "cancelled_count": 1,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 30725,
+      "output_tokens": 629,
+      "model_calls": 10,
+      "model_ms": 11523,
+      "tts_chars": 874,
+      "turn_count": 14
+    },
+    "turn_latency_ms": [
+      1112,
+      2357,
+      1347,
+      2593,
+      1834,
+      884,
+      1548
+    ],
+    "failures": []
+  },
+  {
+    "trade": "hvac",
+    "persona": "offhours",
+    "business": "Summit Heating and Air",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, hi, my air conditioner stopped cooling and I need to get someone out to fix it."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry to hear that—we can definitely help with that! We're actually closed right now (it's just after 11 p.m.), but I can get you scheduled for an AC repair appointment first thing when we open tomorrow morning.\n\nWhat's your name?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh okay, that works for me. It's Mike, Mike Johnson."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Mike! To book your appointment, is the best number to reach you the one you're calling from—five seven zero, five five five, zero one two three?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's correct."
+      },
+      {
+        "who": "ai",
+        "text": "We have openings at eight a.m., nine a.m., or ten a.m. tomorrow—which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Nine a.m. sounds good, that'll work for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Your AC repair appointment is confirmed for tomorrow at nine a.m. The team will follow up to confirm all the details."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Mike Johnson",
+      "phone": "+15555550100",
+      "service": "AC or heating repair",
+      "when": "Thursday, 9:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20552,
+      "output_tokens": 510,
+      "model_calls": 7,
+      "model_ms": 7595,
+      "tts_chars": 643,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1269,
+      1125,
+      2141,
+      2071,
+      1091
+    ],
+    "failures": []
+  },
+  {
+    "trade": "hvac",
+    "persona": "wrongservice",
+    "business": "Summit Heating and Air",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah, my air conditioner stopped cooling and I really need to get someone out to fix it as soon as possible."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry to hear that—we can definitely help with that. Just so you know, we're closed right now (it's after 11 p.m.), but I can get you scheduled for an AC repair as soon as we open tomorrow morning.\n\nWhat's your name, and is five seven zero, five five five, zero one two three the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's perfect—my name is Michael, and that number works great. Thanks so much."
+      },
+      {
+        "who": "ai",
+        "text": "Great news—we have openings tomorrow, Thursday the first. We could get you in at eight a.m., ten a.m., or eleven a.m. Which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. would be perfect, thank you."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your AC repair is confirmed for tomorrow, Thursday the first at eight a.m. The team will follow up with you to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Oh, one more thing before you go—do you guys happen to do any deck staining or refinishing work?"
+      },
+      {
+        "who": "ai",
+        "text": "We don't—Summit Heating and Air specializes in heating and air conditioning repair and estimates. For deck work, you'd need to contact a different company. Is there anything else I can help you with today?"
+      },
+      {
+        "who": "caller",
+        "text": "No, that's all—thanks so much for getting me scheduled. Have a good night!"
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Michael! Good night, and we'll see you tomorrow morning at eight."
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Michael",
+      "phone": "+15555550100",
+      "service": "AC or heating repair",
+      "when": "Thursday, 8:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 21081,
+      "output_tokens": 555,
+      "model_calls": 7,
+      "model_ms": 8524,
+      "tts_chars": 880,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      2079,
+      2437,
+      2351,
+      1027,
+      1169
+    ],
+    "failures": []
+  },
+  {
+    "trade": "electrical",
+    "persona": "standard",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a few extra outlets installed in my garage and I'd like an estimate for the work."
+      },
+      {
+        "who": "ai",
+        "text": "Hi there! I can help you book a free estimate for outlet installation in your garage.\n\nJust so you know, we're closed right now—it's late evening—but I can get you scheduled for when we're open. What day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be great if you have any openings available."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have openings at seven a.m., eight a.m., or nine a.m. tomorrow. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Seven a.m. works perfect for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and phone number to book that in. Is the number you're calling from—five seven zero, five five five, zero one two three—the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that number is fine. My name is Michael Torres."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set! Your free estimate is confirmed for tomorrow at seven a.m. The team will follow up to confirm the details. Thanks for choosing Bright Line Electric!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, have a good night!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Michael Torres",
+      "phone": "+15555550100",
+      "service": "Free estimate",
+      "when": "Thursday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20557,
+      "output_tokens": 507,
+      "model_calls": 7,
+      "model_ms": 7810,
+      "tts_chars": 708,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1247,
+      2168,
+      1166,
+      2503,
+      931
+    ],
+    "failures": []
+  },
+  {
+    "trade": "electrical",
+    "persona": "change_mind",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hey, I need to get a few extra outlets installed in my garage and I'd like an estimate for the work."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you schedule a free estimate! We're actually closed right now—it's after hours—but I can get you booked for tomorrow morning or another time that works for you.\n\nWhat day would be best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow morning works great for me, what time do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have eight a.m., nine a.m., or ten a.m. available tomorrow, Thursday the first. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, let's do that."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Before I book that for you, I just need your name and the best phone number to reach you. Is the number you're calling from—five seven zero, five five five, zero one two three—the best one for us to use?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. It's John Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your free estimate is confirmed for tomorrow, Thursday the first at eight a.m. The team will follow up to confirm the details. We'll see you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Actually, wait—can we move that to a different day? Would Friday work instead?"
+      },
+      {
+        "who": "ai",
+        "text": "We have seven a.m., eight a.m., or nine a.m. on Friday the second. Which time works for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Seven a.m. on Friday sounds good, let's go with that."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Your estimate is now rescheduled for Friday, October second at seven a.m. We'll see you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, appreciate it. Goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "John Mitchell",
+      "phone": "+15555550100",
+      "service": "Free estimate",
+      "when": "Friday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 34639,
+      "output_tokens": 773,
+      "model_calls": 11,
+      "model_ms": 11770,
+      "tts_chars": 927,
+      "turn_count": 14
+    },
+    "turn_latency_ms": [
+      1114,
+      2129,
+      1297,
+      2349,
+      2089,
+      1913,
+      1033
+    ],
+    "failures": []
+  },
+  {
+    "trade": "electrical",
+    "persona": "cancel_it",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I need to get a few extra outlets installed in my garage and I'd like to get an estimate for the work."
+      },
+      {
+        "who": "ai",
+        "text": "Hi! I can help you book a free estimate for that work. We're closed right now—it's late evening—but I can get you scheduled for tomorrow or another day that works for you.\n\nWhat day would be best for a free estimate?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow works great for me, what times do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! Tomorrow, Thursday the first, we have openings at eight a.m., nine a.m., or ten a.m. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, I'll take that slot."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Before I book that for you, I need your name and the best phone number to reach you. Is the number you're calling from—five seven zero, five five five, zero one two three—the best one to use?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's the right number. It's Mike Sullivan."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Mike! Your free estimate is confirmed for tomorrow, Thursday the first, at eight a.m. The team will follow up to confirm before they head out."
+      },
+      {
+        "who": "caller",
+        "text": "Sorry, something came up, please cancel that appointment."
+      },
+      {
+        "who": "ai",
+        "text": "Your estimate appointment for Thursday, October first at eight a.m. is cancelled. Feel free to call back whenever you're ready to reschedule!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks, goodbye."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Mike—take care!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": false,
+    "booking": null,
+    "bookings_count": 0,
+    "cancelled_count": 1,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 27353,
+      "output_tokens": 610,
+      "model_calls": 9,
+      "model_ms": 10760,
+      "tts_chars": 868,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1657,
+      1946,
+      1252,
+      3430,
+      1692,
+      963
+    ],
+    "failures": []
+  },
+  {
+    "trade": "electrical",
+    "persona": "offhours",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I need to get some extra outlets installed in my garage and I'd like to get an estimate for that work."
+      },
+      {
+        "who": "ai",
+        "text": "I'd be happy to help! We offer free estimates, which take about 30 minutes. We're currently closed, but I can book you an appointment for when we reopen.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that sounds great. Are you open tomorrow, and what are your hours?"
+      },
+      {
+        "who": "ai",
+        "text": "Tomorrow is Thursday—we're open from 7 a.m. to 6 p.m. Does Thursday work for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, Thursday works perfect for me. Can we schedule it for sometime in the morning if you have availability?"
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! We have morning slots at 9 a.m., 10 a.m., and 11 a.m. on Thursday. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The 10 a.m. slot works great for me, thanks."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Before I book that, I need your name and phone number. Is the number you're calling from—five seven zero, five five five, zero one two three—the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. My name is Mike Johnson."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is confirmed for Thursday, October 1st at 10 a.m.! The team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Mike Johnson",
+      "phone": "+15555550100",
+      "service": "Free estimate",
+      "when": "Thursday, 10:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 23750,
+      "output_tokens": 550,
+      "model_calls": 8,
+      "model_ms": 8948,
+      "tts_chars": 703,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1095,
+      780,
+      2239,
+      1285,
+      2587,
+      1073
+    ],
+    "failures": []
+  },
+  {
+    "trade": "electrical",
+    "persona": "wrongservice",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm calling because I need to get some extra outlets installed in my garage, and I'd like to get an estimate for that work."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric! I can help you schedule a free estimate for those outlets—that's a thirty-minute appointment.\n\nJust so you know, we're closed right now (it's almost eleven p.m.), but we're open tomorrow, Thursday, starting at seven a.m. Would tomorrow work for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow morning works great for me, whatever time is easiest for you guys."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have eight a.m., nine a.m., or eleven a.m. available tomorrow—which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. sounds perfect, thanks so much."
+      },
+      {
+        "who": "ai",
+        "text": "Awesome! Before I book that, I just need your name and a phone number to reach you at. Is the number you're calling from right now—five seven zero, five five five, zero one two three—the best one to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that number's good. And my name is Mike Patterson."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is confirmed for tomorrow, Thursday the first, at eight a.m. for your free estimate—the team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Have a good night!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Mike Patterson",
+      "phone": "+15555550100",
+      "service": "Free estimate",
+      "when": "Thursday, 8:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20806,
+      "output_tokens": 543,
+      "model_calls": 7,
+      "model_ms": 9012,
+      "tts_chars": 784,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1811,
+      2162,
+      1354,
+      2666,
+      1113
+    ],
+    "failures": []
+  },
+  {
+    "trade": "landscaping",
+    "persona": "standard",
+    "business": "Greenway Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm calling to get a quote for weekly lawn mowing at my place."
+      },
+      {
+        "who": "ai",
+        "text": "Hi there! Thanks for calling Greenway Lawn Care. Just so you know, we're closed right now—it's after 11 p.m.—but I can help you schedule a lawn care estimate for when we're open.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh okay, no problem. How about tomorrow if you have an opening?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have openings at seven a.m., eight a.m., or nine a.m. tomorrow—which of those times works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Seven a.m. works great for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and the best phone number to reach you. Is the number you're calling from—five seven zero, five five five, zero one two three—the best one to use?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that number is fine. My name is Michael Torres."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set! Your lawn care estimate is confirmed for tomorrow, Thursday, October first at seven a.m. The team will follow up to confirm."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Michael Torres",
+      "phone": "+15555550100",
+      "service": "Lawn care estimate",
+      "when": "Thursday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20616,
+      "output_tokens": 510,
+      "model_calls": 7,
+      "model_ms": 7647,
+      "tts_chars": 676,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1322,
+      1962,
+      1191,
+      2228,
+      1042
+    ],
+    "failures": []
+  },
+  {
+    "trade": "landscaping",
+    "persona": "change_mind",
+    "business": "Greenway Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah, I'm looking to get a quote for weekly lawn mowing at my place."
+      },
+      {
+        "who": "ai",
+        "text": "Hi there! Thanks for calling Greenway Lawn Care. Just so you know, we're closed right now—we open at 7 a.m. tomorrow—but I can help you book a lawn care estimate.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow works great for me, whatever time you have available in the morning."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have 8 a.m., 9 a.m., or 10 a.m. tomorrow morning—which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, let's go with that."
+      },
+      {
+        "who": "ai",
+        "text": "Awesome! Before I book that, I need your name and phone number. Is the number you're calling from—five seven zero, five five five, zero one two three—the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. And my name is Mike Johnson."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Mike! Your lawn care estimate is confirmed for tomorrow at 8 a.m. The team will follow up to confirm the details. See you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Actually, wait—can we move that to a different time? Would 9 a.m. work instead?"
+      },
+      {
+        "who": "ai",
+        "text": "Done! Your estimate is now scheduled for tomorrow at 9 a.m. instead. Thanks, Mike!"
+      },
+      {
+        "who": "caller",
+        "text": "Perfect, thanks so much, goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care, goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Mike Johnson",
+      "phone": "+15555550100",
+      "service": "Lawn care estimate",
+      "when": "Thursday, 9:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 27740,
+      "output_tokens": 679,
+      "model_calls": 9,
+      "model_ms": 9705,
+      "tts_chars": 724,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1212,
+      2118,
+      1226,
+      2414,
+      1980,
+      984
+    ],
+    "failures": []
+  },
+  {
+    "trade": "landscaping",
+    "persona": "cancel_it",
+    "business": "Greenway Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a quote for weekly lawn mowing at my place."
+      },
+      {
+        "who": "ai",
+        "text": "Hi! Thanks for calling Greenway Lawn Care. Just so you know, we're closed right now — it's after 11 p.m. — but I can schedule a lawn care estimate for you tomorrow or another day that works.\n\nWhat day would be best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be great, what times do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "Tomorrow is Thursday the first of October. What time works best for you — morning, afternoon, or do you have a specific time in mind?"
+      },
+      {
+        "who": "caller",
+        "text": "Morning would be perfect, anytime before noon works for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I have openings at 8 a.m., 10 a.m., or 11 a.m. on Thursday. Which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. sounds good, I'll be there then."
+      },
+      {
+        "who": "ai",
+        "text": "Great! Before I book that, I need your name and phone number. Is the number you're calling from — five seven zero, five five five, zero one two three — the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's the right number. The name is Mike Johnson."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Mike! Your lawn care estimate is confirmed for Thursday, October first at 8 a.m. The team will follow up to confirm."
+      },
+      {
+        "who": "caller",
+        "text": "Sorry, something came up — could you please cancel that appointment for me?"
+      },
+      {
+        "who": "ai",
+        "text": "Done — your lawn care estimate for Thursday at 8 a.m. is cancelled. Feel free to call back anytime if you'd like to reschedule!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks, I appreciate it. Goodbye."
+      },
+      {
+        "who": "ai",
+        "text": "Goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": false,
+    "booking": null,
+    "bookings_count": 0,
+    "cancelled_count": 1,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 30610,
+      "output_tokens": 645,
+      "model_calls": 10,
+      "model_ms": 10604,
+      "tts_chars": 895,
+      "turn_count": 14
+    },
+    "turn_latency_ms": [
+      1382,
+      991,
+      2111,
+      1144,
+      2562,
+      1638,
+      1017
+    ],
+    "failures": []
+  },
+  {
+    "trade": "landscaping",
+    "persona": "offhours",
+    "business": "Greenway Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a quote for weekly lawn mowing service at my house."
+      },
+      {
+        "who": "ai",
+        "text": "Hi there! Thanks for calling Greenway Lawn Care. Just so you know, we're closed right now—it's after hours—but I can help you get scheduled for a lawn care estimate tomorrow.\n\nWhat's your name, and is the number you're calling from the best one to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "My name is Sarah, and yes this is the best number to reach me."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have three times available: eight a.m., ten a.m., or eleven a.m. Which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Ten a.m. sounds perfect for me tomorrow."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Your appointment is confirmed for ten a.m. tomorrow, Thursday the first. The team will follow up to confirm the details with you."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I really appreciate it. Goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah",
+      "phone": "+15555550100",
+      "service": "Lawn care estimate",
+      "when": "Thursday, 10:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 17601,
+      "output_tokens": 484,
+      "model_calls": 6,
+      "model_ms": 7341,
+      "tts_chars": 534,
+      "turn_count": 8
+    },
+    "turn_latency_ms": [
+      1517,
+      2255,
+      2564,
+      1140
+    ],
+    "failures": []
+  },
+  {
+    "trade": "landscaping",
+    "persona": "wrongservice",
+    "business": "Greenway Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm calling because I need a quote for weekly lawn mowing at my house."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care! Just so you know, we're closed right now—we're open again tomorrow at seven a.m. Would you like to book a lawn care estimate, or is there something else I can help with?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh, a lawn care estimate would be great, actually do you also do any gutter cleaning or window washing by any chance?"
+      },
+      {
+        "who": "ai",
+        "text": "We offer lawn care estimates and yard cleanup, but I'm not sure about gutter cleaning or window washing—let me have the team follow up with you about those services. For now, let's get you booked for a lawn care estimate?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that sounds good to me, thanks! What times do you have available tomorrow?"
+      },
+      {
+        "who": "ai",
+        "text": "Tomorrow we have eight a.m., eleven a.m., or noon available—which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The eleven a.m. slot works perfect for me, thanks."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and a phone number to confirm the appointment. Is the number you're calling from—five seven zero, five five five, zero one two three—the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that number works great. My name is Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Sarah! Your lawn care estimate is confirmed for tomorrow, Thursday the first, at eleven a.m. The team will follow up to confirm."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah Mitchell",
+      "phone": "+15555550100",
+      "service": "Lawn care estimate",
+      "when": "Thursday, 11:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 23800,
+      "output_tokens": 537,
+      "model_calls": 8,
+      "model_ms": 9197,
+      "tts_chars": 891,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1191,
+      1126,
+      2231,
+      1121,
+      2579,
+      1152
+    ],
+    "failures": []
+  },
+  {
+    "trade": "cleaning",
+    "persona": "standard",
+    "business": "Fresh Start Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a deep clean done on my three-bedroom house, and I was wondering if you guys offer that service?"
+      },
+      {
+        "who": "ai",
+        "text": "We offer a Deep clean estimate, which is a 30-minute appointment where we can assess your home and give you a quote. Would you like to book that?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that sounds good! What times do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "I'd be happy to help! What date works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "How about tomorrow if you have anything open?"
+      },
+      {
+        "who": "ai",
+        "text": "We have openings at seven a.m., eight a.m., or nine a.m. — which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Seven a.m. works great for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I'll need your name and phone number to book that. Is the number you're calling from — five seven zero, five five five, zero one two three — the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that number is fine. And my name is Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is confirmed! The team will follow up to confirm the details. See you Thursday morning at seven a.m.!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, bye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah Mitchell",
+      "phone": "+15555550100",
+      "service": "Deep clean estimate",
+      "when": "Thursday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 23386,
+      "output_tokens": 509,
+      "model_calls": 8,
+      "model_ms": 8181,
+      "tts_chars": 614,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1079,
+      640,
+      2003,
+      1154,
+      2577,
+      887
+    ],
+    "failures": []
+  },
+  {
+    "trade": "cleaning",
+    "persona": "change_mind",
+    "business": "Fresh Start Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, I need a deep clean for my three-bedroom house, and I'm looking to get it scheduled pretty soon if you have availability."
+      },
+      {
+        "who": "ai",
+        "text": "I'd be happy to help with a deep clean estimate! Just to confirm, that's the 30-minute deep clean estimate service, right? And what date were you thinking — how soon would work best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Actually, I was thinking more like a full deep clean, not just an estimate. And honestly, I'm pretty flexible on timing — what's your earliest opening?"
+      },
+      {
+        "who": "ai",
+        "text": "I appreciate that! Just to clarify — we offer a \"Deep clean estimate\" which is a 30-minute service where we assess your home. Do you want to book that estimate first, or are you looking for something different? Once I know what you need, I can check our earliest availability for you."
+      },
+      {
+        "who": "caller",
+        "text": "Oh okay, got it. Yeah, let's go ahead and book that estimate then. What's your earliest time available?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! Let me check our earliest openings for you. What day would work best — would you prefer tomorrow, Thursday the first, or are you flexible on that too?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow works great for me, what time do you have open?"
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! We have openings at eight a.m., nine a.m., or ten a.m. tomorrow — which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, let's do that."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Before I book that, I need to grab your name and confirm the best phone number to reach you. Is the number you're calling from — five seven zero, five five five, zero one two three — the best one to use?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. My name is Sarah."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Sarah! Your deep clean estimate is confirmed for tomorrow, Thursday the first, at eight a.m. The team will follow up to confirm."
+      },
+      {
+        "who": "caller",
+        "text": "Actually, wait — can we move it to a different day? Would Friday work instead?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! Friday we have openings at seven a.m., eight a.m., or nine a.m. — which time works for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. on Friday works perfect, thanks."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Your appointment is moved to Friday, October second at eight a.m. Thanks, Sarah — we'll see you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, sounds good. Bye!"
+      },
+      {
+        "who": "ai",
+        "text": "Goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah",
+      "phone": "+15555550100",
+      "service": "Deep clean estimate",
+      "when": "Friday, 8:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 41417,
+      "output_tokens": 838,
+      "model_calls": 13,
+      "model_ms": 14757,
+      "tts_chars": 1310,
+      "turn_count": 18
+    },
+    "turn_latency_ms": [
+      1342,
+      1360,
+      1063,
+      2320,
+      1624,
+      2846,
+      1708,
+      1653,
+      1010
+    ],
+    "failures": []
+  },
+  {
+    "trade": "cleaning",
+    "persona": "cancel_it",
+    "business": "Fresh Start Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a deep clean done for my three-bedroom house, do you have any availability soon?"
+      },
+      {
+        "who": "ai",
+        "text": "Hi! We offer deep clean estimates that take about 30 minutes — is that what you're looking for, or did you want to book a full deep cleaning service?\n\nJust so you know, we're closed right now (it's after 11 p.m.), but I can check availability for you starting tomorrow!"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, I want to book the full deep cleaning service, and tomorrow works great for me!"
+      },
+      {
+        "who": "ai",
+        "text": "I want to make sure I find you the right time — do you have a preferred time tomorrow, or should I just show you what we have available?"
+      },
+      {
+        "who": "caller",
+        "text": "Just show me what you've got available, whatever works best for you guys."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Tomorrow (Thursday the first) we have availability at 8 a.m., 9 a.m., or 10 a.m. — which of those works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. works perfectly for me."
+      },
+      {
+        "who": "ai",
+        "text": "Great! I just need your name and phone number to book that in. Is the number you're calling from, five seven zero, five five five, zero one two three, the best one to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number, and the name is Sarah."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect, Sarah! Let me confirm — I have your full name as just Sarah, or do you have a last name I should include?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh yeah, it's Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your appointment is confirmed for tomorrow (Thursday the first) at 8 a.m. — the team will follow up to confirm all the details!"
+      },
+      {
+        "who": "caller",
+        "text": "Sorry, something came up, please cancel that appointment."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is cancelled — we've removed the Standard cleaning that was scheduled for Thursday, October first at 8 a.m. Feel free to reach out if you'd like to book again later!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks, goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Sarah — have a great day!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": false,
+    "booking": null,
+    "bookings_count": 0,
+    "cancelled_count": 1,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 33699,
+      "output_tokens": 668,
+      "model_calls": 11,
+      "model_ms": 11768,
+      "tts_chars": 1183,
+      "turn_count": 16
+    },
+    "turn_latency_ms": [
+      1453,
+      879,
+      1935,
+      1285,
+      1168,
+      2402,
+      1722,
+      1066
+    ],
+    "failures": []
+  },
+  {
+    "trade": "cleaning",
+    "persona": "offhours",
+    "business": "Fresh Start Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a deep clean done on my three-bedroom house."
+      },
+      {
+        "who": "ai",
+        "text": "Hi there! We'd be happy to help with a deep clean estimate for your home. Just so you know, we're closed right now—it's late evening—but I can get you scheduled for a consultation.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh okay, what are your hours then? And I was hoping to book for tomorrow if you have any availability."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have three slots available tomorrow: eight a.m., nine a.m., or ten a.m. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Nine a.m. works perfect for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and phone number to book that in. Is the number you're calling from—five seven zero, five five five, zero one two three—the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. My name is Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set! Your deep clean estimate is confirmed for tomorrow, Thursday the first, at nine a.m. The team will follow up to confirm the details with you."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah Mitchell",
+      "phone": "+15555550100",
+      "service": "Deep clean estimate",
+      "when": "Thursday, 9:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20819,
+      "output_tokens": 562,
+      "model_calls": 7,
+      "model_ms": 8578,
+      "tts_chars": 696,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1162,
+      2886,
+      1195,
+      2446,
+      979
+    ],
+    "failures": []
+  },
+  {
+    "trade": "cleaning",
+    "persona": "wrongservice",
+    "business": "Fresh Start Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a deep clean done on my three-bedroom house, and I was wondering if you guys do that?"
+      },
+      {
+        "who": "ai",
+        "text": "Hi! Yes, we do offer deep cleaning services — we can send someone out for a deep clean estimate, which takes about 30 minutes. Would you like to book that, or do you have other questions about what we offer?"
+      },
+      {
+        "who": "caller",
+        "text": "That sounds great, actually. Oh, and one more thing — do you happen to do any roof repairs or gutter work?"
+      },
+      {
+        "who": "ai",
+        "text": "We focus on house cleaning services, so roof and gutter work is outside what we do. But I can definitely get you scheduled for that deep clean estimate — when would work best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh okay, no problem at all! How about next Tuesday afternoon if you have anything available?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have afternoon slots available on Tuesday the sixth — how about two p.m., one p.m., or three p.m.?"
+      },
+      {
+        "who": "caller",
+        "text": "Two p.m. works perfect for me, thanks so much."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and phone number to book that for you. Is the number you're calling from — five seven zero, five five five, zero one two three — the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. And my name is Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your deep clean estimate is confirmed for Tuesday, October sixth at two p.m. The team will follow up to confirm with you. Thanks for choosing Fresh Start Cleaning!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Bye!"
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Sarah — have a great day!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah Mitchell",
+      "phone": "+15555550100",
+      "service": "Deep clean estimate",
+      "when": "Tuesday, 2:00 PM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 23850,
+      "output_tokens": 554,
+      "model_calls": 8,
+      "model_ms": 8332,
+      "tts_chars": 899,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1058,
+      938,
+      2035,
+      1186,
+      2320,
+      898
+    ],
+    "failures": []
+  },
+  {
+    "trade": "auto",
+    "persona": "standard",
+    "business": "Main Street Auto",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I've got a check engine light that just came on in my 2016 Honda Accord and I'd like to get it checked out as soon as possible."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you get a diagnostic appointment scheduled! We're closed right now—it's after hours—but we open at seven a.m. tomorrow morning. What day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow morning would be great, whatever time you have available first thing."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! We have seven a.m. available tomorrow morning, Thursday the first. Does that work for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, seven a.m. works perfect for me."
+      },
+      {
+        "who": "ai",
+        "text": "Great! I just need your name and phone number to book that in. Is the number you're calling from—five seven zero, five five five, zero one two three—the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's the right number. My name is David Chen."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Your diagnostic appointment is confirmed for tomorrow, Thursday the first, at seven a.m. The team will follow up to confirm. See you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, appreciate it. Bye!"
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome! Have a great day."
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "David Chen",
+      "phone": "+15555550100",
+      "service": "Diagnostic",
+      "when": "Thursday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20546,
+      "output_tokens": 469,
+      "model_calls": 7,
+      "model_ms": 7824,
+      "tts_chars": 624,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1153,
+      2359,
+      1183,
+      2372,
+      846
+    ],
+    "failures": []
+  },
+  {
+    "trade": "auto",
+    "persona": "change_mind",
+    "business": "Main Street Auto",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hey, my check engine light just came on in my 2016 Honda Accord and I need to get it looked at pretty soon."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you get that checked out! We offer diagnostics that take about an hour — we can figure out what's going on with that light.\n\nWe're closed right now, but we're open tomorrow (Thursday) from seven a.m. to six p.m. Would tomorrow work for you, or do you prefer a different day?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow works great, what times do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "We have three slots available tomorrow: eight a.m., nine a.m., or ten a.m. — which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. is perfect, let's do that."
+      },
+      {
+        "who": "ai",
+        "text": "Great! I'll need your name and phone number to book that. Is the number you're calling from — five seven zero, five five five, zero one two three — the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number, and it's John Peterson."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, John! Your diagnostic appointment is confirmed for tomorrow, Thursday the first, at eight a.m. The team will follow up to confirm with you."
+      },
+      {
+        "who": "caller",
+        "text": "Actually, wait — can we move it to a different day? Would Friday work instead?"
+      },
+      {
+        "who": "ai",
+        "text": "We have seven a.m., eight a.m., or nine a.m. on Friday — which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. on Friday sounds good, let's go with that."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Your appointment is now moved to Friday, October second, at eight a.m. We'll see you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, bye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "John Peterson",
+      "phone": "+15555550100",
+      "service": "Diagnostic",
+      "when": "Friday, 8:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 34529,
+      "output_tokens": 746,
+      "model_calls": 11,
+      "model_ms": 11939,
+      "tts_chars": 938,
+      "turn_count": 14
+    },
+    "turn_latency_ms": [
+      1484,
+      2102,
+      1114,
+      2483,
+      1900,
+      1909,
+      1097
+    ],
+    "failures": []
+  },
+  {
+    "trade": "auto",
+    "persona": "cancel_it",
+    "business": "Main Street Auto",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, my check engine light just came on in my 2016 Honda Accord and I need to get it checked out as soon as possible."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you get that checked out! We're closed right now—it's almost 11 p.m.—but I can book you a diagnostic appointment first thing tomorrow morning or whenever works best for you.\n\nWhat day would be good for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow morning would be perfect, what time do you have available?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! Tomorrow (Thursday the first) we have openings at eight a.m., nine a.m., or ten a.m. for your diagnostic. Which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. works great for me."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Before I book that in, I need your name and phone number. Is the number you're calling from—five seven zero, five five five, zero one two three—the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's the right number. My name is Chris."
+      },
+      {
+        "who": "ai",
+        "text": "Great, Chris! Let me get your last name to complete the booking."
+      },
+      {
+        "who": "caller",
+        "text": "It's Johnson."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your diagnostic appointment is confirmed for tomorrow, Thursday the first, at eight a.m. The team will follow up to confirm. Bring your keys and we'll get that check engine light sorted out!"
+      },
+      {
+        "who": "caller",
+        "text": "Sorry, something came up and I need to cancel that appointment."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto, Chris. Have a good night!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": false,
+    "booking": null,
+    "bookings_count": 0,
+    "cancelled_count": 1,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 27130,
+      "output_tokens": 623,
+      "model_calls": 9,
+      "model_ms": 10842,
+      "tts_chars": 866,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1280,
+      2941,
+      1218,
+      1013,
+      2171,
+      2336
+    ],
+    "failures": []
+  },
+  {
+    "trade": "auto",
+    "persona": "offhours",
+    "business": "Main Street Auto",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, my check engine light just came on in my 2016 Honda Accord and I need to get it looked at."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you schedule a diagnostic appointment to have that checked out. We're closed right now, but we open at seven a.m. tomorrow — what day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be great, what time do you have available in the morning?"
+      },
+      {
+        "who": "ai",
+        "text": "We have eight a.m., nine a.m., or ten a.m. available tomorrow morning — which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Nine a.m. works perfect for me."
+      },
+      {
+        "who": "ai",
+        "text": "Great! I'll need your name and phone number to book that. Is the number you're calling from, five seven zero, five five five, zero one two three, the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number. The name is Mike Patterson."
+      },
+      {
+        "who": "ai",
+        "text": "Your diagnostic appointment is confirmed for tomorrow at nine a.m., Mike — the team will follow up to confirm. See you then!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, appreciate it!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto, goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Mike Patterson",
+      "phone": "+15555550100",
+      "service": "Diagnostic",
+      "when": "Thursday, 9:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20452,
+      "output_tokens": 468,
+      "model_calls": 7,
+      "model_ms": 7725,
+      "tts_chars": 602,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1036,
+      2020,
+      1136,
+      2524,
+      1100
+    ],
+    "failures": []
+  },
+  {
+    "trade": "auto",
+    "persona": "wrongservice",
+    "business": "Main Street Auto",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah, my check engine light just came on in my 2016 Honda Accord and I was wondering if you guys could take a look at it?"
+      },
+      {
+        "who": "ai",
+        "text": "Hi! Yes, we can definitely help with that—a diagnostic is what you need, and that's one of our services. We're closed right now, but we're open tomorrow (Thursday) starting at seven a.m., and I can get you scheduled then or any other day that works for you.\n\nWhat day would be best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow at seven works great for me, that would be perfect!"
+      },
+      {
+        "who": "ai",
+        "text": "Great! The earliest we have tomorrow is eight a.m.—does that work for you instead?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, eight a.m. is fine, that works for me!"
+      },
+      {
+        "who": "ai",
+        "text": "Awesome! I just need your name and phone number to book it. Is the number you're calling from—five seven zero, five five five, zero one two three—the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, that's the right number, and my name is David Miller."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set! Your diagnostic is confirmed for tomorrow, Thursday the first, at eight a.m. The team will follow up to confirm with you."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I really appreciate it!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto, have a great night!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "David Miller",
+      "phone": "+15555550100",
+      "service": "Diagnostic",
+      "when": "Thursday, 8:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20786,
+      "output_tokens": 536,
+      "model_calls": 7,
+      "model_ms": 8681,
+      "tts_chars": 740,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1512,
+      2146,
+      1200,
+      2777,
+      1136
+    ],
+    "failures": []
+  },
+  {
+    "trade": "contractor",
+    "persona": "standard",
+    "business": "Ridgeline Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah, I'm looking to get a bathroom remodel done and I need a quote for the project."
+      },
+      {
+        "who": "ai",
+        "text": "Hi! I can help you schedule a remodel estimate with our team. Just to confirm — are you calling from five seven zero, five five five, zero one two three?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's the right number."
+      },
+      {
+        "who": "ai",
+        "text": "Great! I should let you know we're closed right now — it's after hours — but I can book you an estimate appointment. What's your name?"
+      },
+      {
+        "who": "caller",
+        "text": "It's Michael Torres."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect, Michael. Let me check what times we have available. What day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be great if you have an opening."
+      },
+      {
+        "who": "ai",
+        "text": "We have openings tomorrow morning at seven, eight, or nine a.m. — which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Seven a.m. is perfect, I can make that work."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Michael! Your remodel estimate is confirmed for tomorrow at seven a.m. The team will follow up to confirm before you come in."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Have a good night."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling, Michael. Goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Michael Torres",
+      "phone": "+15555550100",
+      "service": "Remodel estimate",
+      "when": "Thursday, 7:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 23210,
+      "output_tokens": 496,
+      "model_calls": 8,
+      "model_ms": 8901,
+      "tts_chars": 666,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1192,
+      1026,
+      737,
+      1951,
+      2796,
+      1302
+    ],
+    "failures": []
+  },
+  {
+    "trade": "contractor",
+    "persona": "change_mind",
+    "business": "Ridgeline Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, yeah I'm looking to get a bathroom remodel done and I need a quote whenever you guys have time to come out."
+      },
+      {
+        "who": "ai",
+        "text": "Hi! Thanks for calling Ridgeline Remodeling. We're actually closed right now—it's after hours—but I can get you scheduled for a remodel estimate as soon as we open back up.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow would be great if you have any openings in the morning."
+      },
+      {
+        "who": "ai",
+        "text": "Great! We have morning slots available tomorrow—how about nine a.m.?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, nine a.m. works perfect for me, let's do it."
+      },
+      {
+        "who": "ai",
+        "text": "Awesome! I just need your name and the best phone number to reach you. Is the number you're calling from—five seven zero, five five five, zero one two three—the best one to use?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah that's the right number, and my name is Mike Johnson."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your remodel estimate is confirmed for tomorrow, Thursday the first, at nine a.m. The team will follow up to confirm with you."
+      },
+      {
+        "who": "caller",
+        "text": "Actually, wait—can we move it to a different day? Tomorrow doesn't work after all. What about Friday instead?"
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Friday morning we have nine a.m. available—does that work for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, Friday at nine works great, thanks."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Your appointment is all set for Friday, October second at nine a.m. Thanks, Mike!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I appreciate it. Bye!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling, goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Mike Johnson",
+      "phone": "+15555550100",
+      "service": "Remodel estimate",
+      "when": "Friday, 9:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 34793,
+      "output_tokens": 784,
+      "model_calls": 11,
+      "model_ms": 11147,
+      "tts_chars": 798,
+      "turn_count": 14
+    },
+    "turn_latency_ms": [
+      1204,
+      1919,
+      1261,
+      2167,
+      1695,
+      1863,
+      1177
+    ],
+    "failures": []
+  },
+  {
+    "trade": "contractor",
+    "persona": "cancel_it",
+    "business": "Ridgeline Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a bathroom remodel done and I'd like to get a quote if possible."
+      },
+      {
+        "who": "ai",
+        "text": "Hi! Thanks for calling Ridgeline Remodeling. I can help you schedule a remodel estimate — that's a 60-minute appointment where the team can discuss your bathroom project and provide a quote.\n\nJust so you know, we're closed right now, but I can book you for our next available opening. What day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yeah, whatever your next opening is works great for me, I'm pretty flexible."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Let me check our next available slot. What's your name, and is+15555550100 the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "It's Sarah, and yes that number is perfect."
+      },
+      {
+        "who": "ai",
+        "text": "We have an opening tomorrow, Thursday the first, at 8 a.m., 9 a.m., or 10 a.m. — which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Eight a.m. works great for me, let's do that."
+      },
+      {
+        "who": "ai",
+        "text": "You're all set, Sarah! Your remodel estimate is confirmed for tomorrow, Thursday the first, at 8 a.m. The team will follow up to confirm before your appointment."
+      },
+      {
+        "who": "caller",
+        "text": "Actually, I'm so sorry, something just came up and I need to cancel that appointment."
+      },
+      {
+        "who": "ai",
+        "text": "Your appointment is cancelled. Feel free to reach out anytime you'd like to reschedule — we're happy to help!"
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, appreciate it. Goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": false,
+    "booking": null,
+    "bookings_count": 0,
+    "cancelled_count": 1,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 27487,
+      "output_tokens": 621,
+      "model_calls": 9,
+      "model_ms": 10207,
+      "tts_chars": 816,
+      "turn_count": 12
+    },
+    "turn_latency_ms": [
+      1548,
+      905,
+      2394,
+      2439,
+      1864,
+      1172
+    ],
+    "failures": []
+  },
+  {
+    "trade": "contractor",
+    "persona": "offhours",
+    "business": "Ridgeline Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm calling because I need a bathroom remodel and I'd like to get a quote for it."
+      },
+      {
+        "who": "ai",
+        "text": "Hi! I can help you get set up with a remodel estimate. We're actually closed right now since it's late evening, but I can book you an appointment to come in and meet with the team.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh okay, what are your hours tomorrow? I'm hoping to come in then if you're open."
+      },
+      {
+        "who": "ai",
+        "text": "Tomorrow is Thursday, and we're open from seven a.m. to six p.m. — what time would work best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "How about ten in the morning? That would work great for me."
+      },
+      {
+        "who": "ai",
+        "text": "Great news — ten a.m. is available! Before I book you, I need your name and the best phone number to reach you. Is the number you're calling from — five seven zero, five five five, zero one two three — the best one for us to use?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that number works fine. My name is Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your remodel estimate appointment is confirmed for tomorrow, Thursday, October first at ten a.m. The team will follow up to confirm closer to your appointment time."
+      },
+      {
+        "who": "caller",
+        "text": "Thank you so much, I appreciate it. Goodbye!"
+      },
+      {
+        "who": "ai",
+        "text": "Goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah Mitchell",
+      "phone": "+15555550100",
+      "service": "Remodel estimate",
+      "when": "Thursday, 10:00 AM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 20696,
+      "output_tokens": 536,
+      "model_calls": 7,
+      "model_ms": 7824,
+      "tts_chars": 723,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1215,
+      769,
+      2767,
+      2236,
+      926
+    ],
+    "failures": []
+  },
+  {
+    "trade": "contractor",
+    "persona": "wrongservice",
+    "business": "Ridgeline Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm looking to get a bathroom remodel done and I need a quote for the work."
+      },
+      {
+        "who": "ai",
+        "text": "Hi! I can help you set up a remodel estimate appointment. Just to let you know, we're closed right now—it's late evening—but I can get you scheduled for when we're open.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Oh, that sounds great! How about sometime next week, maybe Tuesday or Wednesday afternoon if you have anything available?"
+      },
+      {
+        "who": "ai",
+        "text": "Great! I have afternoon slots available on both days. For Tuesday the sixth, I have one p.m., two p.m., or three p.m. And Wednesday the seventh has the same times. Which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tuesday at two p.m. would be perfect for me, thank you!"
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and phone number to book that. Is the number you're calling from, five seven zero, five five five, zero one two three, the best one to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that number works great. My name is Sarah Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Excellent! Your remodel estimate appointment is confirmed for Tuesday, October sixth at two p.m. The team will follow up to confirm the details with you."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks so much, I really appreciate it. Have a good night!"
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling. Goodbye!"
+      }
+    ],
+    "ended": true,
+    "outcome": "completed",
+    "booked": true,
+    "booking": {
+      "name": "Sarah Mitchell",
+      "phone": "+15555550100",
+      "service": "Remodel estimate",
+      "when": "Tuesday, 2:00 PM"
+    },
+    "bookings_count": 1,
+    "cancelled_count": 0,
+    "escalations": 0,
+    "usage": {
+      "input_tokens": 21545,
+      "output_tokens": 621,
+      "model_calls": 7,
+      "model_ms": 8646,
+      "tts_chars": 766,
+      "turn_count": 10
+    },
+    "turn_latency_ms": [
+      1275,
+      2636,
+      1170,
+      2327,
+      1326
+    ],
+    "failures": []
+  }
+]

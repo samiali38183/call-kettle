@@ -1,0 +1,84 @@
+{
+ "fixture": "sentence_pause.wav",
+ "endpointing_ms": 300,
+ "speech_audio_s": 4.4,
+ "usage_s": 8.42,
+ "events": [
+  {
+   "t": 1.42,
+   "kind": "results",
+   "text": "My air conditioner",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 1.02,
+   "last_word_end": 0.8
+  },
+  {
+   "t": 2.241,
+   "kind": "results",
+   "text": "My air conditioner stopped cooling this",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 2.02,
+   "last_word_end": 1.84
+  },
+  {
+   "t": 2.801,
+   "kind": "results",
+   "text": "My air conditioner stopped cooling this morning.",
+   "is_final": true,
+   "speech_final": true,
+   "audio_end": 2.7,
+   "last_word_end": 2.24
+  },
+  {
+   "t": 3.8,
+   "kind": "results",
+   "text": "It is making a",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 3.72,
+   "last_word_end": 3.58
+  },
+  {
+   "t": 4.961,
+   "kind": "results",
+   "text": "It is making a loud noise too.",
+   "is_final": true,
+   "speech_final": true,
+   "audio_end": 4.85,
+   "last_word_end": 4.46
+  },
+  {
+   "t": 5.96,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 5.862,
+   "last_word_end": null
+  },
+  {
+   "t": 5.96,
+   "kind": "utterance_end"
+  },
+  {
+   "t": 6.96,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 6.862,
+   "last_word_end": null
+  },
+  {
+   "t": 7.961,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 7.862,
+   "last_word_end": null
+  }
+ ]
+}

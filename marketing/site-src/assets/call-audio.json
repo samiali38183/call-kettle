@@ -1,0 +1,204 @@
+{
+  "hvac": {
+    "src": "/assets/call-example-hvac.mp3",
+    "duration": 70.962,
+    "cues": [
+      0.0,
+      8.538,
+      14.388,
+      25.806,
+      29.568,
+      45.618,
+      51.66,
+      62.574,
+      67.44
+    ],
+    "provenance": "Synthetic neural-voice narration of unedited saved test-call text; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-GuyNeural"
+    }
+  },
+  "plumbing": {
+    "src": "/assets/call-example-plumbing.mp3",
+    "duration": 91.602,
+    "cues": [
+      0.0,
+      8.178,
+      15.924,
+      25.134,
+      29.52,
+      38.658,
+      42.324,
+      50.67,
+      54.216,
+      64.362,
+      67.764,
+      80.094,
+      85.152
+    ],
+    "provenance": "Synthetic neural-voice narration of unedited saved test-call text; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-RogerNeural"
+    }
+  },
+  "auto": {
+    "src": "/assets/call-example-auto.mp3",
+    "duration": 93.354,
+    "cues": [
+      0.0,
+      8.298,
+      16.668,
+      26.814,
+      30.84,
+      41.922,
+      45.804,
+      53.262,
+      56.592,
+      70.146,
+      76.284,
+      86.31,
+      90.072
+    ],
+    "provenance": "Synthetic neural-voice narration of unedited saved test-call text; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-ChristopherNeural"
+    }
+  },
+  "electrical": {
+    "src": "/assets/call-example-electrical.mp3",
+    "duration": 67.867,
+    "cues": [
+      0.0,
+      8.562,
+      14.484,
+      22.974,
+      25.056,
+      29.346,
+      31.668,
+      36.51,
+      38.832,
+      49.506,
+      52.044,
+      60.222,
+      62.544
+    ],
+    "provenance": "Synthetic neural-voice narration of a scripted example; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-AndrewNeural"
+    }
+  },
+  "garage-door": {
+    "src": "/assets/call-example-garage-door.mp3",
+    "duration": 76.398,
+    "cues": [
+      0.0,
+      8.826,
+      16.86,
+      31.95,
+      35.016,
+      40.506,
+      43.236,
+      53.958,
+      57.0,
+      65.946,
+      70.236
+    ],
+    "provenance": "Synthetic neural-voice narration of a scripted example; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-AriaNeural"
+    }
+  },
+  "roofing": {
+    "src": "/assets/call-example-roofing.mp3",
+    "duration": 77.502,
+    "cues": [
+      0.0,
+      8.322,
+      15.78,
+      27.726,
+      33.024,
+      46.266,
+      48.588,
+      59.406,
+      61.728,
+      70.098,
+      72.42
+    ],
+    "provenance": "Synthetic neural-voice narration of a scripted example; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-BrianNeural"
+    }
+  },
+  "landscaping": {
+    "src": "/assets/call-example-landscaping.mp3",
+    "duration": 70.375,
+    "cues": [
+      0.0,
+      8.658,
+      16.212,
+      27.678,
+      30.84,
+      36.474,
+      38.796,
+      49.374,
+      52.248,
+      61.482,
+      64.404
+    ],
+    "provenance": "Synthetic neural-voice narration of a scripted example; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-MichelleNeural"
+    }
+  },
+  "cleaning": {
+    "src": "/assets/call-example-cleaning.mp3",
+    "duration": 72.918,
+    "cues": [
+      0.0,
+      8.37,
+      13.812,
+      26.022,
+      29.496,
+      41.466,
+      43.788,
+      54.51,
+      56.832,
+      64.89,
+      67.212
+    ],
+    "provenance": "Synthetic neural-voice narration of a scripted example; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-AvaNeural"
+    }
+  },
+  "contractor": {
+    "src": "/assets/call-example-contractor.mp3",
+    "duration": 69.198,
+    "cues": [
+      0.0,
+      8.61,
+      15.324,
+      25.038,
+      28.464,
+      34.314,
+      36.708,
+      47.622,
+      50.496,
+      59.202,
+      63.132
+    ],
+    "provenance": "Synthetic neural-voice narration of a scripted example; not a phone recording or the current phone voice.",
+    "voices": {
+      "ai": "en-US-JennyNeural",
+      "caller": "en-US-EricNeural"
+    }
+  }
+}

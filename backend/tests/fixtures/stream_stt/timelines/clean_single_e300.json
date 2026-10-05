@@ -1,0 +1,93 @@
+{
+ "fixture": "clean_single.wav",
+ "endpointing_ms": 300,
+ "speech_audio_s": 4.85,
+ "usage_s": 8.86,
+ "events": [
+  {
+   "t": 1.481,
+   "kind": "results",
+   "text": "Hi. My",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 1.02,
+   "last_word_end": 0.88
+  },
+  {
+   "t": 2.281,
+   "kind": "results",
+   "text": "Hi. My water heater is leaking",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 2.02,
+   "last_word_end": 2.0
+  },
+  {
+   "t": 3.1,
+   "kind": "results",
+   "text": "Hi. My water heater is leaking, and I need some",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 3.02,
+   "last_word_end": 2.88
+  },
+  {
+   "t": 4.101,
+   "kind": "results",
+   "text": "Hi. My water heater is leaking, and I need someone to come out today.",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 4.02,
+   "last_word_end": 3.92
+  },
+  {
+   "t": 4.621,
+   "kind": "results",
+   "text": "Hi. My water heater is leaking, and I need someone to come out today.",
+   "is_final": true,
+   "speech_final": true,
+   "audio_end": 4.51,
+   "last_word_end": 4.08
+  },
+  {
+   "t": 5.621,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 5.529,
+   "last_word_end": null
+  },
+  {
+   "t": 5.621,
+   "kind": "utterance_end"
+  },
+  {
+   "t": 6.62,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 6.529,
+   "last_word_end": null
+  },
+  {
+   "t": 7.621,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 7.529,
+   "last_word_end": null
+  },
+  {
+   "t": 8.621,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 8.529,
+   "last_word_end": null
+  }
+ ]
+}

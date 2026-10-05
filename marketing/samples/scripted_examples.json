@@ -1,0 +1,358 @@
+[
+  {
+    "slug": "electrical",
+    "label": "Electrical",
+    "order": 2,
+    "source": "scripted",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I need a few extra outlets installed in my garage, and I'd like to schedule an estimate."
+      },
+      {
+        "who": "ai",
+        "text": "I can book that. We have estimate openings tomorrow or Friday morning. Which works better for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow morning works."
+      },
+      {
+        "who": "ai",
+        "text": "How about nine a.m. tomorrow for the outlet estimate?"
+      },
+      {
+        "who": "caller",
+        "text": "Nine works."
+      },
+      {
+        "who": "ai",
+        "text": "Great. What name should I put on the appointment?"
+      },
+      {
+        "who": "caller",
+        "text": "James Mitchell."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, James. Is the number you're calling from, five seven zero, five five five, zero one two three, the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that number is fine."
+      },
+      {
+        "who": "ai",
+        "text": "You're booked for tomorrow at nine a.m. for the outlet estimate. The team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Thanks, I appreciate it."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome. Thanks for calling Bright Line Electric."
+      }
+    ],
+    "booking": {
+      "name": "James Mitchell",
+      "service": "Outlet estimate",
+      "when": "Tomorrow, 9:00 AM"
+    }
+  },
+  {
+    "slug": "garage-door",
+    "label": "Garage door",
+    "order": 3,
+    "source": "scripted",
+    "business": "Evergreen Garage Doors",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Evergreen Garage Doors. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "My garage door came off the track this morning and now it won't close. My car is stuck inside."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry, that sounds stressful. I can't give repair advice, so please don't try to force the door. I can book a technician visit. We have openings today at two p.m. or tomorrow at eight a.m."
+      },
+      {
+        "who": "caller",
+        "text": "Today at two would be great."
+      },
+      {
+        "who": "ai",
+        "text": "Two p.m. today it is. What name should I put on the visit?"
+      },
+      {
+        "who": "caller",
+        "text": "Maria Santos."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Maria. Is the number you're calling from, five seven zero, five five five, zero one four five, the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's my cell."
+      },
+      {
+        "who": "ai",
+        "text": "You're booked for today at two p.m. for a garage door off-track repair visit. The team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Perfect. Thank you so much."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Maria. Thanks for calling Evergreen Garage Doors."
+      }
+    ],
+    "booking": {
+      "name": "Maria Santos",
+      "service": "Door off track repair",
+      "when": "Today, 2:00 PM"
+    }
+  },
+  {
+    "slug": "roofing",
+    "label": "Roofing",
+    "order": 4,
+    "source": "scripted",
+    "business": "Ridgeline Roofing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Roofing. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, after the storm last night I noticed a water stain on my ceiling. I think the roof is leaking."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry to hear that. I can book a roof inspection. We have openings tomorrow at ten a.m. or Friday at one p.m. Which would you prefer?"
+      },
+      {
+        "who": "caller",
+        "text": "Tomorrow at ten is good. Can you tell me what the repair will cost?"
+      },
+      {
+        "who": "ai",
+        "text": "I can't quote a price on the phone. The inspector will look at the roof and the team will go over the next steps with you. I'll put you down for ten a.m. tomorrow. What name should I use?"
+      },
+      {
+        "who": "caller",
+        "text": "Daniel Brooks."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Daniel. Is the number you're calling from, five seven zero, five five five, zero one six seven, the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that works."
+      },
+      {
+        "who": "ai",
+        "text": "You're booked for tomorrow at ten a.m. for a roof leak inspection. The team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Great, thanks."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome. Thanks for calling Ridgeline Roofing."
+      }
+    ],
+    "booking": {
+      "name": "Daniel Brooks",
+      "service": "Roof leak inspection",
+      "when": "Tomorrow, 10:00 AM"
+    }
+  },
+  {
+    "slug": "landscaping",
+    "label": "Landscaping",
+    "order": 6,
+    "source": "scripted",
+    "business": "Green Acre Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Green Acre Lawn Care. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'd like to get my yard cleaned up and the hedges trimmed. Can someone come out and take a look?"
+      },
+      {
+        "who": "ai",
+        "text": "Absolutely. I can book a yard visit. We have openings Thursday at nine a.m. or Friday at eleven a.m. Which works for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Friday at eleven works."
+      },
+      {
+        "who": "ai",
+        "text": "Friday at eleven a.m. What name should I put on the visit?"
+      },
+      {
+        "who": "caller",
+        "text": "Priya Nair."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Priya. Is the number you're calling from, five seven zero, five five five, zero one eight nine, the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, it is."
+      },
+      {
+        "who": "ai",
+        "text": "You're booked for Friday at eleven a.m. for a yard cleanup and hedge trimming visit. The team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Wonderful, thank you."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Priya. Thanks for calling Green Acre Lawn Care."
+      }
+    ],
+    "booking": {
+      "name": "Priya Nair",
+      "service": "Yard cleanup and hedge trimming visit",
+      "when": "Friday, 11:00 AM"
+    }
+  },
+  {
+    "slug": "cleaning",
+    "label": "Cleaning",
+    "order": 7,
+    "source": "scripted",
+    "business": "Bright Home Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Home Cleaning. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, I'm moving out at the end of the week and I need a deep clean of my apartment."
+      },
+      {
+        "who": "ai",
+        "text": "Congratulations on the move. I can book a move-out cleaning. We have openings Thursday at nine a.m. or Friday at one p.m. Which would you like?"
+      },
+      {
+        "who": "caller",
+        "text": "Thursday at nine. How much will it be?"
+      },
+      {
+        "who": "ai",
+        "text": "I can't quote a price on the phone. The team will go over the details with you when they confirm. I'll book Thursday at nine a.m. What name should I use?"
+      },
+      {
+        "who": "caller",
+        "text": "Olivia Grant."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Olivia. Is the number you're calling from, five seven zero, five five five, zero two zero one, the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, that's right."
+      },
+      {
+        "who": "ai",
+        "text": "You're booked for Thursday at nine a.m. for a move-out cleaning. The team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Thank you so much."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Olivia. Thanks for calling Bright Home Cleaning."
+      }
+    ],
+    "booking": {
+      "name": "Olivia Grant",
+      "service": "Move-out cleaning",
+      "when": "Thursday, 9:00 AM"
+    }
+  },
+  {
+    "slug": "contractor",
+    "label": "Contractor",
+    "order": 8,
+    "source": "scripted",
+    "business": "Cornerstone Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Cornerstone Remodeling. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "Hi, we're thinking about remodeling our kitchen and we'd like someone to come by and talk through it."
+      },
+      {
+        "who": "ai",
+        "text": "I can book a consultation. We have openings Wednesday at four p.m. or Thursday at ten a.m. Which works better?"
+      },
+      {
+        "who": "caller",
+        "text": "Thursday at ten, please."
+      },
+      {
+        "who": "ai",
+        "text": "Thursday at ten a.m. What name should I put on the consultation?"
+      },
+      {
+        "who": "caller",
+        "text": "Marcus Lee."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Marcus. Is the number you're calling from, five seven zero, five five five, zero two three four, the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Yes, it is."
+      },
+      {
+        "who": "ai",
+        "text": "You're booked for Thursday at ten a.m. for a kitchen remodel consultation. The team will follow up to confirm the details."
+      },
+      {
+        "who": "caller",
+        "text": "Sounds good. Thanks."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Marcus. Thanks for calling Cornerstone Remodeling."
+      }
+    ],
+    "booking": {
+      "name": "Marcus Lee",
+      "service": "Kitchen remodel consultation",
+      "when": "Thursday, 10:00 AM"
+    }
+  }
+]

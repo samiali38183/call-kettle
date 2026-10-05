@@ -1,0 +1,66 @@
+{
+ "fixture": "question_stop.wav",
+ "endpointing_ms": 300,
+ "speech_audio_s": 2.19,
+ "usage_s": 6.2,
+ "events": [
+  {
+   "t": 1.441,
+   "kind": "results",
+   "text": "Do you service our",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 1.02,
+   "last_word_end": 0.96
+  },
+  {
+   "t": 2.101,
+   "kind": "results",
+   "text": "Do you service Arlington?",
+   "is_final": true,
+   "speech_final": true,
+   "audio_end": 1.84,
+   "last_word_end": 1.36
+  },
+  {
+   "t": 2.941,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 2.854,
+   "last_word_end": null
+  },
+  {
+   "t": 2.941,
+   "kind": "utterance_end"
+  },
+  {
+   "t": 3.94,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 3.854,
+   "last_word_end": null
+  },
+  {
+   "t": 4.94,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 4.854,
+   "last_word_end": null
+  },
+  {
+   "t": 5.96,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 5.874,
+   "last_word_end": null
+  }
+ ]
+}

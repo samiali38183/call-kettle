@@ -1,0 +1,119 @@
+{
+ "fixture": "phone_digits.wav",
+ "endpointing_ms": 300,
+ "vad_events": true,
+ "speech_audio_s": 6.71,
+ "usage_s": 10.72,
+ "events": [
+  {
+   "t": 0.541,
+   "kind": "speech_started"
+  },
+  {
+   "t": 1.301,
+   "kind": "results",
+   "text": "This is John Smith.",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 1.02,
+   "last_word_end": 0.88
+  },
+  {
+   "t": 1.601,
+   "kind": "results",
+   "text": "This is John Smith.",
+   "is_final": true,
+   "speech_final": true,
+   "audio_end": 1.37,
+   "last_word_end": 0.96
+  },
+  {
+   "t": 2.04,
+   "kind": "speech_started"
+  },
+  {
+   "t": 2.42,
+   "kind": "results",
+   "text": "My number",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 2.38,
+   "last_word_end": 2.25
+  },
+  {
+   "t": 3.44,
+   "kind": "results",
+   "text": "My number is seven one three",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 3.38,
+   "last_word_end": 3.29
+  },
+  {
+   "t": 4.241,
+   "kind": "speech_started"
+  },
+  {
+   "t": 4.961,
+   "kind": "results",
+   "text": "My number is seven one three five five",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 4.9,
+   "last_word_end": 4.69
+  },
+  {
+   "t": 5.701,
+   "kind": "speech_started"
+  },
+  {
+   "t": 6.6,
+   "kind": "results",
+   "text": "My number is seven one three five five five zero one four",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 6.54,
+   "last_word_end": 6.41
+  },
+  {
+   "t": 7.24,
+   "kind": "results",
+   "text": "My number is+15555550100.",
+   "is_final": true,
+   "speech_final": true,
+   "audio_end": 7.15,
+   "last_word_end": 6.73
+  },
+  {
+   "t": 8.24,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 8.165,
+   "last_word_end": null
+  },
+  {
+   "t": 8.24,
+   "kind": "utterance_end"
+  },
+  {
+   "t": 9.24,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 9.165,
+   "last_word_end": null
+  },
+  {
+   "t": 10.24,
+   "kind": "results",
+   "text": "",
+   "is_final": false,
+   "speech_final": false,
+   "audio_end": 10.165,
+   "last_word_end": null
+  }
+ ]
+}

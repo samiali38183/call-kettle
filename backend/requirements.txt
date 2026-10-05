@@ -1,0 +1,18 @@
+# Exact versions this service was tested with. Bump deliberately, run the tests, then deploy.
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+websockets==17.1
+anthropic==1.6.0
+twilio==9.11.1
+pydantic==2.13.5
+PyYAML==6.0.3
+tzdata==2026.4
+python-multipart==0.0.32
+httpx==0.28.1
+google-auth==2.59.0
+requests==2.34.2
+icalendar==7.3.0
+recurring-ical-events==3.8.2
+x-wr-timezone==2.0.1
+python-dateutil==2.9.0.post0
+cryptography==50.0.1

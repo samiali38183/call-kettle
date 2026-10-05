@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-print>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{brand}} Service Agreement and Terms</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#0F1B2D; --paper:#F9FAFA; --surface:#FFFFFF; --surface-2:#EEF1F5; --line:#DEE3E8;
+  --text:#20293A; --text-mute:#5B6472; --accent:#2F6FED; --signal:#149E7F; --signal-bg:#E4F5EF;
+  --gold:#B87514; --gold-bg:#FBF0DD; --danger:#C23B33; --danger-bg:#FBEAE8;
+  --mono:'IBM Plex Mono', ui-monospace, monospace;
+  --display:'Fraunces', Georgia, serif;
+  --body:'Work Sans', -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-print]){
+    --ink:#0F1B2D; --paper:#0E1420; --surface:#161E2E; --surface-2:#1C2536; --line:#2A3346;
+    --text:#E7EAF0; --text-mute:#9AA4B8; --accent:#6D9BFF; --signal:#3FD9BB; --signal-bg:#0F2A26;
+    --gold:#F0B058; --gold-bg:#2C2312; --danger:#F08080; --danger-bg:#2E1715;
+  }
+}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{margin:0;background:var(--paper);color:var(--text);font-family:var(--body);line-height:1.5;}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-0.01em;text-wrap:balance;margin:0;color:var(--ink);}
+:root:not([data-print]) h1,:root:not([data-print]) h2,:root:not([data-print]) h3,:root:not([data-print]) h4{color:var(--text);}
+p{margin:0 0 10px;} a{color:var(--accent);}
+ul,ol{margin:0 0 12px;padding-left:20px;} li{margin-bottom:4px;}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px;}
+.eyebrow{font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--signal);display:flex;align-items:center;gap:7px;margin-bottom:8px;}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--signal);}
+.wordmark{font-family:var(--display);font-weight:600;font-size:22px;display:flex;align-items:center;gap:8px;color:var(--ink);}
+.wordmark .dot{width:9px;height:9px;border-radius:50%;background:var(--signal);}
+.callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:12px 15px;margin:14px 0;font-size:14px;}
+.callout .label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);display:block;margin-bottom:4px;}
+.callout.gold{border-left-color:var(--gold);} .callout.gold .label{color:var(--gold);}
+.callout.warn{border-left-color:var(--danger);} .callout.warn .label{color:var(--danger);}
+.callout.ok{border-left-color:var(--signal);} .callout.ok .label{color:var(--signal);}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;}
+th{text-align:left;font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-mute);padding:7px 9px;border-bottom:1px solid var(--line);}
+td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top;} tr:last-child td{border-bottom:none;}
+td.num,th.num{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums;}
+.tablewrap{overflow-x:auto;}
+.pill{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:20px;padding:4px 10px;color:var(--text-mute);display:inline-block;margin:0 6px 6px 0;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media (max-width:640px){.grid2,.grid3{grid-template-columns:1fr;}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+.card h4{font-family:var(--body);font-size:14.5px;font-weight:700;margin-bottom:4px;}
+.card p{font-size:13.5px;color:var(--text-mute);margin:0;}
+.script{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 15px;margin:10px 0;font-size:14px;}
+.script .who{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);display:block;margin-bottom:4px;}
+.checklist{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 18px;margin:12px 0;}
+.checklist .title{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.checklist ul{list-style:none;padding:0;margin:0;} .checklist li{padding:4px 0 4px 24px;position:relative;font-size:13.5px;}
+.checklist li::before{content:"\2610";position:absolute;left:0;color:var(--text-mute);}
+
+@page{size:letter;margin:0;}
+body{background:#3A4250;}
+.toolbar{max-width:8.5in;margin:0 auto;padding:14px 16px 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:#D7DCE4;font-family:var(--mono);font-size:12.5px;}
+.toolbar button{font-family:var(--body);font-weight:700;font-size:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 18px;cursor:pointer;}
+.banner{max-width:8.5in;margin:10px auto 0;background:var(--gold-bg);color:#6B4A0B;border-radius:8px;padding:10px 14px;font-size:13px;}
+@media print{.toolbar,.banner{display:none;} body{background:#fff;}}
+.page{width:8.5in;min-height:11in;margin:16px auto;background:#fff;padding:.55in .7in .5in;box-shadow:0 20px 60px -20px rgba(0,0,0,.5);}
+@media print{.page{margin:0;box-shadow:none;min-height:0;}}
+h1{font-size:26px;margin:0 0 4px;} .sub{color:var(--text-mute);font-size:13px;margin-bottom:14px;}
+h2{font-family:var(--body);font-size:13px;font-weight:700;margin:14px 0 4px;color:var(--ink);}
+p,li{font-size:12px;line-height:1.5;margin:0 0 5px;} ol{padding-left:18px;margin:0;}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;margin:8px 0 12px;}
+.f{border-bottom:1px solid var(--ink);padding-bottom:2px;font-size:12px;min-height:22px;} .f small{display:block;font-family:var(--mono);font-size:9px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.06em;}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:22px;}
+.sig .line{border-bottom:1px solid var(--ink);height:34px;} .sig small{font-family:var(--mono);font-size:9px;color:var(--text-mute);text-transform:uppercase;}
+</style>
+<meta name="robots" content="noindex"><style>body{background:#fff}.page{width:auto;max-width:780px;margin:0 auto;box-shadow:none;min-height:0;padding:28px 20px 60px}p,li{font-size:15px}h1{font-size:30px}h2{font-size:16px}</style>
+</head>
+<body>
+
+<div class="page">
+  <h1>{{brand}} Terms of Service</h1>
+  <div class="sub">Month-to-month service. Plain English. Last updated September 2026.</div>
+
+  
+
+  <h2>1. Who we are</h2>
+  <p>"Provider" is {{legal_entity}} ({{support_email}}, {{support_phone}}). "Client" is the business named above.</p>
+
+  <h2>2. The service</h2>
+  <p>Provider sets up and operates an AI phone receptionist for Client's business line. It answers calls, answers questions using information Client supplies, books appointments in Client's available times, transfers calls to Client's phone when a caller asks or it is urgent, takes messages, and provides a private dashboard and alerts. Provider will build the receptionist from Client's information, test it with Client, and turn it on only after Client approves it.</p>
+
+  <h2>3. Fees</h2>
+  <ol>
+    <li><b>Monthly fee:</b> the monthly fee stated in the written proposal or order form Client accepted, billed in advance, month to month. It does not change while Client stays on that plan; Provider gives 30 days' written notice before any change.</li>
+    <li><b>No setup fee.</b> There are no setup, installation or cancellation fees.</li>
+    <li><b>Included volume:</b> up to 300 AI-handled calls per month. If Client regularly exceeds this, Provider will contact Client to agree a fair adjustment before any change takes effect. There are no per-minute or per-call fees within the included volume.</li>
+    <li>Phone carrier charges for call forwarding, if any, are Client's own.</li>
+  </ol>
+
+  <h2>3A. One-week trial</h2>
+  <ol>
+    <li><b>What it is:</b> a new Client may start with a one-week trial of the service, arranged and turned on by Provider. It is not self-serve and Provider reviews each setup before it starts.</li>
+    <li><b>How long:</b> the trial starts when Provider turns the receptionist on for Client's live calls and ends after seven days or after 30 AI-handled calls, whichever comes first.</li>
+    <li><b>Cost:</b> there is no fee for the trial, no payment card is required, and nothing is charged or renewed automatically. The paid plan begins only if Client accepts the written proposal or order form.</li>
+    <li><b>How it differs:</b> during the trial the receptionist answers, answers questions, books appointments and takes messages. It does not transfer callers to Client's phone; a caller who asks for a person has a message taken and Client is alerted.</li>
+    <li><b>When it ends:</b> when the trial ends, or its 30 calls are used, the receptionist stops answering Client's calls unless Client has agreed to the paid plan in writing. Client turns call forwarding off at that point, and Provider will remind Client before the end and help on request. A trial cannot be restarted or extended.</li>
+  </ol>
+  <h2>4. Cancellation</h2>
+  <p>Client may cancel at any time by text or email. Service ends at the close of the billing month in which Client cancels, and no further fees are charged. There is no cancellation fee. Client is responsible for turning off call forwarding, and Provider will help on request. Provider may end service with 30 days' written notice, or immediately for non-payment or misuse.</p>
+
+  <h2>5. Client's responsibilities</h2>
+  <p>Client will provide accurate information (hours, services, prices, policies, contact numbers) and tell Provider promptly when it changes. Provider answers only from that information and from what a caller says; Client is responsible for the accuracy of what it supplies and for honoring appointments the receptionist books during Client's stated hours. Client will not use the service for unlawful calls or for emergency response.</p>
+
+  <h2>6. Emergencies and limits of the service</h2>
+  <p>The receptionist is instructed to tell callers who may be in danger to call 911 and to alert Client, but it is not an emergency service and must not be relied on as one. The service is English-language by default. A Spanish option (beta) is available on request and is more likely to make mistakes. It does not currently include a live two-way link to Client's calendar app; bookings appear in Client's dashboard and are emailed as calendar invites.</p>
+
+  <h2>7. Privacy, recording and AI disclosure</h2>
+  <ol>
+    <li>Every call begins with a notice that the caller is speaking with an AI receptionist and that the call may be recorded and monitored. The notice is a precaution, because calls are transcribed, logged and may be reviewed for quality. Provider does not record or store call audio: the audio is processed live by Provider's phone and speech-recognition vendors to produce a written transcript and summary for Client's dashboard.</li>
+    <li>Client owns its call data. Provider uses it only to deliver the service, does not sell or share it, and deletes it on Client's request after service ends. Call transcripts and summaries are also deleted automatically after 90 days.</li>
+    <li><b>No protected health information.</b> Provider does not currently offer the compliance agreements (such as a HIPAA business associate agreement) needed to handle protected health information. Client will not use the service for that purpose. If Client is a healthcare or legal practice, transcripts are switched off and the receptionist takes only a name, phone number and reason for calling.</li>
+  </ol>
+
+  <h2>8. No guarantees; liability</h2>
+  <p>Provider works to keep the service available, and calls fall back to Client's own phone if the receptionist or Provider's servers fail, but no phone or software system is error-free or always available, and Provider does not promise any particular number of bookings or amount of revenue. To the extent the law allows, Provider is not liable for lost profits, lost business or indirect damages, and Provider's total liability is limited to the fees Client paid in the three months before the event.</p>
+
+  <h2>9. General</h2>
+  <p>This is the whole agreement. Changes must be in writing (email is fine). Virginia law applies. If any part is unenforceable, the rest stays in effect.</p>
+
+  <p><b>Acceptance.</b> By subscribing to {{brand}}, Client agrees to these terms.</p>
+  
+</div>
+</body>
+</html>

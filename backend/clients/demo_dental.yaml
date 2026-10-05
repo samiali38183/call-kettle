@@ -1,0 +1,38 @@
+client_id: demo_dental
+business_name: "Bright Smile Dental"
+vertical: dental
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"
+
+opening_line: "Thanks for calling Bright Smile Dental, this is the AI receptionist — how can I help?"
+
+business_hours:
+  mon: ["09:00", "17:00"]
+  tue: ["09:00", "17:00"]
+  wed: ["09:00", "17:00"]
+  thu: ["09:00", "17:00"]
+  fri: ["09:00", "15:00"]
+  sat: "closed"
+  sun: "closed"
+
+slot_minutes: 30
+
+services:
+  - name: "Routine cleaning"
+    duration_minutes: 30
+  - name: "Filling"
+    duration_minutes: 45
+  - name: "Emergency exam"
+    duration_minutes: 30
+
+faqs:
+  - q: "Do you take my insurance?"
+    a: "We're in-network with most major PPO plans — the team confirms exact coverage before your visit."
+  - q: "Where are you located?"
+    a: "142 Birch Street, next to the CVS."
+  - q: "Do you see new patients?"
+    a: "Yes, we're accepting new patients."
+
+escalation_phone: "+15555550111"
+max_turns: 12
+max_call_seconds: 360

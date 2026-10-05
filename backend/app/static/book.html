@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a 15-minute demo — {{brand}}</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#0F1B2D; --paper:#F9FAFA; --surface:#FFFFFF; --line:#DEE3E8;
+  --text:#20293A; --text-mute:#5B6472; --accent:#2F6FED; --accent-ink:#FFFFFF;
+  --signal:#17A98C; --signal-bg:#E4F5EF; --gold:#D98E2B; --danger:#C23B33; --danger-bg:#FBEAE8;
+  --mono:'Source Code Pro', ui-monospace, monospace;
+  --display:'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --body:'Inter', -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#0F1B2D; --paper:#0E1420; --surface:#161E2E; --line:#2A3346;
+    --text:#E7EAF0; --text-mute:#9AA4B8; --accent:#6D9BFF; --accent-ink:#0F1B2D;
+    --signal:#3FD9BB; --signal-bg:#0F2A26; --gold:#F0B058; --danger:#F08080; --danger-bg:#2E1715;
+  }
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--text);font-family:var(--body);line-height:1.5;}
+.top{background:var(--ink);color:#fff;}
+.top .in{max-width:900px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;}
+.top a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;font-weight:600;}
+.top .brand{font-family:var(--display);font-weight:700;font-size:20px;gap:8px;}
+.top .brand i{width:10px;height:10px;border-radius:50%;background:var(--signal);display:inline-block;margin-right:8px;}
+.top .back{font-size:14px;opacity:.9;}
+.top a:focus-visible,.contact a:focus-visible{outline:3px solid #66E0C0;outline-offset:2px;}
+.contact{font-size:14px;color:var(--text-mute);margin-top:18px;text-align:center;}
+.contact a{color:var(--accent);font-weight:600;display:inline-flex;align-items:center;min-height:44px;padding-inline:4px;}
+main{padding-inline:16px;}
+.wrap{max-width:520px;margin:0 auto;padding-block:40px 60px;}
+.eyebrow{font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--signal);display:flex;align-items:center;gap:7px;margin-bottom:12px;}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--signal);}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(26px,6vw,34px);margin:0 0 10px;color:var(--ink);}
+.sub{color:var(--text-mute);font-size:15px;margin-bottom:28px;max-width:48ch;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px;}
+label{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-mute);margin-bottom:8px;}
+input[type="date"], input[type="text"], input[type="tel"]{
+  width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;
+  background:var(--paper);color:var(--text);font-size:15px;font-family:var(--body);
+}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.slot-btn{font-family:var(--mono);font-size:13px;border:1.5px solid var(--line);border-radius:8px;padding:9px 14px;background:var(--surface);color:var(--text);cursor:pointer;}
+.slot-btn:hover{border-color:var(--accent);}
+.slot-btn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+.field{margin-top:16px;}
+.btn{width:100%;justify-content:center;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:13px 20px;border-radius:10px;border:none;cursor:pointer;background:var(--accent);color:var(--accent-ink);margin-top:18px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.msg{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:13.5px;display:none;}
+.msg.ok{background:var(--signal-bg);color:var(--signal);display:block;}
+.msg.err{background:var(--danger-bg);color:var(--danger);display:block;}
+.hint{font-size:12.5px;color:var(--text-mute);margin-top:8px;}
+footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-mute);margin-top:30px;}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="https://callkettle.com"><i></i>{{brand}}</a><a class="back" href="https://callkettle.com">&larr; Back to callkettle.com</a></div></header>
+<main class="wrap">
+  <div class="eyebrow">{{brand}} — 15-minute demo</div>
+  <h1>Book a 15-minute demo, no back-and-forth.</h1>
+  <p class="sub">Pick a real open time below. This checks and reserves the slot directly, the same booking system your customers would use. We hold a 30-minute slot on the calendar so we are never rushed; the demo itself is about 15 minutes.</p>
+
+  <div class="card">
+    <label for="dateInput">Choose a date</label>
+    <input type="date" id="dateInput">
+    <div class="slots" id="slots"></div>
+    <p class="hint" id="dateHint">Select a date to see open times.</p>
+    <p class="hint">All times are Eastern Time (Northern Virginia).</p>
+  </div>
+
+  <div class="card" id="detailsCard" style="display:none;">
+    <label for="nameInput">Your name</label>
+    <input type="text" id="nameInput" placeholder="Full name">
+    <div class="field">
+      <label for="phoneInput">Phone number</label>
+      <input type="tel" id="phoneInput" placeholder="(555) 555-5555">
+    </div>
+    <button class="btn" id="confirmBtn" disabled>Confirm booking</button>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <p class="contact">Prefer to talk? Call or text <a href="tel:{{support_tel}}">{{support_phone}}</a> or email <a href="mailto:{{support_email}}">{{support_email}}</a>.</p>
+  <footer>{{BRAND}}</footer>
+</main>
+
+<script>
+(function(){
+  var dateInput = document.getElementById('dateInput');
+  var slotsEl = document.getElementById('slots');
+  var dateHint = document.getElementById('dateHint');
+  var detailsCard = document.getElementById('detailsCard');
+  var nameInput = document.getElementById('nameInput');
+  var phoneInput = document.getElementById('phoneInput');
+  var confirmBtn = document.getElementById('confirmBtn');
+  var msgEl = document.getElementById('msg');
+  var selectedSlot = null;
+
+  function localISO(d){
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function prettyTime(hhmm){
+    var parts = hhmm.split(':'), h = parseInt(parts[0], 10);
+    return ((h + 11) % 12 + 1) + ':' + parts[1] + (h < 12 ? ' AM' : ' PM');
+  }
+  var today = new Date();
+  var maxDay = new Date(today.getTime() + 60 * 86400000);
+  dateInput.min = localISO(today);
+  dateInput.max = localISO(maxDay);
+  dateInput.value = localISO(today);  // replaced by the next open day below
+
+  function updateConfirmEnabled(){
+    confirmBtn.disabled = !(selectedSlot && nameInput.value.trim() && phoneInput.value.trim());
+  }
+  nameInput.addEventListener('input', updateConfirmEnabled);
+  phoneInput.addEventListener('input', updateConfirmEnabled);
+
+  function loadSlots(){
+    selectedSlot = null;
+    detailsCard.style.display = 'none';
+    msgEl.className = 'msg';
+    msgEl.textContent = '';
+    slotsEl.innerHTML = '';
+    dateHint.textContent = 'Loading…';
+
+    fetch('/book/availability?limit=16&date=' + dateInput.value)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (!data.slots || data.slots.length === 0){
+          dateHint.textContent = data.note || 'No open times that day — try another date.';
+          return;
+        }
+        dateHint.textContent = 'Pick a time:';
+        data.slots.forEach(function(slot){
+          var btn = document.createElement('button');
+          btn.className = 'slot-btn';
+          btn.type = 'button';
+          btn.textContent = prettyTime(slot);
+          btn.setAttribute('aria-pressed', 'false');
+          btn.addEventListener('click', function(){
+            slotsEl.querySelectorAll('.slot-btn').forEach(function(b){ b.setAttribute('aria-pressed', 'false'); });
+            btn.setAttribute('aria-pressed', 'true');
+            selectedSlot = slot;
+            detailsCard.style.display = 'block';
+            updateConfirmEnabled();
+          });
+          slotsEl.appendChild(btn);
+        });
+      })
+      .catch(function(){
+        dateHint.textContent = 'Could not load availability — try again in a moment.';
+      });
+  }
+
+  dateInput.addEventListener('change', loadSlots);
+  // Default to the next day the business is actually open (not a closed Sunday); fall back to today if the lookup fails.
+  fetch('/book/next-open')
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if (d && /^\d{4}-\d{2}-\d{2}$/.test(d.date) && d.date >= dateInput.min && d.date <= dateInput.max) dateInput.value = d.date; })
+    .catch(function(){})
+    .then(loadSlots);
+
+  confirmBtn.addEventListener('click', function(){
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = 'Booking…';
+    fetch('/book/confirm', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        name: nameInput.value.trim(),
+        phone: phoneInput.value.trim(),
+        date: dateInput.value,
+        time: selectedSlot
+      })
+    })
+      .then(function(r){ return r.json().then(function(data){ return {ok: r.ok, data: data}; }); })
+      .then(function(res){
+        if (res.ok && res.data.success){
+          msgEl.className = 'msg ok';
+          msgEl.textContent = "You're booked for " + dateInput.value + " at " + prettyTime(selectedSlot) + ". {{contact_name}} will call you at the number you gave. Need to change it? Call or text {{support_phone}}.";
+          confirmBtn.textContent = 'Booked';
+        } else {
+          msgEl.className = 'msg err';
+          msgEl.textContent = res.data.error || 'That time was just taken — pick another.';
+          confirmBtn.textContent = 'Confirm booking';
+          confirmBtn.disabled = false;
+          loadSlots();
+        }
+      })
+      .catch(function(){
+        msgEl.className = 'msg err';
+        msgEl.textContent = 'Something went wrong — try again in a moment.';
+        confirmBtn.textContent = 'Confirm booking';
+        confirmBtn.disabled = false;
+      });
+  });
+})();
+</script>
+</body>
+</html>

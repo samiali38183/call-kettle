@@ -1,0 +1,296 @@
+[
+  {
+    "slug": "plumbing",
+    "business": "Harbor Plumbing",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Harbor Plumbing. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "My kitchen sink is leaking under the cabinet. Can someone come out tomorrow?"
+      },
+      {
+        "who": "ai",
+        "text": "We have openings tomorrow morning at seven, eight, or nine a.m. — which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The earlier one works."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect, seven a.m. tomorrow works great. Can I get your name and confirm the best phone number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Dana Reyes."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Dana. Is +15555550100 the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Thank you, that's all I needed."
+      },
+      {
+        "who": "ai",
+        "text": "I want to make sure I book that appointment for you at seven a.m. tomorrow for the kitchen sink leak repair — should I go ahead and confirm that?"
+      }
+    ]
+  },
+  {
+    "slug": "hvac",
+    "business": "Summit Heating and Air",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Summit Heating and Air. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "My AC stopped cooling and it's really hot in here. Can a technician come out tomorrow?"
+      },
+      {
+        "who": "ai",
+        "text": "We have openings tomorrow morning at seven, eight, or nine a.m. — which works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The earliest one."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! Before I book the seven a.m. appointment for tomorrow, I need your name and the best phone number to reach you."
+      },
+      {
+        "who": "caller",
+        "text": "Marcus Bell."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Marcus! Is the number you're calling from — five seven zero, five five five, zero one two three — the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Thank you, that's all I needed."
+      },
+      {
+        "who": "ai",
+        "text": "I still need to confirm that phone number so I can complete your appointment booking. Is five seven zero, five five five, zero one two three the best number to reach you?"
+      }
+    ]
+  },
+  {
+    "slug": "electrical",
+    "business": "Bright Line Electric",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Bright Line Electric. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "I need a few outlets added in my garage. Could someone come give me an estimate?"
+      },
+      {
+        "who": "ai",
+        "text": "I'd be happy to help you schedule a free estimate for those outlets! Let me check what times we have available.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The first one is fine."
+      },
+      {
+        "who": "ai",
+        "text": "I want to make sure I'm looking at the right day — do you mean tomorrow, Thursday the first of October?"
+      },
+      {
+        "who": "caller",
+        "text": "Priya Shah."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Priya! So just to confirm: you'd like a free estimate for adding outlets in your garage on Thursday, October first?"
+      },
+      {
+        "who": "caller",
+        "text": "Thank you, that's all I needed."
+      },
+      {
+        "who": "ai",
+        "text": "I want to make sure we get you scheduled — should I book that estimate for Thursday the first? If so, let me check what times are available."
+      }
+    ]
+  },
+  {
+    "slug": "landscaping",
+    "business": "Greenway Lawn Care",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Greenway Lawn Care. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "I'd like a quote for weekly lawn mowing at my house."
+      },
+      {
+        "who": "ai",
+        "text": "I can help you with that! We offer lawn care estimates — that's a 30-minute appointment where our team can assess your property and provide a quote.\n\nWhat day works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The first time works."
+      },
+      {
+        "who": "ai",
+        "text": "I'd be happy to check what's available! Just to confirm — do you mean the earliest available appointment, starting from today?"
+      },
+      {
+        "who": "caller",
+        "text": "Tom Jenkins."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect — we have Thursday, October first available in the morning. How does seven a.m. sound?"
+      },
+      {
+        "who": "caller",
+        "text": "Thank you, that's all I needed."
+      },
+      {
+        "who": "ai",
+        "text": "You're welcome, Tom! Just to clarify — would you like me to book that seven a.m. appointment on Thursday the first for your lawn care estimate, or are you all set?"
+      }
+    ]
+  },
+  {
+    "slug": "cleaning",
+    "business": "Fresh Start Cleaning",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "How much do you charge to deep clean a three-bedroom house?"
+      },
+      {
+        "who": "ai",
+        "text": "I don't have pricing information available over the phone. The team will go over costs and details when you book a deep clean estimate—that's a free thirty-minute consultation where they can assess your home and give you an exact quote.\n\nWould you like me to find an available time for an estimate?"
+      },
+      {
+        "who": "caller",
+        "text": "Sure, the first time works."
+      },
+      {
+        "who": "ai",
+        "text": "I'd be happy to help! What date works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "Linda Park."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Linda! What date would work best for your deep clean estimate?"
+      },
+      {
+        "who": "caller",
+        "text": "Thank you, that's all I needed."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks for calling Fresh Start Cleaning, Linda. Have a great day!"
+      }
+    ]
+  },
+  {
+    "slug": "auto",
+    "business": "Main Street Auto",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Main Street Auto. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "My check engine light came on. Can I bring my car in tomorrow?"
+      },
+      {
+        "who": "ai",
+        "text": "We have openings at seven a.m., eight a.m., or nine a.m. tomorrow — which time works best for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The earliest works."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect, seven a.m. tomorrow works great. What's your name, and is the best number to reach you the one you're calling from?"
+      },
+      {
+        "who": "caller",
+        "text": "Carlos Mendez, it's a 2016 Honda Accord."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks, Carlos. Is +15555550100 the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Thank you, that's all I needed."
+      },
+      {
+        "who": "ai",
+        "text": "I want to make sure we get you booked in at seven a.m. tomorrow for that diagnostic — let me just confirm that number works for you so I can complete the appointment."
+      }
+    ]
+  },
+  {
+    "slug": "contractor",
+    "business": "Ridgeline Remodeling",
+    "turns": [
+      {
+        "who": "ai",
+        "text": "Thanks for calling Ridgeline Remodeling. You've reached our AI receptionist. How can I help you today?"
+      },
+      {
+        "who": "caller",
+        "text": "I'm looking at remodeling my bathroom. Can someone come out and give me a quote?"
+      },
+      {
+        "who": "ai",
+        "text": "We have morning slots available tomorrow, Thursday the first — how does 8 or 9 a.m. work for you?"
+      },
+      {
+        "who": "caller",
+        "text": "The earliest one is fine."
+      },
+      {
+        "who": "ai",
+        "text": "Perfect! I just need your name and phone number to book that 7 a.m. appointment tomorrow.\n\nIs the number you're calling from — five seven zero, five five five, zero one two three — the best way to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Janet Wu."
+      },
+      {
+        "who": "ai",
+        "text": "Thanks Janet! And is five seven zero, five five five, zero one two three the best number to reach you?"
+      },
+      {
+        "who": "caller",
+        "text": "Thank you, that's all I needed."
+      },
+      {
+        "who": "ai",
+        "text": "I'm sorry — I still need to confirm that phone number to book your appointment for 7 a.m. tomorrow. Is that number ending in zero one two three correct?"
+      }
+    ]
+  }
+]

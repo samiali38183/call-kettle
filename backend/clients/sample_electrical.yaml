@@ -1,0 +1,37 @@
+# Fictional sample tenant #5/10 — not a real customer.
+client_id: sample_electrical
+business_name: "Brightline Electric"
+vertical: electrical
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"
+
+opening_line: "Thanks for calling Brightline Electric, this is the AI receptionist — how can I help?"
+
+business_hours:
+  mon: ["08:00", "17:00"]
+  tue: ["08:00", "17:00"]
+  wed: ["08:00", "17:00"]
+  thu: ["08:00", "17:00"]
+  fri: ["08:00", "17:00"]
+  sat: "closed"
+  sun: "closed"
+
+slot_minutes: 60
+
+services:
+  - name: "Panel upgrade"
+    duration_minutes: 60
+  - name: "Outlet install"
+    duration_minutes: 60
+
+faqs:
+  - q: "Do you offer free estimates?"
+    a: "Yes — estimates are scheduled during business hours."
+  - q: "What is your service area?"
+    a: "We cover the local metro area. Share your zip code and I will check."
+
+escalation_phone: "+15555551005"
+owner_email: "owner@example.com"
+max_turns: 12
+max_call_seconds: 360
+record_transcripts: true

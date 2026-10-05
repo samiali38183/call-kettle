@@ -1,0 +1,41 @@
+client_id: callkettle_demo
+business_name: "Call Kettle Demo Line"
+vertical: "demo"
+timezone: "America/New_York"
+model: "claude-haiku-4-5-20251001"
+
+# The public demo line,+15555550100. It never talks to the caller itself: it plays a short menu and moves the caller to one of the
+# FICTIONAL demo companies below, each its own client with its own spend cap, daily booking reset and simulated hand-off. Nothing here
+# can reach a real customer's line (the server refuses a menu target that is not a demo client).
+opening_line: "Welcome to the Call Kettle demo line. This is an AI receptionist demonstration."
+
+demo_menu:
+  "1": demo_nova_hvac
+  "2": demo_nova_garage
+  "3": demo_nova_plumbing
+  "4": demo_riverside
+demo_private_codes: true
+demo_menu_prompt: "Welcome to the Call Kettle demo line. You are about to hear an AI receptionist the way a customer would, for a pretend company. For a heating and air company, press 1. For a garage door company, press 2. For a plumber, press 3. For a general home service company, or to ask about Call Kettle itself, press 4. Or just wait and we will start with the heating and air company."
+
+business_hours:
+  mon: ["07:00", "18:00"]
+  tue: ["07:00", "18:00"]
+  wed: ["07:00", "18:00"]
+  thu: ["07:00", "18:00"]
+  fri: ["07:00", "18:00"]
+  sat: ["08:00", "14:00"]
+  sun: "closed"
+
+slot_minutes: 60
+
+services:
+  - name: "Demonstration"
+    duration_minutes: 30
+
+escalation_phone: "+15555550100"
+ntfy_topic: "deskline-dxxzxrmter4jhfsw"
+
+# Isolated and capped. The menu itself costs almost nothing (no AI); each demo company has its own $15 monthly ceiling.
+demo_mode: true
+monthly_cost_ceiling_usd: 40
+ceiling_mode: message
