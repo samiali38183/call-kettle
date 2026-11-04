@@ -1,34 +1,34 @@
 # Call Kettle
 
-Production-style **AI voice receptionist**: inbound calls, a tool-use agent loop, server-side booking rules, and an owner portal.
+An AI phone receptionist for small businesses. It answers calls, books and changes appointments, and gives the owner a portal to see bookings and call transcripts.
 
-Sanitized public snapshot of the engineering — no secrets, no production database, no private docs. Live product: [callkettle.com](https://callkettle.com). Write-up: [samiali38183.github.io/projects/call-kettle.html](https://samiali38183.github.io/projects/call-kettle.html). Code: this repo.
+This is a cleaned-up public copy of the code, with no secrets, production data or private docs. Live product: [callkettle.com](https://callkettle.com). Write-up: [samiali38183.github.io/projects/call-kettle.html](https://samiali38183.github.io/projects/call-kettle.html). Code: this repo.
 
-Built by **Sami Ali**. A large share of the implementation, tests, and refactors went through **Claude Code** and **Hermes Agent**, gated by pytest. Details: [docs/AGENT_WORK.md](docs/AGENT_WORK.md).
+I built it with Claude Code and Hermes Agent doing a lot of the implementation and refactoring, with pytest as the check on every change. Details: [docs/AGENT_WORK.md](docs/AGENT_WORK.md).
 
-## Architecture
+## How it's put together
 
-- **FastAPI** backend (`backend/app/main.py`) exposing Twilio voice webhooks (`webhooks.py`, `twilio_utils.py`) with request signature validation, plus a streaming speech-to-text path (`stream_stt.py`).
-- **Claude Haiku tool-use agent loop** (`agent.py`): per-call session, bounded tool iterations per turn, capped reply length, and code-level guards on what the model may claim (for example, it cannot say it booked something unless a booking tool actually succeeded).
-- **Tools** (`tools.py`): `check_availability`, `book_appointment`, `find_my_appointments`, `cancel_appointment`, `reschedule_appointment`, `escalate_to_human`. Booking rules (hours, slot grid, lead time, one booking per slot) are enforced server-side, not only in the prompt.
-- **YAML configs** (`backend/clients/`), validated by strict Pydantic models (`config.py`, `extra: forbid`). Policy switches decide which tools are offered and are re-checked when a tool is called.
-- **SQLite** storage (`storage.py`); isolation is tested in `tests/test_isolation.py`.
-- **Owner portal** (`portal.py`, `owner_auth.py`): bookings, callbacks, summaries, transcripts.
-- **Notifications and calendar**: email with `.ics` invites, push, optional SMS, iCal busy-time and Google Calendar integration.
-- **Cost guards and observability** (`cost_guard.py`, `cost_observability.py`, `qa/`).
-- **`marketing/audit.py`**: a consistency and leak scanner that checks public-facing documents against `marketing/facts.json` and flags unsupported claims and private-figure leaks. Some of its input documents are private and not included here, so it will not run to completion in this snapshot.
+- FastAPI backend (`backend/app/main.py`) exposing Twilio voice webhooks (`webhooks.py`, `twilio_utils.py`) with request signature validation, plus a streaming speech-to-text path (`stream_stt.py`).
+- Claude Haiku agent (`agent.py`): one session per call, a limit on tool calls per turn, capped reply length, and code checks on what the model can say. For example, it can't tell a caller they're booked unless the booking tool actually succeeded.
+- Tools (`tools.py`): `check_availability`, `book_appointment`, `find_my_appointments`, `cancel_appointment`, `reschedule_appointment`, `escalate_to_human`. Booking rules (hours, time slots, lead time, one booking per slot) are enforced in code, not just in the prompt.
+- Per-business YAML configs (`backend/clients/`), validated with strict Pydantic models (`config.py`, `extra: forbid`). Settings control which tools are offered, and they're checked again when a tool runs.
+- SQLite storage (`storage.py`). Tests in `tests/test_isolation.py` check that one business can't see another's data.
+- Owner portal (`portal.py`, `owner_auth.py`): bookings, callbacks, summaries, transcripts.
+- Notifications and calendar: email with `.ics` invites, push, optional SMS, iCal busy-time and Google Calendar integration.
+- Cost limits and cost tracking (`cost_guard.py`, `cost_observability.py`, `qa/`).
+- `marketing/audit.py`: checks public-facing docs against `marketing/facts.json` and flags claims that aren't backed up or private numbers that leaked. Some of its input documents are private and not included here, so it will not run to completion in this snapshot.
 
-## What I used (agents + LLMs)
+## Tools
 
 | Piece | Role |
 |---|---|
-| **Claude Code** | In-repo implementation and refactors against the test suite |
-| **Hermes Agent** | Task-driven QA, repo work, orchestration |
-| **Claude Haiku** | Runtime call agent (structured tool-use) |
-| **pytest + GitHub Actions** | Gate on agent-authored changes |
-| **Python 3.12, FastAPI, Twilio, SQLite** | Stack |
+| Claude Code | In-repo implementation and refactors against the test suite |
+| Hermes Agent | Task-driven QA, repo work, orchestration |
+| Claude Haiku | Runtime call agent (structured tool-use) |
+| pytest + GitHub Actions | Gate on agent-authored changes |
+| Python 3.12, FastAPI, Twilio, SQLite | Stack |
 
-The runtime agent is schema-first: the model proposes a tool call; code validates and executes it.
+The model only suggests tool calls. The code validates them and decides whether to run them.
 
 ## Run locally
 
