@@ -11,7 +11,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 A_ID, B_ID = "demo_hvac", "demo_nova_plumbing"
-A_EMAIL, B_EMAIL = "owner@example.com", "owner@example.com"
+A_EMAIL, B_EMAIL = "owner-a@example.com", "owner-b@example.com"
 NEW_PW = "correct horse battery 42"
 
 
