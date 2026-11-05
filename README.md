@@ -4,7 +4,7 @@ An AI phone receptionist for small businesses. It answers calls, books and chang
 
 This is a cleaned-up public copy of the code, with no secrets, production data or private docs. Live product: [callkettle.com](https://callkettle.com). Write-up: [samiali38183.github.io/projects/call-kettle.html](https://samiali38183.github.io/projects/call-kettle.html). Code: this repo.
 
-I built it with Claude Code and Hermes Agent doing a lot of the implementation and refactoring, with pytest as the check on every change. Details: [docs/AGENT_WORK.md](docs/AGENT_WORK.md).
+Built by Sami Ali.
 
 ## How it's put together
 
