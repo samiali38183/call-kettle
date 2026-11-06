@@ -23,7 +23,7 @@ Levels follow the claim ladder the project's own agent rules use: **implemented*
 | Per-tenant spend and call ceilings, concurrency cap, repeat-caller limit | yes | yes | not recorded as a feature check |
 | Cost observability ledger (measured provider usage) | yes | yes | not recorded |
 | Outbound signed webhooks with a durable outbox | yes | yes | not recorded |
-| Streaming speech-to-text (Media Streams + Deepgram adapter) | yes, **off by default** | yes, with a fake connection and recorded audio fixtures | no tenant uses it |
+| Streaming speech-to-text (Media Streams + Deepgram adapter) | yes, **off by default** | yes, with a fake connection and recorded audio fixtures | exercised on real scripted test calls (2026-10-28, Gather vs streaming comparison); no customer tenant uses it |
 | Encrypted offsite database backups | yes | yes | not configured |
 | Stripe webhook state tracking | yes | yes | not recorded |
 | Spanish calls | yes, beta, off by default | yes | no |
@@ -61,7 +61,7 @@ flowchart TD
     reply --> twilio
 ```
 
-Default speech recognition is Twilio's `<Gather>`. A streaming path (Twilio Media Streams to a streaming STT provider) exists behind two flags and falls back to Gather on any error; no tenant uses it.
+Default speech recognition is Twilio's `<Gather>`. A streaming path (Twilio Media Streams to a streaming STT provider) exists behind two flags and falls back to Gather on any error. It carried real scripted test calls on 2026-10-28 (a Gather-versus-streaming comparison); no customer tenant uses it.
 
 ### 2. Model suggests, code decides
 
@@ -197,7 +197,8 @@ What that does and does not show: agents did a large share of the implementation
 - **The claim guard is pattern based.** It covers booked, cancelled and rescheduled claims in common phrasings, English and Spanish. A paraphrase it does not match, or a different kind of false claim ("a technician is on the way"), would only be caught by the prompt, not by code.
 - **Some policy switches are prompt-level.** `can_book`, `can_reschedule`, `can_cancel` and `can_transfer` are enforced in code. `can_quote`, the dispatch-fee text and address collection are prompt rules, so they are only as strong as the model.
 - **`ClientConfig` is not `extra: forbid`.** Only `Policy` is. A misspelled top-level key in a tenant YAML is ignored rather than rejected.
-- **Speech recognition is the weak link.** The default path is Twilio's recognizer; names and numbers get misheard. The prompt forces a spelled-out confirmation of names and a read-back, but there is no recognition-quality evaluation in this repo. The streaming path has not been enabled for any tenant.
+- **Outbound URL checks can race DNS.** `url_is_safe` resolves the host and refuses non-public addresses, but the HTTP client resolves the name again when it connects, so a DNS-rebinding host could answer differently the second time. Redirects are not followed, and webhook URLs are set by the operator, which narrows exposure, but the gap is real. Planned fix: resolve once, connect to the validated address, and pass the original hostname as the TLS SNI/Host so certificate checks still apply.
+- **Speech recognition is the weak link.** The default path is Twilio's recognizer; names and numbers get misheard. The prompt forces a spelled-out confirmation of names and a read-back, but there is no recognition-quality evaluation in this repo. The streaming path has been compared with Gather on scripted test calls only; no customer tenant uses it.
 - **Calendars.** Google works through a shared service account. iCal is read only. No Outlook or Apple API integration, no per-owner OAuth.
 - **Cost figures are estimates**, by design, and say so.
 - **Not a compliance claim.** There are no BAAs and no certifications. Tenants in health or legal fields can run with `record_transcripts: false`, which reduces exposure and does not make the system HIPAA-compliant.
