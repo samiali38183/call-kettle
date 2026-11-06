@@ -173,8 +173,8 @@ def test_aggregate_month_flags_unknown_components_without_silently_dropping(mont
 
 def test_aggregate_month_revenue_vs_cash_contribution_flags_unknowns(month_db):
     now = module().datetime(2026, 10, 15, tzinfo=module().timezone.utc)
-    report = module().aggregate_month(month_db, "acme", month_rates(), now=now, revenue_usd=Decimal("497"))
-    assert report["revenue_usd"] == Decimal("497")
+    report = module().aggregate_month(month_db, "acme", month_rates(), now=now, revenue_usd=Decimal("412"))
+    assert report["revenue_usd"] == Decimal("412")
     assert report["cash_contribution_usd"] is None  # cost incomplete -> contribution cannot be a false precise number
     assert report["cash_contribution_status"] == "incomplete_unknown_components"
 
@@ -211,7 +211,7 @@ def test_aggregate_month_complete_data_yields_a_real_cash_contribution(complete_
     now = module().datetime(2026, 10, 15, tzinfo=module().timezone.utc)
     full_rates = {m: rate() for m in module().COST_METRICS}
     full_rates["carrier_seconds"] = rate("0.0085", "60", "60")
-    report = module().aggregate_month(complete_month_db, "acme", full_rates, now=now, revenue_usd=Decimal("497"))
+    report = module().aggregate_month(complete_month_db, "acme", full_rates, now=now, revenue_usd=Decimal("412"))
     assert report["unknown_components"] == []
     assert report["total_cost_usd"] == report["known_cost_usd"]
     assert report["cash_contribution_usd"] == report["revenue_usd"] - report["known_cost_usd"]
@@ -257,11 +257,11 @@ def test_cli_prints_private_report_and_flags_unknowns(month_db):
     assert result.returncode == 0, result.stderr
     assert "PRIVATE" in result.stdout
     assert "UNKNOWN" in result.stdout
-    assert "497" not in result.stdout  # no price is baked into this module; nothing to leak by default
+    assert "412" not in result.stdout  # no price is baked into this module; nothing to leak by default
 
 
 def test_cli_revenue_is_operator_supplied_never_baked_in(month_db):
-    result = run_cli("acme", "--db", str(month_db), "--as-of", "2026-10-15", "--revenue-usd", "497")
+    result = run_cli("acme", "--db", str(month_db), "--as-of", "2026-10-15", "--revenue-usd", "412")
     assert result.returncode == 0, result.stderr
     assert "cash contribution" in result.stdout.lower() or "unknown" in result.stdout.lower()
 
@@ -289,10 +289,10 @@ def test_alerts_flag_runaway_calls_by_duration(month_db):
 def test_alerts_margin_needs_operator_fixed_cost_and_marks_incomplete(month_db):
     now = module().datetime(2026, 10, 15, tzinfo=module().timezone.utc)
     m = module()
-    no_fixed = m.aggregate_month(month_db, "acme", month_rates(), now=now, revenue_usd=Decimal("497"))
+    no_fixed = m.aggregate_month(month_db, "acme", month_rates(), now=now, revenue_usd=Decimal("412"))
     assert no_fixed["alerts"]["margin"]["status"] == "unavailable_no_fixed_cash_cost"
-    with_fixed = m.aggregate_month(month_db, "acme", month_rates(), now=now, revenue_usd=Decimal("497"),
-                                   fixed_cash_usd=Decimal("450"))
+    with_fixed = m.aggregate_month(month_db, "acme", month_rates(), now=now, revenue_usd=Decimal("412"),
+                                   fixed_cash_usd=Decimal("300"))
     margin = with_fixed["alerts"]["margin"]
     assert margin["status"] == "below_70"
     assert margin["incomplete_unknown_components"] is True  # an upper bound, never presented as final
@@ -304,7 +304,7 @@ def test_alerts_margin_ok_when_complete_and_above_target(complete_month_db):
     full_rates = {m: rate() for m in module().COST_METRICS}
     full_rates["carrier_seconds"] = rate("0.0085", "60", "60")
     report = module().aggregate_month(complete_month_db, "acme", full_rates, now=now,
-                                      revenue_usd=Decimal("497"), fixed_cash_usd=Decimal("38.342"))
+                                      revenue_usd=Decimal("412"), fixed_cash_usd=Decimal("22"))
     margin = report["alerts"]["margin"]
     assert margin["status"] == "ok"
     assert margin["incomplete_unknown_components"] is False
@@ -314,7 +314,7 @@ def test_cli_prints_alerts_and_accepts_fixed_cost(month_db):
     import subprocess, sys
     out = subprocess.run(
         [sys.executable, "scripts/cost_report.py", "acme", "--db", str(month_db), "--as-of", "2026-10-15",
-         "--rates", "example", "--revenue-usd", "497", "--fixed-cash-usd", "450", "--runaway-minutes", "2.5"],
+         "--rates", "example", "--revenue-usd", "412", "--fixed-cash-usd", "300", "--runaway-minutes", "2.5"],
         capture_output=True, text=True, check=True, cwd=str(Path(__file__).resolve().parent.parent)).stdout
     assert "runaway calls" in out and "c=3" in out
     assert "margin alert: below_70" in out and "UPPER bound" in out
@@ -324,7 +324,7 @@ def test_cli_prints_alerts_and_accepts_fixed_cost(month_db):
 # Policy headroom block (reporting only; never gates a call). Written first.
 # ---------------------------------------------------------------------------
 
-def _hr_report(cost, *, calls=5, unknown=(), revenue="497"):
+def _hr_report(cost, *, calls=5, unknown=(), revenue="412"):
     return {"period_start": "2026-10-01T00:00:00+00:00", "period_end": "2026-11-01T00:00:00+00:00",
             "call_count": calls, "known_cost_usd": None if cost is None else Decimal(cost),
             "unknown_components": list(unknown), "revenue_usd": None if revenue is None else Decimal(revenue)}
@@ -336,15 +336,15 @@ def _utc(day):
 
 
 def test_headroom_budgets_are_revenue_times_one_minus_target_minus_fixed():
-    h = module().policy_headroom(_hr_report("10"), Decimal("38.342"), _utc(16))
+    h = module().policy_headroom(_hr_report("10"), Decimal("22"), _utc(16))
     by = {t["target_margin"]: t for t in h["targets"]}
-    assert by["0.8"]["budget_usd"] == Decimal("61.058")
-    assert by["0.7"]["budget_usd"] == Decimal("110.758")
+    assert by["0.8"]["budget_usd"] == Decimal("60.4")
+    assert by["0.7"]["budget_usd"] == Decimal("101.6")
     assert h["targets"][0]["cost_so_far_usd"] == Decimal("10")
 
 
 def test_headroom_projection_is_linear_run_rate_and_labeled_assumption():
-    h = module().policy_headroom(_hr_report("10"), Decimal("38.342"), _utc(16))  # 15 of 31 days elapsed
+    h = module().policy_headroom(_hr_report("10"), Decimal("22"), _utc(16))  # 15 of 31 days elapsed
     t = h["targets"][0]
     assert t["projected_month_end_usd"] == Decimal("10") * Decimal(31) / Decimal(15)
     assert h["projection_label"].startswith("ASSUMPTION")
@@ -353,36 +353,36 @@ def test_headroom_projection_is_linear_run_rate_and_labeled_assumption():
 
 def test_headroom_status_ok_watch_over():
     m = module()
-    ok = m.policy_headroom(_hr_report("10"), Decimal("38.342"), _utc(16))        # projected 20.7 < 61.058
+    ok = m.policy_headroom(_hr_report("10"), Decimal("22"), _utc(16))        # projected 20.7 < 60.4
     assert ok["status"] == "ok" and ok["targets"][0]["status"] == "ok"
-    watch = m.policy_headroom(_hr_report("40"), Decimal("38.342"), _utc(16))     # projected 82.7 > 61.058, < 110.758
+    watch = m.policy_headroom(_hr_report("40"), Decimal("22"), _utc(16))     # projected 82.7 > 60.4, < 101.6
     assert watch["targets"][0]["status"] == "watch" and watch["targets"][1]["status"] == "ok"
     assert watch["status"] == "watch"
-    over80 = m.policy_headroom(_hr_report("70"), Decimal("38.342"), _utc(16))    # actual above 61.058 only
+    over80 = m.policy_headroom(_hr_report("70"), Decimal("22"), _utc(16))    # actual above 60.4 only
     assert over80["targets"][0]["status"] == "over" and over80["status"] == "watch"
-    over = m.policy_headroom(_hr_report("120"), Decimal("38.342"), _utc(16))
+    over = m.policy_headroom(_hr_report("120"), Decimal("22"), _utc(16))
     assert over["targets"][1]["status"] == "over" and over["status"] == "over"
 
 
 def test_headroom_at_75_percent_of_budget_is_watch_even_if_run_rate_is_low():
-    h = module().policy_headroom(_hr_report("50"), Decimal("38.342"), _utc(31))  # last day: projection ~ actual; 50 >= .75*61.058
+    h = module().policy_headroom(_hr_report("50"), Decimal("22"), _utc(31))  # last day: projection ~ actual; 50 >= .75*60.4
     assert h["targets"][0]["status"] == "watch"
 
 
 def test_headroom_unknown_inputs_never_become_zero():
     m = module()
-    assert m.policy_headroom(_hr_report("10", revenue=None), Decimal("38.342"), _utc(16))["status"] == "unknown"
+    assert m.policy_headroom(_hr_report("10", revenue=None), Decimal("22"), _utc(16))["status"] == "unknown"
     assert m.policy_headroom(_hr_report("10"), None, _utc(16))["status"] == "unknown"
-    nocost = m.policy_headroom(_hr_report(None, calls=3), Decimal("38.342"), _utc(16))
+    nocost = m.policy_headroom(_hr_report(None, calls=3), Decimal("22"), _utc(16))
     assert nocost["status"] == "unknown" and nocost["targets"][0]["cost_so_far_usd"] is None
-    partial = m.policy_headroom(_hr_report("10", unknown=["tts_chars"]), Decimal("38.342"), _utc(16))
+    partial = m.policy_headroom(_hr_report("10", unknown=["tts_chars"]), Decimal("22"), _utc(16))
     assert partial["cost_is_lower_bound"] is True and partial["status"] == "unknown"  # ok is never claimed on a lower bound
-    big = m.policy_headroom(_hr_report("120", unknown=["tts_chars"]), Decimal("38.342"), _utc(16))
+    big = m.policy_headroom(_hr_report("120", unknown=["tts_chars"]), Decimal("22"), _utc(16))
     assert big["status"] == "over"  # a lower bound already over budget is still over
 
 
 def test_headroom_no_calls_is_measured_zero_and_ok():
-    h = module().policy_headroom(_hr_report(None, calls=0), Decimal("38.342"), _utc(16))
+    h = module().policy_headroom(_hr_report(None, calls=0), Decimal("22"), _utc(16))
     assert h["status"] == "ok" and h["targets"][0]["cost_so_far_usd"] == Decimal("0")
 
 
@@ -390,18 +390,18 @@ def test_headroom_zero_budget_and_closed_month():
     m = module()
     h = m.policy_headroom(_hr_report("1"), Decimal("500"), _utc(16))  # fixed cash alone exceeds every budget
     assert h["targets"][0]["budget_usd"] == Decimal("0") and h["status"] == "over"
-    past = m.policy_headroom(_hr_report("10"), Decimal("38.342"), m.datetime(2026, 12, 1, tzinfo=m.timezone.utc))
+    past = m.policy_headroom(_hr_report("10"), Decimal("22"), m.datetime(2026, 12, 1, tzinfo=m.timezone.utc))
     assert past["targets"][0]["projected_month_end_usd"] == Decimal("10")  # closed month: actual, not extrapolated
 
 
 def test_cli_prints_policy_headroom_block(month_db):
     out = subprocess.run(
         [sys.executable, "scripts/cost_report.py", "acme", "--db", str(month_db), "--as-of", "2026-10-15",
-         "--rates", "example", "--revenue-usd", "497", "--fixed-cash-usd", "38.342"],
+         "--rates", "example", "--revenue-usd", "412", "--fixed-cash-usd", "22"],
         capture_output=True, text=True, check=True, cwd=str(Path(__file__).resolve().parent.parent)).stdout
     assert "policy headroom" in out
     assert "ASSUMPTION" in out and "target 80%" in out and "target 70%" in out
-    assert "497" not in out.split("policy headroom", 1)[1]
+    assert "412" not in out.split("policy headroom", 1)[1]
     bare = subprocess.run([sys.executable, "scripts/cost_report.py", "acme", "--db", str(month_db), "--as-of", "2026-10-15"],
                           capture_output=True, text=True, check=True, cwd=str(Path(__file__).resolve().parent.parent)).stdout
     assert "policy headroom: unknown" in bare

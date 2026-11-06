@@ -7,7 +7,7 @@ import tempfile
 import pytest
 
 CALLER = "+15555550100"
-OTHER = "+15555550100"
+OTHER = "+15555550177"
 
 
 @pytest.fixture(autouse=True)
@@ -65,7 +65,7 @@ def test_a_caller_sees_only_their_own_upcoming_appointments(events):
     assert "Someone Else" not in str(found)
     assert "error" in tools.find_my_appointments(config=cfg, caller_id=None)
     assert "error" in tools.find_my_appointments(config=cfg, caller_id="anonymous")
-    assert tools.find_my_appointments(config=cfg, caller_id="+15555550100")["appointments"] == []
+    assert tools.find_my_appointments(config=cfg, caller_id="+15555550199")["appointments"] == []
 
 
 def test_phone_formats_match_on_the_last_ten_digits(events):

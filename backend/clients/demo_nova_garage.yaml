@@ -37,7 +37,7 @@ faqs:
     a: "We try to. I can book the soonest open time, or have the office called if the door is stuck open or closed with a car inside."
 
 escalation_phone: "+15555550100"
-ntfy_topic: "deskline-dxxzxrmter4jhfsw"
+ntfy_topic: "YOUR-NTFY-TOPIC"   # placeholder: use your own unguessable ntfy.sh topic (treat it like a secret)
 
 demo_mode: true
 monthly_cost_ceiling_usd: 15

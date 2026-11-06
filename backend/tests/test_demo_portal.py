@@ -148,7 +148,7 @@ def test_seed_refuses_an_email_that_belongs_to_a_real_client(env):
 def test_script_refuses_off_fly_and_prints_password_once_locally(env, monkeypatch, capsys):
     monkeypatch.delenv("FLY_APP_NAME", raising=False)
     assert env.seeder.main([]) == 1
-    assert "fly ssh console --app deskline-ai -C 'python scripts/seed_demo_portal.py'" in capsys.readouterr().out
+    assert "fly ssh console --app your-app -C 'python scripts/seed_demo_portal.py'" in capsys.readouterr().out
     assert _rows(env, "SELECT COUNT(*) FROM calls WHERE client_id = ?", (SAMPLE,)) == [(0,)]
     assert env.seeder.main(["--allow-local"]) == 0
     out = capsys.readouterr().out

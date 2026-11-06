@@ -28,4 +28,4 @@ jobs:
           ANTHROPIC_API_KEY: dummy
           TWILIO_ACCOUNT_SID: dummy
           TWILIO_AUTH_TOKEN: dummy
-        run: python -m pytest -q --ignore=tests/test_pricing_audit.py
+        run: python -m pytest -q

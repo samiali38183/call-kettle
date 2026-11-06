@@ -39,10 +39,10 @@ faqs:
 
 spanish: true
 escalation_phone: "+15555550100"
-ntfy_topic: "deskline-dxxzxrmter4jhfsw"
+ntfy_topic: "YOUR-NTFY-TOPIC"   # placeholder: use your own unguessable ntfy.sh topic (treat it like a secret)
 
-# Public demo line: isolated (its own client, no customer data), bookings reset every day, and a hard spend cap. About $0.21
-# per call, so $40 is roughly 190 demo calls a month; past that, callers are asked to leave a message at no AI cost.
+# Public demo line: isolated (its own client, no customer data), bookings reset every day, and a hard spend cap;
+# past the cap, callers are asked to leave a message at no AI cost.
 demo_mode: true
 monthly_cost_ceiling_usd: 15
 ceiling_mode: message

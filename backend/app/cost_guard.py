@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from app.config import ClientConfig
 
 MAX_TOOL_ITERATIONS_PER_TURN = 4
-MAX_HISTORY_MESSAGES = 20  # trims token growth on long calls before it eats margin
+MAX_HISTORY_MESSAGES = 20  # trims token growth on long calls before it inflates cost
 
 
 @dataclass

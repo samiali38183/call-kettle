@@ -1,6 +1,6 @@
 """Turn on booking emails, calendar invites and the weekly recap, in one step.
 
-    python scripts/setup_email.py
+    python scripts/setup_email.py --email you@gmail.com
 
 Before you run it, make a Gmail "app password" (2 minutes, one time):
   1. https://myaccount.google.com/security  -> turn on 2-Step Verification if it's off
@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import getpass
+import os
 import shutil
 import smtplib
 import subprocess
@@ -22,7 +23,7 @@ from email.message import EmailMessage
 from pathlib import Path
 
 HOST, PORT = "smtp.gmail.com", 587
-FLY_APP = "deskline-ai"
+FLY_APP = os.environ.get("FLY_APP", "your-app")   # the name of your Fly app
 
 
 def clean(password: str) -> str:
@@ -62,7 +63,7 @@ def find_flyctl() -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--email", default="samiali38183@gmail.com", help="the Gmail address that sends the emails")
+    parser.add_argument("--email", required=True, help="the Gmail address that sends the emails")
     args = parser.parse_args()
 
     password = clean(getpass.getpass(f"Paste the 16-letter app password for {args.email} (typing is hidden): "))

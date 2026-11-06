@@ -6,9 +6,9 @@
 Owner strategy (final): PROBLEM -> INTEREST -> LIVE DEMO -> DISCOVERY -> VALUE -> RECOMMENDED PLAN -> PRICE -> CLOSE. The exact price is stated in a qualified
 conversation (or at once if a prospect asks directly), in a private proposal or contract. It is never advertised.
 
-This is deliberately NOT "block the number 297 forever": the price lives in ONE private configuration value (marketing/facts.json `price_monthly`, or the
+This is deliberately NOT "block one specific number forever": the price lives in ONE private configuration value (marketing/facts.json `price_monthly`, or the
 environment variable CALLKETTLE_PRIVATE_PRICE, which wins) and the audit checks that THAT value does not leak. Change the price and the audit follows. A bare
-number that is not used as a price (for example "297 reviews") is not flagged: a hit needs a currency sign, a per-month phrase, a price word nearby, or a
+number that is not used as a price (for example "1234 reviews") is not flagged: a hit needs a currency sign, a per-month phrase, a price word nearby, or a
 template token / structured-data key that would render the price.
 
 What counts as public or pre-demo: the website (source and BUILD OUTPUT), flyers, the video scene, the hosted terms/start/book pages, the Vercel fallback,

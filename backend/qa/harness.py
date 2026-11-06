@@ -3,7 +3,7 @@
 
     python -m qa.harness                       # every persona on every trade
     python -m qa.harness --trades plumbing hvac --personas standard price
-    python -m qa.harness --out ../marketing/samples/calls.json --personas standard
+    python -m qa.harness --out ./out/calls.json --personas standard
 
 Real model calls, real (small) cost. A throwaway database is used and every
 notification channel is stripped, so nothing is emailed, pushed or booked anywhere real.

@@ -361,7 +361,7 @@ async def voice_incoming(request: Request, client_id: str) -> Response:
         storage.record_metric("concurrency_rejected", client_id)
         return Response(content=twilio_utils.reject_twiml(), media_type="application/xml")
 
-    # Margin protection: a robocaller or a stuck redial loop can burn real money
+    # Cost protection: a robocaller or a stuck redial loop can burn real money
     # (speech recognition + voice + model, per turn). Repeat callers get a
     # short polite refusal instead of a fresh AI conversation.
     real_number = len(re.sub(r"\D", "", from_number)) >= 10
@@ -372,7 +372,7 @@ async def voice_incoming(request: Request, client_id: str) -> Response:
         )
         return Response(content=twiml, media_type="application/xml")
 
-    # Second margin brake: a client far past their included calls (usually a robocall
+    # Second cost brake: a client far past their included calls (usually a robocall
     # flood on spoofed numbers, which the per-number limit cannot catch) gets new calls
     # rung straight to their own phone, at zero AI cost, and we are alerted.
     try:

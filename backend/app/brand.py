@@ -12,8 +12,9 @@ variables, redeploy, and every email, calendar invite, admin page, public page a
     BRAND_AI_GREETING     (informational) the AI's own greeting for the operator's demo/sales lines is set per client
                           in clients/<id>.yaml (`opening_line`), because each client's line says the CLIENT's name.
 
-Deliberately NOT branded: the calendar-invite UID suffix (`@deskline-ai`). A calendar identifies an event by its UID;
-changing the suffix would make a client's calendar treat later updates and cancellations as different events.
+Deliberately NOT branded: the calendar-invite UID suffix (`@call-kettle`). A calendar identifies an event by its UID;
+changing the suffix on a running deployment would make a client's calendar treat later updates and cancellations as
+different events. A deployment that already issued invites should keep whatever suffix it used.
 """
 from __future__ import annotations
 
@@ -22,9 +23,9 @@ import os
 import re
 from dataclasses import dataclass
 
-ICS_UID_SUFFIX = "@deskline-ai"          # stable identity, see above
+ICS_UID_SUFFIX = "@call-kettle"          # stable identity, see above
 _DEFAULT_NAME = "Call Kettle"
-_DEFAULT_OWNER_EMAIL = "samiali38183@gmail.com"
+_DEFAULT_OWNER_EMAIL = "support@example.com"
 
 
 @dataclass(frozen=True)

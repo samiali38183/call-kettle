@@ -28,12 +28,12 @@ NAME_PREFIX = "callkettle-guard: "
 CALLBACK_URL = "https://app.callkettle.com/ops/twilio-usage-trigger"
 FLAG = "--i-understand-this-modifies-my-twilio-account"
 
-# Defaults derive from docs/WORST_CASE_CAP.md (zero customers today, so the whole account is the first customer):
-#   60  ~ expected usage for one customer (64.2)       -> early warning
-#   120 ~ the 110 per-client ceiling + number fees     -> real flood suspected
-#   200 > the 164.20 worst-case usage of one customer  -> something outside the model
+# Account-wide thresholds, in dollars per month, from a private usage model (tune them to your own traffic):
+#   first   ~ expected usage                    -> early warning
+#   second  ~ the per-client ceiling + number fees -> real flood suspected
+#   third   > the worst case for one customer   -> something outside the model
 DEFAULT_MONTHLY_PRICE = ("60", "120", "200")
-DEFAULT_DAILY_PRICE = "25"       # ~ 4x the busiest modeled day (a 450-call month is about $2.9/day)
+DEFAULT_DAILY_PRICE = "25"       # ~ 4x the busiest modeled day
 DEFAULT_DAILY_CALLS = "150"      # inbound calls per day; the per-client monthly call ceiling is 900
 DEFAULT_DAILY_SMS = "60"         # outbound SMS per day (owner escalations)
 DEFAULT_DAILY_SPEECH = "400"     # Gather speech-recognition uses per day

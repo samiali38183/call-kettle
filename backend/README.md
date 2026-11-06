@@ -30,14 +30,16 @@ encrypted volume with automatic daily snapshots).
 - If the AI itself errors mid-call, it rings the owner's phone. If the whole
   server is unreachable, Twilio's voice fallback (`../fallback`, hosted on
   separate infrastructure) rings the owner.
-- Protects margin: per-call turn and duration caps, a repeat-caller limit
+- Limits spend: per-call turn and duration caps, a repeat-caller limit
   (6 calls / 10 min per number), API timeouts, and public-endpoint rate limits.
 
 **Does not**
 
-- **No live Google/Outlook calendar API sync.** Bookings live in Call Kettle's own
-  database and show in the dashboard; each one is also emailed as a calendar
-  invite. True two-way sync would need per-client OAuth, so it isn't offered.
+- **No full two-way calendar sync.** Bookings live in Call Kettle's own database and
+  show in the dashboard; each one is also emailed as a calendar invite. A tenant can
+  optionally connect Google Calendar through a shared service account (free/busy read,
+  event write, `app/gcal.py`) or a private iCal link (busy time, read only,
+  `app/icalbusy.py`). There is no Outlook or Apple API integration and no per-owner OAuth.
 - **SMS is off until A2P 10DLC registration is approved.** Twilio silently
   blocks US SMS from unregistered numbers (error 30034), so `SMS_ENABLED`
   defaults to `0` and the AI is told not to promise texts. Register, then
@@ -49,7 +51,7 @@ encrypted volume with automatic daily snapshots).
   or summarized) and the AI is told never to solicit medical details. That
   reduces exposure; it does not make the system HIPAA-compliant. Don't sell to
   businesses that handle PHI as a core workflow until BAAs are in place.
-- English only.
+- English by default. Spanish is a beta that a tenant must enable (`spanish: true`).
 - Call state is in memory: one machine, one worker. Move sessions to Redis
   before running more than one instance.
 
@@ -75,7 +77,7 @@ python scripts/onboard_client.py                      # answer ~10 questions -> 
 python simulate_call.py <client_id>                   # talk to it first
 python scripts/push_config.py <client_id>             # live in a second: no deploy, no restart
 python scripts/provision_number.py <client_id> --area-code 703          # dry run
-python scripts/provision_number.py <client_id> --area-code 703 --buy    # buys the number (~$1.15/mo)
+python scripts/provision_number.py <client_id> --area-code 703 --buy    # buys the number
 python scripts/provision_number.py <client_id> --number +1703...        # or repoint one you own
 python scripts/report_link.py <client_id>             # the client's private dashboard URL
 ```
@@ -113,9 +115,9 @@ server, and archives their config (the terms promise deletion on request).
 **Deploys** restart the single server, so for a few seconds calls fall back to ringing the
 owner's phone, and a call in progress loses its conversation state. Deploy when it's quiet.
 
-**Capacity** (load-tested on production): 30 simultaneous callers, AI replies under 4 s for
-95% of turns, worst case 5 s (Twilio allows 15 s), zero failures. One 512 MB machine is
-plenty for this stack; move call state to Redis before running a second machine.
+**Capacity:** call state is in memory, so run one machine and one worker. This repo does not
+publish latency or load figures; `scripts/load_test.py` exists but needs live credentials. Move
+call state to Redis before running a second machine.
 
 **Secrets to rotate together:** if you ever change the Twilio auth token, update it on Fly
 (update the Fly secret `TWILIO_AUTH_TOKEN` and the fallback project on Vercel) or
@@ -145,7 +147,7 @@ webhook signatures and the fallback will start failing.
 python -m venv .venv && .venv/Scripts/activate
 pip install -r requirements.txt
 cp .env.example .env
-pytest -q                       # ~150 tests, no network, no API spend
+pytest -q                       # offline, no network, no API spend (counts: top-level README)
 uvicorn app.main:app --reload --port 8000
 ```
 

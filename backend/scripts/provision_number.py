@@ -10,7 +10,7 @@ Every number this touches gets the same three settings:
   * voice webhook   -> the AI, for that client
   * status callback -> closes out calls that end when the caller hangs up
   * voice fallback  -> if the AI server is ever unreachable, ring the owner's
-                       real phone (fallback function in deskline-ai/fallback)
+                       real phone (a Twilio Function kept outside this repository)
 """
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ from twilio.rest import Client  # noqa: E402
 from app.config import ClientNotFoundError, load_client_config  # noqa: E402
 
 APP_BASE_URL = os.environ.get("APP_BASE_URL", "https://app.callkettle.com")
-FALLBACK_BASE_URL = os.environ.get("FALLBACK_BASE_URL", "https://fallback-ruddy.vercel.app")
+FALLBACK_BASE_URL = os.environ.get("FALLBACK_BASE_URL", "https://your-fallback.example.com")
 
 
 def webhook_settings(client_id: str, owner_phone: str) -> dict:

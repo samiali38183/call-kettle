@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
 COPY clients ./clients
 # Operator scripts (create_owner_user.py --reset, digest_preview.py) must run against the volume database:
-#   flyctl ssh console --app deskline-ai -C "python scripts/create_owner_user.py --reset owner@example.com"
+#   flyctl ssh console --app <your-fly-app> -C "python scripts/create_owner_user.py --reset owner@example.com"
 COPY scripts ./scripts
 
 EXPOSE 8080

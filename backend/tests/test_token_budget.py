@@ -2,7 +2,7 @@
 
 Ceilings are ESTIMATED tokens (ceil(json_chars/4)), not provider tokens. They sit a few percent above the measured
 value so a stray paragraph in the system prompt, a verbose tool description or a bigger max_tokens fails the suite
-instead of silently eating margin. If you add prompt text on purpose, raise the ceiling in the same change and say why.
+instead of silently eating cost. If you add prompt text on purpose, raise the ceiling in the same change and say why.
 """
 import importlib.util
 import sys

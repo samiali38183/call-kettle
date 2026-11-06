@@ -8,7 +8,7 @@ What --do-it does, in order:
   2. erases their calls, bookings and callbacks from the server (the terms promise this),
   3. points their Twilio number(s) at nothing-special and, with --release-number, releases them,
   4. moves their config to clients/_archived/ so it's no longer served.
-You then run `flyctl deploy --app deskline-ai` to finish removing the config.
+You then run `flyctl deploy --app your-app` to finish removing the config.
 
 Remind the client to turn off call forwarding first (Verizon *73, AT&T #21#, T-Mobile ##21#).
 """
@@ -86,7 +86,7 @@ def main() -> None:
     archive.mkdir(exist_ok=True)
     shutil.move(str(CLIENTS_DIR / f"{client_id}.yaml"), str(archive / f"{client_id}.yaml"))
     if served_from_image:
-        print("4. Archived their config. It is also baked into the server image, so run: flyctl deploy --app deskline-ai")
+        print("4. Archived their config. It is also baked into the server image, so run: flyctl deploy --app your-app")
     else:
         print("4. Archived their config and stopped serving it. Nothing else to do.")
 

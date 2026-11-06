@@ -6,7 +6,7 @@
 
 Writes clients/<client_id>.yaml, validated against the same rules the live
 server enforces (including the AI-disclosure line). Then:
-    fly deploy --app deskline-ai
+    fly deploy --app your-app
     python scripts/provision_number.py <client_id> --area-code 703 --buy
     python scripts/report_link.py <client_id>
 """

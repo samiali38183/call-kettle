@@ -157,7 +157,7 @@ def test_all_day_events_are_ignored_unless_the_owner_wants_them_to_block(feed):
 
 def test_our_own_bookings_on_their_calendar_never_block_us(feed):
     """If the owner accepted our emailed invite, the event carries our UID; it must not block its own reschedule."""
-    f = feed(_ics(_ev("abc123@deskline-ai", "20260112T100000", "20260112T110000"), _ev("theirs", "20260112T140000", "20260112T150000")))
+    f = feed(_ics(_ev("abc123@call-kettle", "20260112T100000", "20260112T110000"), _ev("theirs", "20260112T140000", "20260112T150000")))
     assert _hm(_busy(f.url)) == [("14:00", "15:00")]
 
 
@@ -302,7 +302,7 @@ def test_moving_a_booking_onto_a_busy_time_is_refused_but_its_own_event_does_not
                                    service="Emergency repair", date="2026-01-12", time="10:00")
     assert first["success"]
     # the owner accepted our invite (carries our UID) and also has a real job at 14:00
-    f.body = _ics(_ev("zzz@deskline-ai", "20260112T100000", "20260112T110000"), _ev("job", "20260112T140000", "20260112T150000"))
+    f.body = _ics(_ev("zzz@call-kettle", "20260112T100000", "20260112T110000"), _ev("job", "20260112T140000", "20260112T150000"))
     busy = tools.reschedule_appointment(config=cfg, call_sid="CA_I3", booking_id=first["booking_id"], caller_id="+15555550100",
                                         new_date="2026-01-12", new_time="14:00")
     assert busy["success"] is False and "owner's calendar" in busy["error"]

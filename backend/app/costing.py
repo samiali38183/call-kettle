@@ -1,8 +1,8 @@
-"""Estimated cost of a client's calls this month, and the spending ceiling that protects the margin.
+"""Estimated cost of a client's calls this month, and the spending ceiling that limits runaway spend.
 
 The estimate is built from what each call actually recorded (model tokens, characters spoken, minutes, caller utterances) and
-published provider rates (marketing/economics.py documents the sources and the date they were checked). It is an ESTIMATE:
-it ignores Twilio's per-number fees and the cost of a transferred leg (docs/WORST_CASE_CAP.md bounds that gap). Treat it as a smoke alarm, not an invoice.
+published provider rates (providers change them, so check the rates in this file before relying on the estimate). It is an ESTIMATE:
+it ignores Twilio's per-number fees and the cost of a transferred leg. Treat it as a smoke alarm, not an invoice.
 
 Levels: at 75% and 90% of the ceiling the operator is warned; at 100% the client is warned too and new calls go to the
 degraded mode (`ceiling_mode`): "message" takes a message at no AI cost, "transfer" rings the owner's phone.
@@ -24,10 +24,10 @@ RATES = {
     "claude_haiku_out_per_mtok": 5.00,
 }
 SUMMARY_TOKENS_IN, SUMMARY_TOKENS_OUT = 1200, 120           # the post-call summary is one more model call
-DEFAULT_COST_CEILING_USD = 110.0                             # worst-case loss cap (docs/WORST_CASE_CAP.md): was 150, which cannot meet the $100 cap
+DEFAULT_COST_CEILING_USD = 110.0                             # default monthly spend ceiling per tenant (override: monthly_cost_ceiling_usd)
 DEFAULT_CALL_CEILING = 900                                   # second brake: a flood of calls that cost little each
 WARN_LEVELS = (75, 90, 100)
-# Worst-case loss cap (owner directive 2026-10-04; model in marketing/cash_margin.py, pinned by tests/test_worst_case_cap.py).
+# Worst-case spend bounds (pinned by tests/test_worst_case_cap.py).
 DEFAULT_POST_CEILING_CALL_CAP = 60                           # degraded calls per month after a ceiling; later calls are <Reject>ed (unbilled)
 MAX_CONCURRENT_CALLS = 8                                     # simultaneous calls per client; the next is <Reject>ed (unbilled)
 OPEN_CALL_RESERVE_USD = 0.25                                 # the guard only sees a call in flight as ~1 minute; reserve this much per open call
