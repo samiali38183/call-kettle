@@ -39,7 +39,7 @@ faqs:
     a: "For a no-heat or no-cool problem I can book the soonest visit or have the office called right away. If anyone smells gas or has a carbon monoxide alarm, they should leave the house and call 911 first."
 
 escalation_phone: "+15555550100"
-ntfy_topic: "deskline-dxxzxrmter4jhfsw"
+ntfy_topic: "YOUR-NTFY-TOPIC"   # placeholder: use your own unguessable ntfy.sh topic (treat it like a secret)
 
 demo_mode: true
 monthly_cost_ceiling_usd: 15

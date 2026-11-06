@@ -15,8 +15,8 @@ This is a sanitized public snapshot of Call Kettle (FastAPI + Twilio + Claude Ha
 
 - `backend/app/agent.py`: per-call session, tool-use loop, claim guards
 - `backend/app/tools.py`: booking, availability, escalation tools (server-side rules)
-- `backend/app/config.py`: strict Pydantic tenant schema
+- `backend/app/config.py`: Pydantic tenant schema (only `Policy` is `extra: forbid`)
 - `backend/clients/*.yaml`: tenant configs
 - `backend/tests/`: pytest suite (the gate)
-- `marketing/audit.py`: claim and leak scanner (some inputs are private and absent)
+- `marketing/pricing_audit.py`: scanner that checks public text for a configured private price
 - `docs/AGENT_WORK.md`: how agents were used on this project

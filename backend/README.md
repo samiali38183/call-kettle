@@ -30,7 +30,7 @@ encrypted volume with automatic daily snapshots).
 - If the AI itself errors mid-call, it rings the owner's phone. If the whole
   server is unreachable, Twilio's voice fallback (`../fallback`, hosted on
   separate infrastructure) rings the owner.
-- Protects margin: per-call turn and duration caps, a repeat-caller limit
+- Limits spend: per-call turn and duration caps, a repeat-caller limit
   (6 calls / 10 min per number), API timeouts, and public-endpoint rate limits.
 
 **Does not**

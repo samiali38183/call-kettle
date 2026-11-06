@@ -12,7 +12,7 @@ explicitly tagged MEASURED / PROJECTED / UNKNOWN; unknown components are
 listed, never silently folded into a total as zero.
 
     python scripts/cost_report.py acme_hvac
-    python scripts/cost_report.py acme_hvac --as-of 2026-10-31 --revenue-usd 497
+    python scripts/cost_report.py acme_hvac --as-of 2026-10-31 --revenue-usd 1000
     python scripts/cost_report.py acme_hvac --db C:/path/to/a/copy/of/callkettle.db
 
 Default is read-only/dry-run: this script has no write/commit mode at all.
@@ -44,9 +44,9 @@ def _fmt_decimal(value):
 
 
 def worst_case_block(tenant, config=None):
-    """Worst-case exposure of THIS tenant's configured limits against the $100 cap (owner directive 2026-10-04).
+    """Worst-case exposure of THIS tenant's configured limits against the configured worst-case cap.
 
-    Reporting only; MODELED over documented assumptions (marketing/cash_margin.py); reads no price and no revenue.
+    Reporting only; MODELED over documented assumptions (a private model that is not part of this repository); reads no price and no revenue.
     """
     try:
         import importlib.util
@@ -78,7 +78,7 @@ def worst_case_block(tenant, config=None):
 def render_worst_case(block) -> str:
     if not block or not block.get("available"):
         reason = (block or {}).get("reason", "not computed")
-        return f"worst-case exposure vs the $100 cap: UNKNOWN ({reason}); nothing is assumed"
+        return f"worst-case exposure vs the cap: UNKNOWN ({reason}); nothing is assumed"
     lines = [f"worst-case exposure vs the ${block['allowed_excess']:.0f} cap (MODELED upper bound, not measured; reporting only):",
              f"  configured: ceiling=${block['ceiling']:.2f} mode={block['configured_mode']} post_ceiling_call_cap={block['post_ceiling_call_cap']}"
              f"  overall={str(block['status']).upper()}"]
@@ -86,7 +86,7 @@ def render_worst_case(block) -> str:
         if m["worst_case_loss_vs_expected"] is None:
             lines.append(f"  {mode:9s} worst-case loss vs expected: UNKNOWN  status={m['status']}")
             continue
-        lines.append(f"  {mode:9s} worst-case usage ${m['worst_case_usage']:.2f}  loss vs expected profit ${m['worst_case_loss_vs_expected']:.2f}  "
+        lines.append(f"  {mode:9s} worst-case usage ${m['worst_case_usage']:.2f}  loss vs expected ${m['worst_case_loss_vs_expected']:.2f}  "
                      f"{m['status'].upper()}  largest safe ceiling ${m['largest_safe_ceiling']:.2f}")
     return "\n".join(lines)
 

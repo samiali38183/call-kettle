@@ -7,7 +7,7 @@ The server only ever holds the public key, so a stolen server or storage key can
 
 Then give the server the public key and the destination (see app/offsite.py):
     flyctl secrets set OFFSITE_BACKUP_PUBLIC_KEY="$(cat backup_public.pem)" OFFSITE_S3_ENDPOINT=... OFFSITE_S3_BUCKET=... OFFSITE_S3_REGION=... \\
-        OFFSITE_S3_KEY_ID=... OFFSITE_S3_SECRET=... --app deskline-ai
+        OFFSITE_S3_KEY_ID=... OFFSITE_S3_SECRET=... --app your-app
 """
 from __future__ import annotations
 

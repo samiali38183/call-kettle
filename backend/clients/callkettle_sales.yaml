@@ -27,7 +27,7 @@ services:
 faqs: []
 
 escalation_phone: "+15555550100"
-ntfy_topic: "deskline-dxxzxrmter4jhfsw"
-owner_email: "samiali38183@gmail.com"
+ntfy_topic: "YOUR-NTFY-TOPIC"   # placeholder: use your own unguessable ntfy.sh topic (treat it like a secret)
+owner_email: "owner@example.com"
 max_turns: 12
 max_call_seconds: 360

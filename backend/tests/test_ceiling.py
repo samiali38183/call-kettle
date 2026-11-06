@@ -1,5 +1,5 @@
 """Cost-based spending ceiling: an estimate from recorded usage, warnings at 75/90/100%, and a degraded mode that takes a
-message at no AI cost (or rings the owner) instead of silently burning margin."""
+message at no AI cost (or rings the owner) instead of silently burning money."""
 import sqlite3
 from datetime import datetime, timezone
 
@@ -39,7 +39,7 @@ def test_a_typical_booking_call_is_estimated_near_the_measured_cost():
 
     cost = costing.call_cost({"started_at": "2026-01-05T09:00:00+00:00", "ended_at": "2026-01-05T09:03:00+00:00", "turn_count": 12,
                               "input_tokens": 19_800, "output_tokens": 500, "tts_chars": 751})
-    assert 0.19 <= cost <= 0.24                      # docs/ECONOMICS.md models ~$0.21 per 3-minute call
+    assert 0.19 <= cost <= 0.24                      # a typical 3-minute call at the example rates
 
 
 def test_a_call_with_missing_data_is_still_costed_not_free_and_not_a_crash():
@@ -84,7 +84,7 @@ def test_the_call_count_is_a_second_brake_even_when_each_call_is_cheap(S, monkey
 def test_defaults_and_environment_override(monkeypatch):
     from app import costing
 
-    assert costing.cost_ceiling(_cfg()) == 110.0   # lowered from 150 for the worst-case loss cap (docs/WORST_CASE_CAP.md)
+    assert costing.cost_ceiling(_cfg()) == 110.0
     monkeypatch.setenv("MONTHLY_COST_CEILING_USD", "80")
     assert costing.cost_ceiling(_cfg()) == 80.0
     assert costing.cost_ceiling(_cfg(monthly_cost_ceiling_usd=200)) == 200.0

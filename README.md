@@ -4,7 +4,7 @@ An AI phone receptionist for small home-service businesses. It answers the phone
 
 The hard part is not the voice. It is putting a language model on a **public phone line**: anyone can call, speech recognition mishears names and numbers, the model can invent availability or say "you're booked" when nothing was saved, and every second of a call costs money while Twilio gives the server about 15 seconds to answer each turn. This codebase is mostly the machinery that makes that safe: the model only *suggests* actions, and deterministic code validates and performs them.
 
-Deployed on Fly.io. Built and maintained by [Sami Ali](https://samiali38183.github.io/#also) with Claude Code and Hermes Agent as development tools (see [How it was built](#how-it-was-built)). There are no paying customers yet; end-to-end operation has been exercised with test calls from the developer's own numbers. This repository is a sanitized public snapshot of the application: no secrets, production data, or private business documents.
+Deployed on Fly.io. Built and maintained by [Sami Ali](https://samiali38183.github.io/#also) with Claude Code and Hermes Agent as development tools (see [How it was built](#how-it-was-built)). There are no paying customers yet; end-to-end operation has been exercised with test calls from the developer's own numbers. This repository is a sanitized public snapshot of the application, exported on 2026-10-05: no secrets, production data, or private business documents. Later changes in the private codebase are not reflected here.
 
 ## Status
 
@@ -203,7 +203,7 @@ What that does and does not show: agents did a large share of the implementation
 - **Not a compliance claim.** There are no BAAs and no certifications. Tenants in health or legal fields can run with `record_transcripts: false`, which reduces exposure and does not make the system HIPAA-compliant.
 - **English by default.** Spanish is a beta, off unless a tenant enables it.
 - **No latency or load benchmarks are published here.** The 8 second turn budget is a cap, not a measurement. `scripts/load_test.py` exists but needs live credentials.
-- **This is a sanitized snapshot.** 101 of the tests fail here for snapshot reasons and are marked as expected failures (see Tests). Private operator tooling, sales material, the voice-fallback function and deployment config are not included, so `marketing/audit.py` cannot run to completion.
+- **This is a sanitized snapshot.** 101 of the tests fail here for snapshot reasons and are marked as expected failures (see Tests). The snapshot is dated 2026-10-05. Private operator tooling, sales and marketing material, the voice-fallback function and deployment config are not included, so some scripts and tests that read them cannot run here.
 
 ## Roadmap
 
@@ -224,30 +224,30 @@ Requires Python 3.12 (as used in CI).
 cd backend
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
-pip install -r requirements-dev.txt
+pip install -r requirements.txt -r requirements-dev.txt
 cp .env.example .env        # then fill in values locally; never commit .env
 uvicorn app.main:app --reload
 ```
 
-`.env.example` lists `ANTHROPIC_API_KEY`, the Twilio credentials, `CALLKETTLE_DB_PATH` and `LOG_LEVEL`. `CALLKETTLE_SKIP_SIGNATURE_CHECK=1` is for local development only; it disables Twilio request validation. `backend/simulate_call.py <client_id>` drives a conversation from the terminal against the real agent and tools; it makes real model calls, so it needs an Anthropic key and costs a little. Sample tenants are in `backend/clients/`; they are fictional.
+`.env.example` lists `ANTHROPIC_API_KEY`, the Twilio credentials, `CALLKETTLE_DB_PATH` and `LOG_LEVEL`. `CALLKETTLE_SKIP_SIGNATURE_CHECK=1` is for local development only; it disables Twilio request validation. `backend/simulate_call.py <client_id>` drives a conversation from the terminal against the real agent and tools; it makes real model calls, so it needs an Anthropic key and costs a little. Sample tenants are in `backend/clients/`; they are fictional and carry placeholder contact values (`owner@example.com`, `YOUR-NTFY-TOPIC`). Set your own before running anything that notifies.
 
 ## Tests
 
 ```bash
 cd backend
 CALLKETTLE_SKIP_SIGNATURE_CHECK=1 ANTHROPIC_API_KEY=dummy TWILIO_ACCOUNT_SID=dummy TWILIO_AUTH_TOKEN=dummy \
-  python -m pytest -q --ignore=tests/test_pricing_audit.py
+  python -m pytest -q
 ```
 
-This is exactly what CI runs: offline, no network, no model calls (the agent is driven by fakes). Result of that command on the branch that introduced this README, on Python 3.12.2 (Windows):
+This is exactly what CI runs: offline, no network, no model calls (the agent is driven by fakes). Result of that command in a clean virtualenv built with the install line above, on Python 3.12.2 (Windows):
 
 ```
-1439 passed, 1 skipped, 101 xfailed in 252.84s (0:04:12)
+1448 passed, 1 skipped, 101 xfailed in 252.07s (0:04:12)
 ```
 
 The suite has 92 test files. Heaviest areas: failure injection and chaos (`test_resilience_chaos.py`, 75 tests), the agent loop (`test_agent.py`, 54), outbound webhooks (`test_webhooks.py`, 45), streaming STT with fixtures (`test_stream_stt.py`, 34), cost observability (33), iCal (26), claim guard (`test_truth_invariant.py`, 23), failure handling (`test_failures.py`, 23), tenant isolation (`test_isolation.py`, 12).
 
-About the 101 expected failures: this repository is a sanitized export of a larger private codebase. Those tests either read something the export left out (private modules, a sample tenant, sales and site files) or have fixtures the export rewrote (for example, two different people given one placeholder phone number). They are listed with the reason in `backend/tests/snapshot_known_failures.txt` and marked `xfail` in `backend/tests/conftest.py`, so they are counted and visible rather than hidden. Two further test files that cannot even be imported here are skipped at collection (`test_practice.py`, `test_sales_recheck.py`), and `test_pricing_audit.py` is excluded in CI. Counts for the full private suite are not reproduced here.
+About the 101 expected failures: this repository is a sanitized export of a larger private codebase. Those tests either read something the export left out (private modules, a sample tenant, sales and site files) or have fixtures the export rewrote (for example, two different people given one placeholder phone number). They are listed with the reason in `backend/tests/snapshot_known_failures.txt` and marked `xfail` in `backend/tests/conftest.py`, so they are counted and visible rather than hidden. Two further test files that cannot even be imported here are skipped at collection (`test_practice.py`, `test_sales_recheck.py`). Counts for the full private suite are not reproduced here.
 
 ## Repository map
 
@@ -260,7 +260,7 @@ About the 101 expected failures: this repository is a sanitized export of a larg
 | `backend/scripts/` | Operator and diagnostic scripts; several need live credentials |
 | `docs/ARCHITECTURE.md` | Module-by-module walk-through |
 | `docs/AGENT_WORK.md` | How the coding agents were used |
-| `marketing/` | Claim and leak scanner and site source; partly dependent on private inputs |
+| `marketing/` | `pricing_audit.py`, a scanner for a configured private price in public text, and the small facts file it reads. The sales and site material is not in this repository |
 
 ## License
 

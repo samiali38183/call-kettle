@@ -76,7 +76,7 @@ def test_calendar_invites_carry_the_new_name_but_keep_a_stable_uid_suffix(monkey
                            start=datetime(2026, 1, 12, 10), end=datetime(2026, 1, 12, 11), organizer="bookings@example.com", uid="abc123")
     assert "PRODID:-//Northline, \"Desk\"//Bookings//EN" in ics or "PRODID:-//Northline, " in ics
     assert 'ORGANIZER;CN="Northline, Desk":mailto:bookings@example.com' in ics        # quotes stripped, comma safe inside a quoted param
-    assert "UID:abc123@deskline-ai" in ics                                             # identity of existing events must not change
+    assert "UID:abc123@call-kettle" in ics                                             # identity of existing events must not change
 
 
 def test_fallback_organizer_follows_the_brand(monkeypatch):

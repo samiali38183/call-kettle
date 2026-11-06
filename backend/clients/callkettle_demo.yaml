@@ -33,9 +33,9 @@ services:
     duration_minutes: 30
 
 escalation_phone: "+15555550100"
-ntfy_topic: "deskline-dxxzxrmter4jhfsw"
+ntfy_topic: "YOUR-NTFY-TOPIC"   # placeholder: use your own unguessable ntfy.sh topic (treat it like a secret)
 
-# Isolated and capped. The menu itself costs almost nothing (no AI); each demo company has its own $15 monthly ceiling.
+# Isolated and capped. The menu itself costs almost nothing (no AI); each demo company has its own monthly spend ceiling.
 demo_mode: true
 monthly_cost_ceiling_usd: 40
 ceiling_mode: message

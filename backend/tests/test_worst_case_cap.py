@@ -1,5 +1,5 @@
-"""Worst-case loss cap (owner directive 2026-10-04): a customer who maxes out calls must never push cash profit more than
-$100 below normal expected profit. These tests pin the code-side limits the model in marketing/cash_margin.py assumes:
+"""Worst-case spend bound: a customer who maxes out calls must not be able to push spend past a fixed bound. These tests pin
+the code-side limits that a private worst-case model (not part of this repository) assumes:
 a post-ceiling hard stop (<Reject>, unbilled), capped transfer legs after the ceiling, no repeat emergency dial loop,
 a concurrency cap, an in-flight reserve in the guard, and safe defaults. Normal calls must stay byte-identical."""
 import sqlite3
@@ -297,7 +297,7 @@ def test_the_calls_own_open_row_never_counts_against_it(S, monkeypatch):
 
 # ------------------------------------------------------------------ reporting only: cost_report worst-case block
 
-def test_cost_report_prints_worst_case_exposure_against_the_100_dollar_cap(tmp_path, monkeypatch):
+def test_cost_report_prints_worst_case_exposure_against_the_cap(tmp_path, monkeypatch):
     import importlib.util
 
     monkeypatch.syspath_prepend(str(ROOT))
@@ -308,10 +308,10 @@ def test_cost_report_prints_worst_case_exposure_against_the_100_dollar_cap(tmp_p
     block = mod.worst_case_block("demo_hvac")
     assert block["available"] is True
     text = mod.render_worst_case(block)
-    assert "worst-case exposure" in text and "$100" in text and "MODELED" in text
+    assert "worst-case exposure" in text and "cap" in text and "MODELED" in text
     for mode in ("message", "transfer"):
         assert mode in text
-    assert "PASS" in text and "497" not in text
+    assert "PASS" in text and "revenue" not in text.lower()
     off = mod.render_worst_case({"available": False, "reason": "no config"})
     assert "UNKNOWN" in off
 

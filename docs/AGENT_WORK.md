@@ -9,7 +9,7 @@ Call Kettle was built by Sami Ali with a mix of hand-written code and LLM coding
 1. A `CallSession` holds history. `build_system_prompt` injects config facts and whether the line is in hours.
 2. Each utterance is sanitized and sent to Claude Haiku with a typed tool list from `tools_for(config)`. A disabled tool is not offered.
 3. While the response stops with `tool_use`, the loop executes the tool via `_dispatch_tool`, appends a `tool_result`, and calls the model again. Iterations per turn are bounded by `cost_guard.MAX_TOOL_ITERATIONS_PER_TURN`, and replies are capped by `MAX_REPLY_TOKENS`.
-4. Before text is spoken, guards run: `unsupported_claims` / `_guard_claims` stop the agent from saying it booked, cancelled or transferred unless the matching tool succeeded, and `_fix_dates` corrects spoken dates.
+4. Before text is spoken, guards run: `unsupported_claims` / `_guard_claims` stop the agent from saying it booked, cancelled or rescheduled unless the matching tool succeeded, and `_fix_dates` corrects spoken dates.
 
 The design principle is that the model proposes and the code disposes. Anything with consequences is enforced in code; prompt-only rules are treated as weaker.
 
@@ -37,7 +37,7 @@ The public snapshot is not a perfect copy of the private suite. `backend/tests/s
 
 ## 4. Leak and claim audit
 
-`marketing/audit.py` checks public-facing documents against `marketing/facts.json` and flags claims the product cannot back up; it also calls `marketing/pricing_audit.py` to scan for leaks of private figures. It is a second gate for agent-written copy. In this snapshot some of its source documents are intentionally absent, so read it as code rather than expecting a clean run.
+`marketing/pricing_audit.py` scans public and prospect-facing text for a configured private price (given by an environment variable, never stored in the repository) and for template tokens or structured-data keys that would render one. It is a gate for agent-written copy, and `backend/tests/test_pricing_audit.py` covers it with made-up prices. The private tool that checked copy against a table of product facts, and the sales documents it read, are not part of this snapshot.
 
 ## 5. Who did what
 
@@ -58,6 +58,6 @@ Not claimed: that agents ran the product, that agent output was merged without r
 |---|---|
 | `backend/app/agent.py` | The tool-use loop, session handling, claim guards, cost accounting |
 | `backend/app/tools.py` | Server-side booking rules, ownership checks, escalation |
-| `backend/app/config.py` | Strict config schema and policy flags |
+| `backend/app/config.py` | Pydantic tenant config with load-time validation, and policy flags (only `Policy` is `extra: forbid`) |
 | `backend/tests/` | Failure-mode coverage, isolation tests, regression pins |
-| `marketing/audit.py` | Claim and leak scanning |
+| `marketing/pricing_audit.py` | Scanner for a configured private price in public text |

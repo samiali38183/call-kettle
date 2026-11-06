@@ -4,8 +4,8 @@ an owner sees. Every portal page for this client says "Sample business - demo da
 
 Run it ON THE FLY MACHINE (the production database lives on its volume), never against a laptop database:
 
-    fly ssh console --app deskline-ai -C 'python scripts/seed_demo_portal.py'                 # reseed + NEW random password (printed once)
-    fly ssh console --app deskline-ai -C 'python scripts/seed_demo_portal.py --keep-login'    # reseed data only, password unchanged
+    fly ssh console --app your-app -C 'python scripts/seed_demo_portal.py'                 # reseed + NEW random password (printed once)
+    fly ssh console --app your-app -C 'python scripts/seed_demo_portal.py --keep-login'    # reseed data only, password unchanged
 
 Idempotent: it deletes and recreates ONLY rows whose client_id is `sample_portal_hvac` (calls, bookings, booking history, escalations)
 and only the one owner login it manages. Times are relative to now, so rerun it on the morning of a demo to make the sample look current.
@@ -176,7 +176,7 @@ def main(argv: list[str]) -> int:
         return 2
     if not os.environ.get("FLY_APP_NAME") and not allow_local:
         print("Refusing: this is not the Fly machine. Run it there so the sample lands in the production database:\n"
-              "  fly ssh console --app deskline-ai -C 'python scripts/seed_demo_portal.py'\n"
+              "  fly ssh console --app your-app -C 'python scripts/seed_demo_portal.py'\n"
               "(For a throwaway local database only: set CALLKETTLE_DB_PATH and pass --allow-local.)")
         return 1
     try:

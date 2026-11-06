@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-time setup of the Call Kettle workstation on a Mac (also works on Linux).
-#   git clone owner@example.com:<you>/callkettle.git && cd callkettle && ./setup_mac.sh
+#   git clone https://github.com/<you>/call-kettle.git && cd call-kettle && ./setup_mac.sh
 # Then put your secrets in backend/.env (see docs/MAC_SETUP.md; never commit that file).
 set -euo pipefail
 cd "$(dirname "$0")"

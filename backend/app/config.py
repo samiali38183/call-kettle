@@ -153,12 +153,12 @@ class ClientConfig(BaseModel):
     # directly instead of starting the AI. None = the server default (MONTHLY_CALL_CEILING, 900).
     monthly_call_ceiling: int | None = None
     # Spending ceiling in estimated dollars per calendar month (see app/costing.py). None = the server default
-    # (MONTHLY_COST_CEILING_USD, 150). Warnings go out at 75/90/100%; at 100% new calls use `ceiling_mode`.
+    # (DEFAULT_COST_CEILING_USD in app/costing.py). Warnings go out at 75/90/100%; at 100% new calls use `ceiling_mode`.
     monthly_cost_ceiling_usd: float | None = Field(default=None, gt=0, le=100000)
     # What a caller gets once a ceiling is reached: "message" = we take their name/number/reason at no AI cost and
     # tell the owner; "transfer" = ring the owner's phone (if unanswered, a message is taken).
     ceiling_mode: Literal["message", "transfer"] = "message"
-    # Worst-case loss cap (docs/WORST_CASE_CAP.md). After a ceiling is reached, once this many degraded calls have been handled
+    # Worst-case spend bound. After a ceiling is reached, once this many degraded calls have been handled
     # in the month, further calls are rejected before they are answered (unbilled). None = the server default (60).
     post_ceiling_call_cap: int | None = Field(default=None, ge=0, le=100000)
     # Longest an over-ceiling transfer (or emergency bridge) may stay connected; Twilio's own default would be 4 hours.

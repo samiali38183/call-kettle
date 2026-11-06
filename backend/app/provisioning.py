@@ -12,7 +12,7 @@ from app import storage
 logger = logging.getLogger("callkettle.provisioning")
 
 APP_BASE_URL = os.environ.get("APP_BASE_URL", "https://app.callkettle.com")
-FALLBACK_BASE_URL = os.environ.get("FALLBACK_BASE_URL", "https://fallback-ruddy.vercel.app")
+FALLBACK_BASE_URL = os.environ.get("FALLBACK_BASE_URL", "https://your-fallback.example.com")
 NUMBER_PRICE_PER_MONTH = 1.15   # Twilio US local number, twilio.com/en-us/voice/pricing/us
 
 

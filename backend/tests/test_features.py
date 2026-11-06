@@ -149,7 +149,7 @@ def test_booking_email_carries_a_calendar_invite_in_utc(monkeypatch):
     )
     assert result["success"]
     ics = captured["ics"]
-    assert captured["to"] == "samiali38183@gmail.com"
+    assert captured["to"] == "owner@example.com"
     assert "BEGIN:VCALENDAR" in ics and "METHOD:REQUEST" in ics
     assert "DTSTART:20260112T150000Z" in ics  # 10:00 America/New_York in January = 15:00 UTC
     assert "DTEND:20260112T153000Z" in ics
