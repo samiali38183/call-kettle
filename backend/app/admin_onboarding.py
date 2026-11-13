@@ -173,7 +173,7 @@ async def publish_intake(intake_id: int, request: Request) -> HTMLResponse:
 <div class="ok">The receptionist is answering test calls now ({'created' if created else 'updated'} as <code>{_h(config.client_id)}</code>).</div>
 {portal_card}
 <div class="card"><h2 style="margin-top:0">Next: give them a phone number</h2>
-<p>About $1.15 a month. You choose the area code.</p>
+<p>A small monthly carrier fee applies. You choose the area code.</p>
 <p><a class="btn" href="/admin/client/{_h(config.client_id)}/number">Get a phone number</a></p></div>
 <div class="card"><h2 style="margin-top:0">Their legacy private dashboard</h2>
 <p><a href="/report/{_h(config.client_id)}?key={_h(_client_key(config.client_id))}">Open it</a> (send this link to <b>them only</b> only if they cannot use the portal yet).</p></div>

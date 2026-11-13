@@ -46,7 +46,7 @@ def main() -> None:
     parser.add_argument("client_id")
     parser.add_argument("--number", help="existing Twilio number to repoint, e.g. +15555550100")
     parser.add_argument("--area-code", help="area code to search when buying a new number")
-    parser.add_argument("--buy", action="store_true", help="actually purchase a new number (costs ~$1.15/mo)")
+    parser.add_argument("--buy", action="store_true", help="actually purchase a new number (the carrier charges a monthly fee)")
     args = parser.parse_args()
 
     try:
@@ -69,7 +69,7 @@ def main() -> None:
             sys.exit(f"No numbers available in area code {args.area_code}.")
         choice = available[0].phone_number
         if not args.buy:
-            print(f"DRY RUN. Would buy {choice} (~$1.15/month) and point it at {config.business_name}.")
+            print(f"DRY RUN. Would buy {choice} (monthly carrier fee applies) and point it at {config.business_name}.")
             print("Re-run with --buy to purchase it.")
             return
         number = client.incoming_phone_numbers.create(phone_number=choice, **settings)
