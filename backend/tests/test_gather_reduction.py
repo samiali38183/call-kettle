@@ -1,4 +1,4 @@
-"""Gather-use reduction on the default (Twilio Gather) path. Twilio bills every Gather use (~$0.02), so a Gather that can
+"""Gather-use reduction on the default (Twilio Gather) path. Twilio bills every Gather use, so a Gather that can
 only time out is pure cost. Each scenario replays a scripted call through the real HTTP handlers and counts the Gathers the
 server emitted (TwiML) and recorded (private ledger gather_count). Safety paths must stay untouched."""
 import pytest

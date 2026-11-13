@@ -39,13 +39,13 @@ logger = logging.getLogger("callkettle.main")
 MAX_SILENT_RETRIES = 1
 MAX_CALLS_PER_NUMBER_10MIN = 6
 
-# Applied to every client regardless of what's in their YAML — a call-recording
+# Applied to every client regardless of what's in their YAML, a call-recording
 # disclosure shouldn't depend on someone remembering to type it into a config.
 # Virginia is one-party consent (the business itself, as a party, can lawfully
 # record) but clients and callers can be anywhere, and courts generally
 # treat an AI transcribing/logging call content the same as recording for
 # consent purposes. This is a cheap, standard precaution, not a substitute for
-# real legal review — get an attorney's sign-off before onboarding a client in
+# real legal review, get an attorney's sign-off before onboarding a client in
 # a strict two-party-consent state or one handling PHI/legally sensitive data.
 CALL_DISCLOSURE = "This call may be recorded and monitored for quality. "
 
@@ -137,7 +137,7 @@ class SecurityHeadersMiddleware:
 
 
 
-# CORS is a browser-only mechanism — it has no effect on Twilio's server-side
+# CORS is a browser-only mechanism, it has no effect on Twilio's server-side
 # webhook POSTs to /voice/*, which stay protected by signature validation
 # regardless. This is here so the public booking widget (hosted on a
 # different origin) can call /book/* from a prospect's browser at all.
@@ -152,7 +152,7 @@ app.add_middleware(
 @app.exception_handler(Exception)
 async def _voice_safety_net(request: Request, exc: Exception) -> Response:
     # Any unhandled error on a /voice/* route must never surface as a bare
-    # 500 — Twilio has no TwiML to work with then and plays its generic
+    # 500, Twilio has no TwiML to work with then and plays its generic
     # "application error" message to a real caller. A crashed demo call is a
     # lost lead; a crashed real call is a lost customer's trust in a business
     # that just started depending on this. Everything else keeps FastAPI's
@@ -222,8 +222,8 @@ def book_page() -> HTMLResponse:
 def _public_base_url(request: Request) -> str:
     # Behind cloudflared/ngrok/any reverse proxy, request.url reflects the local
     # http://127.0.0.1:PORT view of the request, not the public https URL Twilio
-    # actually POSTed to and signed. Signature validation — and any URL we hand
-    # back to Twilio in TwiML for the next turn — must use the public one.
+    # actually POSTed to and signed. Signature validation, and any URL we hand
+    # back to Twilio in TwiML for the next turn, must use the public one.
     proto = request.headers.get("x-forwarded-proto", request.url.scheme)
     host = request.headers.get("x-forwarded-host") or request.headers.get("host") or request.url.netloc
     return f"{proto}://{host}"
@@ -988,7 +988,7 @@ async def voice_transfer_result(
     request: Request, background_tasks: BackgroundTasks, client_id: str
 ) -> Response:
     """Twilio calls this when the live transfer's <Dial> ends. If nobody
-    answered, the caller must not be left with dead air — hand them back to
+    answered, the caller must not be left with dead air, hand them back to
     the AI to take a message, and tell the owner right away."""
     form = await _validated_form(request)
     if form is None:
@@ -1090,11 +1090,11 @@ async def voice_status(request: Request, background_tasks: BackgroundTasks) -> P
 # --- Sales consultation booking (Call Kettle's own lead-gen calendar) ---
 # Hardcoded to exactly one client_id, never taken as a path/query parameter.
 # These are plain JSON endpoints, not Twilio webhooks, so no signature check
-# applies — but that's also why the client_id can't be caller-supplied: an
+# applies, but that's also why the client_id can't be caller-supplied: an
 # open `/book/{client_id}/confirm` would let anyone create bogus bookings on
 # a real client's calendar just by guessing their client_id. Reusing the same
 # conflict-checked storage.create_booking a live phone call would use, so two
-# prospects genuinely can't double-book the same slot — this is a real
+# prospects genuinely can't double-book the same slot, this is a real
 # calendar, not a contact form pretending to be one.
 _SALES_CLIENT_ID = "callkettle_sales"
 
@@ -1726,11 +1726,11 @@ def admin_purge_test_data(key: str = "") -> JSONResponse:
     return JSONResponse({"removed": removed})
 
 
-# --- Owner dashboard: bookings, calls, summaries, handoffs — viewable in a browser ---
+# --- Owner dashboard: bookings, calls, summaries, handoffs, viewable in a browser ---
 # It shows real customer names and phone numbers, so it's protected by a
 # secret in the URL. Each client gets its own key derived from one master
 # secret (REPORT_KEY), so giving a client their link never exposes anyone
-# else's data. This is a shared-link scheme, not a login system — appropriate
+# else's data. This is a shared-link scheme, not a login system, appropriate
 # for one owner checking a private bookmark; move to real auth before a client
 # has multiple staff who need separate access.
 _REPORT_KEY = os.environ.get("REPORT_KEY", "")

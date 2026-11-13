@@ -343,7 +343,7 @@ def test_status_page_proves_the_maintenance_loop_ran(app_client):
     assert s["housekeeping"]["at"] and "usage_alerts" in s["housekeeping"]["result"]
 
 
-# ------------------------------------------------------------ the daily backup is opened, not just written
+# ------------------------------------------------------------ the daily backup is opened, and not only written
 
 def _live_db(monkeypatch, tmp_path):
     import importlib

@@ -77,7 +77,7 @@ def _config():
 def test_open_status_line_reports_open_during_business_hours():
     from app import agent
 
-    now = datetime(2026, 1, 12, 10, 0, tzinfo=timezone.utc)  # Monday, 10:00 — demo_dental is 09:00-17:00
+    now = datetime(2026, 1, 12, 10, 0, tzinfo=timezone.utc)  # Monday, 10:00, demo_dental is 09:00-17:00
     line = agent._open_status_line(_config(), now)
     assert "OPEN" in line
     assert "CLOSED" not in line
@@ -86,7 +86,7 @@ def test_open_status_line_reports_open_during_business_hours():
 def test_open_status_line_reports_closed_after_hours_same_day():
     from app import agent
 
-    now = datetime(2026, 1, 12, 21, 0, tzinfo=timezone.utc)  # Monday, 21:00 — after 17:00 close
+    now = datetime(2026, 1, 12, 21, 0, tzinfo=timezone.utc)  # Monday, 21:00, after 17:00 close
     line = agent._open_status_line(_config(), now)
     assert "CLOSED" in line
     assert "09:00-17:00" in line
@@ -95,7 +95,7 @@ def test_open_status_line_reports_closed_after_hours_same_day():
 def test_open_status_line_reports_closed_on_a_closed_day():
     from app import agent
 
-    now = datetime(2026, 1, 11, 10, 0, tzinfo=timezone.utc)  # Sunday — demo_dental is closed
+    now = datetime(2026, 1, 11, 10, 0, tzinfo=timezone.utc)  # Sunday, demo_dental is closed
     line = agent._open_status_line(_config(), now)
     assert "CLOSED" in line
     assert "Sunday" in line
@@ -237,7 +237,7 @@ def test_explicit_human_request_transfers_deterministically_without_any_api_call
     transfer when asked for a real person. Root cause was that transfer
     depended entirely on LLM judgment, which isn't reliable several turns
     into a real conversation. This must now work with zero dependency on
-    the model — no API call happens at all for these phrases."""
+    the model, no API call happens at all for these phrases."""
     from app import agent
 
     fake = FakeAnthropicClient([])  # asserts if create() is ever called
@@ -327,7 +327,7 @@ def test_ordinary_requests_do_not_trigger_the_emergency_path(phrase):
 
 
 def test_transfer_call_tool_returns_escalation_phone_for_implicit_requests(monkeypatch):
-    """Covers requests the deterministic keyword backstop doesn't catch —
+    """Covers requests the deterministic keyword backstop doesn't catch , 
     the model's own transfer_call tool is still the path for these."""
     from app import agent
 
@@ -363,7 +363,7 @@ def test_tool_loop_exhaustion_fails_soft_instead_of_hanging(monkeypatch):
     from app import agent
 
     # The model keeps calling a tool and never produces a text reply or
-    # end_call — must not loop forever or crash, must bail out gracefully
+    # end_call, must not loop forever or crash, must bail out gracefully
     # after cost_guard.MAX_TOOL_ITERATIONS_PER_TURN attempts.
     responses = [
         FakeResponse(

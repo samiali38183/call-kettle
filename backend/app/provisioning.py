@@ -70,7 +70,7 @@ def search_number(twilio_client, area_code: str) -> str | None:
 
 
 def buy_number(twilio_client, client_id: str, number: str, owner_phone: str) -> dict:
-    """Buy `number` and point it at the AI with the safety fallback. Costs about $1.15 a month."""
+    """Buy `number` and point it at the AI with the safety fallback. It costs a monthly fee."""
     if not re.fullmatch(r"\+1\d{10}", number or ""):
         raise ValueError("Not a US phone number")
     bought = twilio_client.incoming_phone_numbers.create(phone_number=number, **webhook_settings(client_id, owner_phone))

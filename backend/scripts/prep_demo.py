@@ -11,7 +11,7 @@ Rules this tool and the server follow, because the data is public and unverified
   * Everything it knows is labeled UNVERIFIED PUBLIC DATA. The prospect must confirm hours, services and area before anything is promised.
   * The assistant introduces itself as an AI demonstration built from the business's public information. It never claims to BE the business,
     never quotes a price, and never pretends the business has agreed to anything.
-  * The SERVER forces the isolation: demo_mode, client id starting prep_, no owner email/ntfy/webhook/calendar, spend capped at $10, hand-off simulated.
+  * The SERVER forces the isolation: demo_mode, client id starting prep_, no owner email/ntfy/webhook/calendar, a hard spend cap, hand-off simulated.
   * The code is random, one prospect, limited uses, expires (72 hours by default), and then the demo is unserved and its transcripts, bookings and
     callbacks are wiped. Guessing codes is rate limited and every attempt is audited.
 Nothing is sent to the prospect. You decide whether and how to share it.

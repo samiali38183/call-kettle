@@ -1,143 +1,82 @@
 # Call Kettle: backend
 
-An AI phone receptionist. It answers inbound calls, holds a natural conversation
-about the business it's configured for, checks real availability, books
-appointments, transfers to the owner on request, takes messages when nobody
-picks up, and gives the owner a dashboard with bookings, callbacks, call
-summaries and transcripts. A new client is a config file, not new code.
+The backend of an AI phone receptionist. It answers inbound calls, talks about the business it is configured for, checks real availability, books appointments, transfers to the owner on request, takes a message when nobody picks up, and gives the owner a dashboard with bookings, callbacks, call summaries and transcripts. A new client is a config file and not new code.
 
-Production: `https://app.callkettle.com` (Fly.io, one always-on machine, 1 GB
-encrypted volume with automatic daily snapshots).
+It runs on Fly.io as one always-on machine with a persistent volume for the database. The repo-level [README](../README.md) has the overview, the architecture diagrams and the test results. This file is about running and operating the backend.
 
-## What it does today (and what it doesn't)
+## What it does
 
-**Does**
-
-- Answers 24/7 in a neural voice (Amazon Polly Neural via Twilio `<Say>`).
+- Answers in a neural voice (Amazon Polly Neural through Twilio `<Say>`; the default is `Polly.Joanna-Neural`).
 - Opens every call with an AI disclosure and a recording notice.
-- Books only real slots: server-side enforcement of booking hours, slot grid, a
-  30-minute lead time, and a database `UNIQUE(client_id, slot_start)` so two
-  callers can never get the same slot.
-- Uses caller ID so people don't have to dictate their number; gives dictated
-  numbers longer to finish speaking; respells phone numbers for speech.
-- Transfers to the owner's phone when asked (deterministic regex backstop plus
-  the model). If nobody answers within 25 seconds it returns to the AI, takes a
-  message, and alerts the owner. It never dead-ends.
-- Notifies the owner of bookings and callbacks by email (with a calendar
-  invite, `.ics`), ntfy push, and SMS once enabled.
-- Writes a 2-3 sentence summary of every call (skipped for privacy-mode
-  clients) and shows summaries and transcripts in the dashboard.
-- If the AI itself errors mid-call, it rings the owner's phone. If the whole
-  server is unreachable, Twilio's voice fallback (`../fallback`, hosted on
-  separate infrastructure) rings the owner.
-- Limits spend: per-call turn and duration caps, a repeat-caller limit
-  (6 calls / 10 min per number), API timeouts, and public-endpoint rate limits.
+- Books only real slots. The server enforces booking hours, the slot grid and a 30-minute lead time, and the database has `UNIQUE(client_id, slot_start)`, so two callers can't get the same slot.
+- Uses caller ID so people don't have to dictate their number, gives dictated numbers longer to finish, and respells phone numbers for speech.
+- Transfers to the owner's phone when asked, using a regex backstop plus the model. If nobody answers within 25 seconds, the call returns to the AI, which takes a message and alerts the owner.
+- Tells the owner about bookings and callbacks by email (with a calendar invite as an `.ics` attachment), ntfy push, and SMS once it is enabled.
+- Writes a 2-3 sentence summary of each call, except for privacy-mode clients, and shows summaries and transcripts in the dashboard.
+- If the AI errors in the middle of a call, it rings the owner's phone. The provisioning script also sets a Twilio voice fallback that rings the owner if the whole server is down. That fallback function is not in this repo.
+- Limits spend with per-call turn and duration caps, a repeat-caller limit (6 calls in 10 minutes per number), API timeouts and rate limits on public endpoints.
 
-**Does not**
+## What it doesn't do
 
-- **No full two-way calendar sync.** Bookings live in Call Kettle's own database and
-  show in the dashboard; each one is also emailed as a calendar invite. A tenant can
-  optionally connect Google Calendar through a shared service account (free/busy read,
-  event write, `app/gcal.py`) or a private iCal link (busy time, read only,
-  `app/icalbusy.py`). There is no Outlook or Apple API integration and no per-owner OAuth.
-- **SMS is off until A2P 10DLC registration is approved.** Twilio silently
-  blocks US SMS from unregistered numbers (error 30034), so `SMS_ENABLED`
-  defaults to `0` and the AI is told not to promise texts. Register, then
-  `fly secrets set SMS_ENABLED=1`.
-- **Not HIPAA-covered.** Twilio (BAA only on Security/Enterprise editions),
-  Anthropic (BAA on the first-party API, subject to approval, and "covered
-  models" require 30-day retention) and Fly are not under BAAs here. Healthcare
-  and legal clients run with `record_transcripts: false` (words are not stored
-  or summarized) and the AI is told never to solicit medical details. That
-  reduces exposure; it does not make the system HIPAA-compliant. Don't sell to
-  businesses that handle PHI as a core workflow until BAAs are in place.
-- English by default. Spanish is a beta that a tenant must enable (`spanish: true`).
-- Call state is in memory: one machine, one worker. Move sessions to Redis
-  before running more than one instance.
+- **No full two-way calendar sync.** Bookings live in Call Kettle's own database and show in the dashboard, and each one is also emailed as a calendar invite. A tenant can connect Google Calendar through a shared service account (free/busy read and event write, `app/gcal.py`) or a private iCal link (busy time, read only, `app/icalbusy.py`). There is no Outlook or Apple integration and no per-owner OAuth.
+- **SMS is off until US carrier registration (A2P 10DLC) is approved.** Carriers block SMS from unregistered numbers, so `SMS_ENABLED` defaults to `0` and the AI is told not to promise texts.
+- **Not HIPAA-covered.** There are no BAAs with Twilio, Anthropic or Fly here. Healthcare and legal clients can run with `record_transcripts: false`, so their words are not stored or summarized, and the AI is told not to ask for medical details. That reduces exposure and does not make the system HIPAA-compliant.
+- **English by default.** Spanish is a beta that a tenant has to turn on with `spanish: true`.
+- **Call state is in memory.** Run one machine and one worker. Move sessions to Redis before running a second instance.
 
-## Compliance notes (checked September 2026)
+## Compliance notes
 
-- **AI disclosure:** Maine's Chatbot Disclosure Act (in force Sept 2025)
-  requires it when a consumer could be misled; Utah requires it on request
-  (proactively for licensed professions). California SB 243 and Washington
-  HB 2225 target companion chatbots and exclude customer-service bots.
-  Call Kettle discloses on every call regardless; `ClientConfig` rejects any
-  `opening_line` that doesn't say it's an AI.
-- **Recording consent:** Virginia and DC are one-party; **Maryland is
-  all-party** (as are CA, DE, FL, IL, MA, MT, NV, NH, PA, WA). Every call opens
-  with "This call may be recorded and monitored for quality" (`main.CALL_DISCLOSURE`).
-- None of this is legal advice. Have a lawyer review the service agreement
-  before going live.
+None of this is legal advice, and a lawyer should review the terms before going live.
 
-## Adding a config (about 15 minutes)
+- **AI disclosure.** `ClientConfig` rejects any `opening_line` that doesn't say the caller is talking to an AI, so every call discloses it.
+- **Recording notice.** Every call opens with "This call may be recorded and monitored for quality" (`main.CALL_DISCLOSURE`). Recording consent rules differ by state, so check the ones that apply to your callers.
+
+## Adding a client
 
 ```bash
 cd backend
-python scripts/onboard_client.py                      # answer ~10 questions -> clients/<id>.yaml
+python scripts/onboard_client.py                      # answer the questions -> clients/<id>.yaml
 python simulate_call.py <client_id>                   # talk to it first
-python scripts/push_config.py <client_id>             # live in a second: no deploy, no restart
+python scripts/push_config.py <client_id>             # live right away: no deploy, no restart
 python scripts/provision_number.py <client_id> --area-code 703          # dry run
 python scripts/provision_number.py <client_id> --area-code 703 --buy    # buys the number
 python scripts/provision_number.py <client_id> --number +1703...        # or repoint one you own
 python scripts/report_link.py <client_id>             # the client's private dashboard URL
 ```
 
-`provision_number.py` sets the voice webhook, a status callback (closes out
-calls when the caller hangs up) and a voice fallback that rings the owner if
-the server is down. Then have the client forward their business line to the
-new number (or publish the new number). Place a test call before going live.
+`provision_number.py` sets the voice webhook, a status callback that closes out calls when the caller hangs up, and a voice fallback that rings the owner if the server is down. Then have the client forward their business line to the new number or publish the new number. Place a test call before going live.
 
-`python scripts/report_link.py --all` lists every dashboard link plus the
-operator page (`/admin?key=<REPORT_KEY>`). Each client's key opens only that
-client's dashboard.
+`python scripts/report_link.py --all` lists every dashboard link and the operator page (`/admin?key=<REPORT_KEY>`). Each client's key opens only that client's dashboard.
 
-Optional client fields (see `clients/_template.yaml`): `booking_hours`,
-`owner_email`, `ntfy_topic`, `record_transcripts`, `extra_instructions`.
+Optional client fields are listed in `clients/_template.yaml`: `booking_hours`, `owner_email`, `ntfy_topic`, `record_transcripts`, `extra_instructions`.
 
 ## Operating it
 
-**Check everything, any time:** `python scripts/selfcheck.py` runs ~20 live checks (server,
-database, backups, AI key, webhook security, every phone number's settings, the
-ring-the-owner fallback, transfer and 911 handling, private-page security, and the sales
-documents) and prints PASS / WARN / FAIL. Run it before selling and after any deploy.
+**Checks.** `python scripts/selfcheck.py` runs live checks against a deployment and prints PASS, WARN or FAIL for each. They cover the server, the database, backups, the AI key, webhook security, each phone number's settings, the ring-the-owner fallback, transfer and 911 handling and private-page security. Run it after a deploy.
 
-**You are told when something breaks.** A crash on a live call or a model-API failure sends
-an ntfy push to the operator topic (rate-limited to one per 10 minutes per problem). The
-caller in that moment is sent to the owner's phone, so nobody hears an error.
+**Alerts.** A crash on a live call or a model API failure sends an ntfy push to the operator topic, rate-limited to one per 10 minutes per problem. The caller in that moment is sent to the owner's phone, so nobody hears an error.
 
-**Data:** SQLite on an encrypted Fly volume. Fly snapshots the volume daily; the server also
-writes a consistent copy to `/data/backups/` daily (keeps 7). Call transcripts and summaries
-are deleted automatically after 90 days (bookings and call counts stay). `python
-scripts/export_data.py` saves everything to `Documents\CallKettle-Backups` on your PC.
-`python scripts/offboard_client.py <id> --do-it` saves a copy, erases one client from the
-server, and archives their config (the terms promise deletion on request).
+**Data.** SQLite lives on the Fly volume. The server writes a consistent copy to `/data/backups/` daily and keeps 7. Call transcripts and summaries are deleted after 90 days, while bookings and call counts stay. `python scripts/export_data.py` saves everything to `Documents\CallKettle-Backups` on your PC. `python scripts/offboard_client.py <id> --do-it` saves a copy, erases one client from the server and archives their config.
 
-**Deploys** restart the single server, so for a few seconds calls fall back to ringing the
-owner's phone, and a call in progress loses its conversation state. Deploy when it's quiet.
+**Deploys** restart the single server. For a few seconds calls fall back to ringing the owner's phone, and a call in progress loses its conversation state. Deploy when it's quiet.
 
-**Capacity:** call state is in memory, so run one machine and one worker. This repo does not
-publish latency or load figures; `scripts/load_test.py` exists but needs live credentials. Move
-call state to Redis before running a second machine.
+**Capacity.** This repo publishes no latency or load figures. `scripts/load_test.py` exists but needs live credentials.
 
-**Secrets to rotate together:** if you ever change the Twilio auth token, update it on Fly
-(update the Fly secret `TWILIO_AUTH_TOKEN` and the fallback project on Vercel) or
-webhook signatures and the fallback will start failing.
+**Rotating secrets.** If you change the Twilio auth token, update `TWILIO_AUTH_TOKEN` on Fly and in the voice fallback project, or webhook signature checks and the fallback will start failing.
 
-**Admin endpoints** (master key only): `/admin` (clients and intakes), `/admin/status`
-(health, no secrets; add `&deep=1` to test the AI key), `/admin/export`,
-`/admin/intakes`, `/admin/client/<id>/delete`.
+**Admin endpoints** need the master key: `/admin` (clients and intakes), `/admin/status` (health with no secrets; add `&deep=1` to test the AI key), `/admin/export`, `/admin/intakes` and `/admin/client/<id>/delete`.
 
-## Configuration (Fly secrets / `.env`)
+## Configuration (Fly secrets or `.env`)
 
 | Variable | Purpose |
 |---|---|
 | `ANTHROPIC_API_KEY` | model access |
-| `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` | telephony, webhook signature checks |
+| `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` | telephony and webhook signature checks |
 | `TWILIO_FROM_NUMBER` | SMS sender (must be A2P-registered) |
 | `REPORT_KEY` | master secret; per-client dashboard keys derive from it |
-| `SMS_ENABLED` | `1` only after A2P approval |
+| `SMS_ENABLED` | set to `1` only after A2P approval |
 | `TTS_VOICE` | override the voice without a redeploy, e.g. `Polly.Matthew-Neural` |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` | booking/callback email (Gmail: smtp.gmail.com, 587, an app password) |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` | booking and callback email |
 | `CALLKETTLE_DB_PATH` | SQLite path (`/data/callkettle.db` on Fly) |
 | `CALLKETTLE_SKIP_SIGNATURE_CHECK` | `1` for local testing only, never in production |
 
@@ -147,24 +86,22 @@ webhook signatures and the fallback will start failing.
 python -m venv .venv && .venv/Scripts/activate
 pip install -r requirements.txt
 cp .env.example .env
-pytest -q                       # offline, no network, no API spend (counts: top-level README)
+pytest -q                       # offline, no network, no API spend (counts are in the top-level README)
 uvicorn app.main:app --reload --port 8000
 ```
 
-`simulate_call.py <client_id>` runs the real agent from the terminal (real
-model calls, real cost).
+`simulate_call.py <client_id>` runs the real agent from the terminal. It makes real model calls and costs real money.
 
 ## Layout
 
 ```
 app/main.py         webhooks, dashboard, admin, public booking API
 app/agent.py        prompt, tools, deterministic transfer detection, turn loop
-app/tools.py        availability + booking rules, escalation
+app/tools.py        availability and booking rules, escalation
 app/notify.py       email / ntfy / SMS fan-out, calendar invites
 app/summary.py      post-call summaries (background)
 app/twilio_utils.py TwiML (neural voice, hints, dictation timeouts), SMS
 app/storage.py      SQLite (calls, bookings, escalations)
 clients/*.yaml      one file per client
 scripts/            onboard_client, provision_number, report_link
-../fallback/        Vercel function: rings the owner if this server is down
 ```

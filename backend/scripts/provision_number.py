@@ -1,6 +1,6 @@
 """Point a Twilio number at a client's AI receptionist (and optionally buy one).
 
-Dry-run by default. Buying a number costs money (about $1.15/month), so it only
+Dry-run by default. Buying a number costs money (a monthly fee), so it only
 happens with --buy. Repointing a number you already own is free.
 
     python scripts/provision_number.py acme_plumbing --number +15555550100

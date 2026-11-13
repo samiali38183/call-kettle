@@ -49,7 +49,7 @@ def test_check_availability_invalid_date():
 
 def test_book_appointment_notifies_both_caller_and_owner(monkeypatch):
     """Real bug fix: a booking that only exists in the database is invisible
-    to the owner in practice. Confirms both SMS sends happen — one to the
+    to the owner in practice. Confirms both SMS sends happen, one to the
     caller, one to the business's escalation number."""
     from app import tools
 

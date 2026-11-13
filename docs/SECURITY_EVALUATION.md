@@ -1,12 +1,12 @@
 # Agent security evaluation
 
-This document describes one thing: what happens at the boundary between the language model and the tools it can call in Call Kettle, and how that boundary was tested with a scripted model. Every number below was produced by the commands in [Reproduce](#reproduce). Nothing here was measured against a live model or real callers.
+This document is about one thing: the boundary between the language model and the tools it can call in Call Kettle, and how I tested that boundary with a scripted model. The commands in [Reproduce](#reproduce) produce every number below. Nothing here was measured against a live model or real callers.
 
-## What it is
+## What is being tested
 
-Call Kettle's agent is a tool-calling loop. A caller speaks, the model answers or asks for a tool (`book_appointment`, `cancel_appointment`, `transfer_call` and so on), the server runs the tool and feeds the result back, for at most four model calls per turn. The caller's words reach the model, so a caller can try to talk the model into a tool call the business never intended. The design assumption is that the model will sometimes do what the caller says. The server therefore decides every tool call without reading the model's words.
+Call Kettle's agent is a tool-calling loop. A caller speaks, and the model either answers or asks for a tool (`book_appointment`, `cancel_appointment`, `transfer_call` and so on). The server runs the tool and feeds the result back, for at most four model calls per turn. The caller's words reach the model, so a caller can try to talk it into a tool call the business never wanted. I assume the model will sometimes do what the caller says, so the server decides every tool call without reading the model's words.
 
-The evaluation tests that assumption directly. A scripted stand-in for the model issues the tool calls an attacker would want, the real agent loop, gate, tools and SQLite storage handle them, and each case records the decision, the control that made it, and whether the stored state is still intact.
+The evaluation tests that assumption directly. A scripted stand-in for the model issues the tool calls an attacker would want. The real agent loop, gate, tools and SQLite storage handle them, and each case records the decision, the control that made it and whether the stored state is still intact.
 
 ## The trust boundary
 
@@ -37,7 +37,7 @@ The gate is `authorize_tool_call` in `backend/app/agent.py`. The schema, budget 
 
 `qa/security_eval.py` contains `ScriptedModel`. It ignores the system prompt and the conversation and returns the next scripted response. A case scripts a model that complied with the attacker completely: it makes the call the caller asked for, with the arguments the caller supplied, or says what the caller told it to say.
 
-This means the cases show what the server does when the model misbehaves. They do not show how often a real model would misbehave. The prompt-level rules ("never quote prices") are not tested here at all, because the stub never reads the prompt.
+So the cases show what the server does when the model misbehaves. They don't show how often a real model would. Prompt-level rules ("never quote prices") aren't tested at all, because the stub never reads the prompt.
 
 ## One example
 
@@ -57,7 +57,7 @@ All values are from `python -m qa.security_eval` on Python 3.12.2 (Windows). "Ex
 - Cases: 44 (39 attack cases in 10 categories, 5 benign controls). Passed: 44.
 - Tool calls the scripted model made: 99. Refused by the server gate: 25. Allowed by the gate and then rejected by the tool's own rules: 12. Allowed and run: 62.
 - Network connection attempts during the run: 0. Audit rows holding a name, phone number or summary text: 0.
-- Run time for all cases on one laptop: 5.03 s. Boundary-removal tests in the pytest gate: 18.
+- Run time for all cases on one laptop: about 5 to 6 s (5.03 s for the committed results, 5.97 s on a later run). Boundary-removal tests in the pytest gate: 18.
 - Cases by category: PII exfiltration 2, argument tampering 9, benign control 5, claim forgery 5, cross-customer 1, cross-tenant 5, direct injection 6, indirect injection 3, input sanitization 1, loop exhaustion 3, sensitive data 4.
 
 | ID | Category | Attack | Expected | Actual | Enforced by | State check | Pass |
@@ -113,11 +113,11 @@ The full output is in `docs/security_eval/results.md` and `results.json`.
 
 ## The regression gate
 
-`backend/tests/test_security_eval.py` runs every case, and separately removes one boundary at a time and requires the cases that depend on it to fail. It covers 18 removals: policy switches, the after-hours rule, unknown-tool refusal, tenant binding, argument schema, per-call budgets, booking ownership, the false-claim guard, card and SSN scrubbing, control-character stripping, audit redaction, the input length cap, the recovered-session tenant check, the tool-loop cap, the per-call booking cap, the SMS recipient rule, the lead-time rule and the slot grid. If someone deletes one of these checks, the suite fails and names the cases. The service allow-list rule has a case (TA-01, TA-08) but no removal test.
+`backend/tests/test_security_eval.py` runs every case, and separately removes one boundary at a time and requires the cases that depend on it to fail. It covers 18 removals: policy switches, the after-hours rule, unknown-tool refusal, tenant binding, argument schema, per-call budgets, booking ownership, the false-claim guard, card and SSN scrubbing, control-character stripping, audit redaction, the input length cap, the recovered-session tenant check, the tool-loop cap, the per-call booking cap, the SMS recipient rule, the lead-time rule and the slot grid. If someone deletes one of these checks, the suite fails and names the cases. The service allow-list rule has cases (TA-01, TA-08) but no removal test.
 
 ## Defects found and fixed
 
-These came from reading the code and each has a case. Items 1, 2, 4 and 6 are behaviour that was reachable by a compliant-with-attacker model; 3 is hardening; 5 is a missing control.
+I found these by reading the code, and each has a case. Items 1, 2, 4 and 6 were reachable by a model that does what the attacker says. Item 3 is hardening, and item 5 was a missing control.
 
 1. `check_availability` was hidden from the model when a tenant had booking and rescheduling off, but the dispatcher still ran it if called. It now goes through the same gate (`tool_not_offered`).
 2. Tool arguments were read with `.get()` and not checked against the declared schema. A non-object argument raised an exception that the loop caught and turned into a generic error, and unknown fields were silently ignored. Arguments are now checked for unknown names, missing required names, type (a boolean is not an integer) and a 1,000 character limit, and the refusal says which argument is wrong.
@@ -128,16 +128,16 @@ These came from reading the code and each has a case. Items 1, 2, 4 and 6 are be
 
 ## Limitations
 
-- **No live model.** Nothing here shows how a real model reacts to these inputs, how often it would issue the dangerous call, or whether the prompt rules hold. The evaluation shows the server holds if the model fails.
-- **No production traffic.** The data is synthetic: two invented tenants, invented names and `555` numbers. Real callers, real speech recognition errors and real concurrency are not represented.
-- **The stub reproduces what the author thought of.** The cases are a fixed list. They are not a fuzzer and not a claim about coverage of all attacks.
-- **Prompt-level rules are not tested.** The wording switches (`can_quote`, fee text, address collection) depend on the model.
-- **The claim guard is pattern based.** CF-01 to CF-04 use phrasings the patterns match. A paraphrase they miss would be spoken.
-- **Tenant isolation is application-level.** Tenants share one SQLite database and every query filters by `client_id`. `storage.get_booking` and `storage.cancel_booking` take only an id; the tenant check is in `tools._owned`, not in storage. There is no database-level separation.
-- **Caller ID is trusted as Twilio reports it.** Booking ownership is matched on the caller ID (or the same call). Caller ID can be spoofed on the phone network, which this evaluation does not model.
-- **Redaction is shape based.** Card numbers (Luhn-valid) and SSN-shaped numbers are scrubbed. Names, addresses and diagnoses spoken by a caller are not detected; for tenants that keep transcripts they are stored.
-- **The booking phone number is not verified.** A caller can book under any phone number they state; only the confirmation text is bound to the caller ID.
-- **No load or timing claims.** The run time is the time to execute the cases, not a latency figure.
+- No live model. Nothing here shows how a real model reacts to these inputs, how often it would issue the dangerous call or whether the prompt rules hold. It shows that the server holds if the model fails.
+- No production traffic. The data is synthetic: two invented tenants, invented names and `555` numbers. Real callers, real speech recognition errors and real concurrency aren't represented.
+- The cases cover only what I thought of. They are a fixed list, not a fuzzer, and not a claim about covering all attacks.
+- Prompt-level rules aren't tested. The wording switches (`can_quote`, fee text, address collection) depend on the model.
+- The claim guard is pattern based. CF-01 to CF-04 use phrasings the patterns match, and a paraphrase they miss would be spoken.
+- Tenant isolation is application-level. Tenants share one SQLite database and every query filters by `client_id`. `storage.get_booking` and `storage.cancel_booking` take only an id, and the tenant check lives in `tools._owned`, not in storage. There is no separation at the database level.
+- Caller ID is trusted as Twilio reports it. Booking ownership is matched on the caller ID (or the same call). Caller ID can be spoofed on the phone network, and this evaluation doesn't model that.
+- Redaction is shape based. Card numbers (Luhn-valid) and SSN-shaped numbers are scrubbed. Names, addresses and diagnoses spoken by a caller aren't detected, and tenants that keep transcripts store them.
+- The booking phone number isn't verified. A caller can book under any number they state, and only the confirmation text is bound to the caller ID.
+- No load or timing claims. The run time is how long the cases take to execute, not a latency figure.
 
 ## Reproduce
 
@@ -148,4 +148,4 @@ CALLKETTLE_SKIP_SIGNATURE_CHECK=1 ANTHROPIC_API_KEY=dummy python -m qa.security_
 CALLKETTLE_SKIP_SIGNATURE_CHECK=1 ANTHROPIC_API_KEY=dummy TWILIO_ACCOUNT_SID=dummy TWILIO_AUTH_TOKEN=dummy python -m pytest -q tests/test_security_eval.py
 ```
 
-The runner blocks socket connections for the duration of each case and reports any attempt; the count above is 0.
+The runner blocks socket connections during each case and reports any attempt. The count above is 0.

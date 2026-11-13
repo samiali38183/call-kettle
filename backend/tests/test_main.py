@@ -50,7 +50,7 @@ def test_public_url_includes_path_and_query_string():
 
 def test_reproduces_the_reported_403_signature_mismatch(monkeypatch):
     """Twilio signs the public https URL; validating against the local
-    http://127.0.0.1 URL must fail — this is the exact bug from the field
+    http://127.0.0.1 URL must fail, this is the exact bug from the field
     report (call to +15555550100, webhook returned 403)."""
     from app import twilio_utils
 
@@ -67,7 +67,7 @@ def test_reproduces_the_reported_403_signature_mismatch(monkeypatch):
 
 def test_fix_validates_correctly_against_reconstructed_public_url(monkeypatch):
     """Same signature as above, but validated against the URL _public_base_url
-    reconstructs from the forwarded headers — this must now pass."""
+    reconstructs from the forwarded headers, this must now pass."""
     from app import twilio_utils
     from app.main import _public_base_url
 
@@ -120,7 +120,7 @@ def client(monkeypatch):
 
 def test_incoming_call_always_includes_recording_disclosure(client):
     """The disclosure must be present regardless of what's in the client's
-    YAML — it's applied in code, not left to per-client config discipline."""
+    YAML, it's applied in code, not left to per-client config discipline."""
     test_client, main = client
 
     response = test_client.post(
@@ -135,7 +135,7 @@ def test_incoming_call_always_includes_recording_disclosure(client):
 
 def test_unhandled_error_on_voice_route_degrades_to_graceful_twiml(client, monkeypatch):
     """Reproduces a real incident: an unhandled exception (e.g. a missing DB
-    table) must never surface as a bare 500 on a /voice/* route — Twilio has
+    table) must never surface as a bare 500 on a /voice/* route, Twilio has
     no TwiML to work with then and plays "application error" to a real
     caller. This must return valid TwiML with a 200, not crash."""
     test_client, main = client
@@ -147,7 +147,7 @@ def test_unhandled_error_on_voice_route_degrades_to_graceful_twiml(client, monke
 
     # raise_server_exceptions=False: a real Twilio request has no idea an
     # exception was raised server-side, it only sees the HTTP response our
-    # exception handler produced — that's what this test needs to check.
+    # exception handler produced, that's what this test needs to check.
     from fastapi.testclient import TestClient
 
     with TestClient(main.app, raise_server_exceptions=False) as no_raise_client:
@@ -164,7 +164,7 @@ def test_unhandled_error_on_voice_route_degrades_to_graceful_twiml(client, monke
 
 def test_voice_gather_transfer_produces_dial_twiml(client, monkeypatch):
     """Full HTTP round trip: when run_turn signals a transfer, the actual
-    response TwiML must contain <Dial>, not just say-and-hangup."""
+    response TwiML must contain <Dial>, and a say-and-hangup is not enough."""
     test_client, main = client
 
     incoming = test_client.post(
@@ -206,7 +206,7 @@ def test_book_confirm_creates_a_real_conflict_checked_booking(client):
     body = response.json()
     assert body["success"] is True
 
-    # The exact same slot must now be gone from availability — proves this
+    # The exact same slot must now be gone from availability, proves this
     # is a real conflict-checked booking, not a contact form pretending.
     availability = test_client.get("/book/availability", params={"date": "2026-01-12"})
     assert "09:00" not in availability.json()["slots"]
@@ -227,13 +227,13 @@ def test_book_confirm_rejects_a_double_booking(client):
 
 def test_book_confirm_has_no_client_id_parameter_to_exploit(client):
     """Security-relevant: confirms the endpoint shape gives no way to target
-    a real client's calendar — client_id isn't accepted as input at all."""
+    a real client's calendar, client_id isn't accepted as input at all."""
     test_client, main = client
     response = test_client.post(
         "/book/confirm",
         json={
             "name": "A", "phone": "+15555550100", "date": "2026-01-12", "time": "11:00",
-            "client_id": "sample_homecare",  # extra field — pydantic ignores unknown fields by default
+            "client_id": "sample_homecare",  # extra field, pydantic ignores unknown fields by default
         },
     )
     assert response.status_code == 200
@@ -249,7 +249,7 @@ def test_book_confirm_has_no_client_id_parameter_to_exploit(client):
 
 
 def test_report_page_rejects_wrong_or_missing_key(client):
-    """The report shows real customer names/phone numbers — it must not be
+    """The report shows real customer names/phone numbers, it must not be
     viewable by guessing the client_id alone."""
     test_client, main = client
 
@@ -270,7 +270,7 @@ def test_report_page_shows_real_booking_this_is_the_actual_bug_fix(client):
     """Reproduces the reported bug: 'when asked to make an appointment,
     where does it make an appointment, nobody knows.' A booking made
     through the phone flow must be visible on this page, by name, phone,
-    and time — proving there is now a real, working way to see where a
+    and time, proving there is now a real, working way to see where a
     booking landed without depending on SMS (which is currently silently
     failing due to incomplete A2P 10DLC registration)."""
     test_client, main = client

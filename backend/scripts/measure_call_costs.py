@@ -3,7 +3,7 @@
     cd backend
     python scripts/measure_call_costs.py --i-understand-this-spends-api-credits
 
-SPENDS REAL ANTHROPIC CREDITS (expected well under $1; hard stop at $2.00 total, enforced between turns).
+SPENDS REAL ANTHROPIC CREDITS (the script enforces a hard spending stop between turns).
 The app runs IN-PROCESS (FastAPI TestClient) against a TEMPORARY database, so production data is untouched; the Twilio
 signature check is skipped only inside this process. Only ANTHROPIC_API_KEY is read from backend/.env (Twilio and mail
 credentials are never loaded; push/SMS/email stay off). It never places a call or contacts anyone.
