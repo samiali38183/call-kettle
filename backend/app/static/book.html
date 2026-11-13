@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Book a 15-minute demo — {{brand}}</title>
+<title>Book a 15-minute demo | {{brand}}</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@400;500;600&display=swap">
 <style>
@@ -62,7 +62,7 @@ footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--text
 <body>
 <header class="top"><div class="in"><a class="brand" href="https://callkettle.com"><i></i>{{brand}}</a><a class="back" href="https://callkettle.com">&larr; Back to callkettle.com</a></div></header>
 <main class="wrap">
-  <div class="eyebrow">{{brand}} — 15-minute demo</div>
+  <div class="eyebrow">{{brand}} | 15-minute demo</div>
   <h1>Book a 15-minute demo, no back-and-forth.</h1>
   <p class="sub">Pick a real open time below. This checks and reserves the slot directly, the same booking system your customers would use. We hold a 30-minute slot on the calendar so we are never rushed; the demo itself is about 15 minutes.</p>
 
@@ -132,7 +132,7 @@ footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--text
       .then(function(r){ return r.json(); })
       .then(function(data){
         if (!data.slots || data.slots.length === 0){
-          dateHint.textContent = data.note || 'No open times that day — try another date.';
+          dateHint.textContent = data.note || 'No open times that day. Try another date.';
           return;
         }
         dateHint.textContent = 'Pick a time:';
@@ -153,7 +153,7 @@ footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--text
         });
       })
       .catch(function(){
-        dateHint.textContent = 'Could not load availability — try again in a moment.';
+        dateHint.textContent = 'Could not load availability. Try again in a moment.';
       });
   }
 
@@ -186,7 +186,7 @@ footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--text
           confirmBtn.textContent = 'Booked';
         } else {
           msgEl.className = 'msg err';
-          msgEl.textContent = res.data.error || 'That time was just taken — pick another.';
+          msgEl.textContent = res.data.error || 'That time was just taken. Pick another.';
           confirmBtn.textContent = 'Confirm booking';
           confirmBtn.disabled = false;
           loadSlots();
@@ -194,7 +194,7 @@ footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--text
       })
       .catch(function(){
         msgEl.className = 'msg err';
-        msgEl.textContent = 'Something went wrong — try again in a moment.';
+        msgEl.textContent = 'Something went wrong. Try again in a moment.';
         confirmBtn.textContent = 'Confirm booking';
         confirmBtn.disabled = false;
       });
