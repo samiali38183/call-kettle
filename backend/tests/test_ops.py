@@ -202,7 +202,7 @@ def test_deleting_a_client_needs_confirmation_and_erases_only_that_client(app_cl
     assert c.post("/admin/client/demo_dental/delete").status_code == 403
     assert c.post("/admin/client/demo_dental/delete", params=key).status_code == 400  # no confirm
     r = c.post("/admin/client/demo_dental/delete", params={**key, "confirm": "demo_dental"})
-    assert r.json()["deleted"] == {"calls": 1, "bookings": 0, "cancelled_bookings": 0, "escalations": 1, "owner_users": 0}
+    assert r.json()["deleted"] == {"calls": 1, "bookings": 0, "cancelled_bookings": 0, "escalations": 1, "owner_users": 0, "tool_audit": 0}
     assert s.get_call("CA_D1") is None and s.get_call("CA_D2") is not None  # the other client is untouched
 
 

@@ -164,7 +164,10 @@ def book_appointment(
     service: str,
     date: str,
     time: str,
+    caller_id: str | None = None,
 ) -> dict:
+    """caller_id is the verified caller ID of the call. When it is given, the confirmation text goes only to that number: the phone
+    number the model passes is whatever the caller said, and texting an arbitrary number would let a caller make us text a stranger."""
     caller_name, service, caller_phone = clean_text(caller_name, 80), clean_text(service, 100), clean_text(caller_phone, 30)
     if not caller_name:
         return {"success": False, "error": "the caller's name is required. Ask for it."}
@@ -253,7 +256,7 @@ def book_appointment(
         ))
 
     confirmation_text_sent = False
-    if notify.sms_enabled():
+    if notify.sms_enabled() and (caller_id is None or (len(storage._last10(caller_id)) == 10 and storage._last10(caller_id) == storage._last10(caller_phone))):
         def _text() -> bool:
             from app.twilio_utils import send_sms
 

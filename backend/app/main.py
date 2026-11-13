@@ -1709,7 +1709,7 @@ def admin_delete_client(client_id: str, key: str = "", confirm: str = "") -> JSO
         return JSONResponse({"error": "Pass confirm=<client_id> to proceed."}, status_code=400)
     with storage._conn() as conn:
         counts = {t: conn.execute(f"DELETE FROM {t} WHERE client_id = ?", (client_id,)).rowcount
-                  for t in ("calls", "bookings", "cancelled_bookings", "escalations", "owner_users")}
+                  for t in ("calls", "bookings", "cancelled_bookings", "escalations", "owner_users", "tool_audit")}
     return JSONResponse({"deleted": counts, "client_id": client_id})
 
 

@@ -74,7 +74,7 @@ Note on strictness: `extra: forbid` is set on `Policy`, not on `ClientConfig` it
 
 ## 6. Storage (`app/storage.py`)
 
-SQLite in WAL mode, one file. Tables include `calls`, `bookings`, `cancelled_bookings`, `booking_events`, `metrics`, `escalations`, `intakes`, `private_demos`, `spam_numbers`, `owner_users`, `owner_sessions`, `owner_login_failures`.
+SQLite in WAL mode, one file. Tables include `calls`, `bookings`, `cancelled_bookings`, `booking_events`, `metrics`, `escalations`, `tool_audit`, `intakes`, `private_demos`, `spam_numbers`, `owner_users`, `owner_sessions`, `owner_login_failures`.
 
 - Double-booking protection is two layers. `bookings` has `UNIQUE(client_id, slot_start)`, and `create_booking` takes `BEGIN IMMEDIATE` and rejects any confirmed booking whose interval overlaps the new one, which catches a 60-minute job at 09:00 against a 09:30 request that the unique index alone would miss. `move_booking` applies the same overlap check.
 - Live-call writes (`log_turn`, outcome, versions, metrics) use a short busy timeout (`LIVE_BUSY_SECONDS`) and a breaker (`live_path_open`, `trip_live_breaker`), so a locked database costs a measurement rather than holding a caller on the line.
