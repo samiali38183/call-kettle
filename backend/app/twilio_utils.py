@@ -42,8 +42,8 @@ def validate_signature(*, url: str, form: dict[str, str], signature: str) -> boo
 
 
 # Twilio's default <Say> voice is the robotic "basic" one. Polly Neural sounds
-# far more human for ~$0.0032 per 100 characters (a typical call is a few
-# cents). Overridable without a redeploy: `fly secrets set TTS_VOICE=...`.
+# far more human for a small per-character fee, and a typical call is a few
+# cents. Overridable without a redeploy: `fly secrets set TTS_VOICE=...`.
 _VOICE = os.environ.get("TTS_VOICE", "Polly.Joanna-Neural")
 
 
@@ -73,7 +73,7 @@ def _spoken_phone(match: re.Match, lang: str = "en") -> str:
 
 def speakable(text: str, lang: str = "en") -> str:
     """Phone numbers written as '+1-555-777-0101' get read aloud as symbols
-    and one giant number. Deterministically respell them as digit groups —
+    and one giant number. Deterministically respell them as digit groups , 
     a backstop for when the model doesn't follow the prompt's speaking rules."""
     return _PHONE_RE.sub(lambda m: _spoken_phone(m, lang), text)
 
@@ -209,7 +209,7 @@ def transfer_twiml(
 ) -> str:
     # time_limit (seconds) caps the bridged call (Dial timeLimit); None keeps Twilio's own default of 4 hours.
     limit = f' timeLimit="{int(time_limit)}"' if time_limit else ""
-    # With an action URL, Twilio asks us what to do when the Dial ends — so an
+    # With an action URL, Twilio asks us what to do when the Dial ends, so an
     # unanswered transfer becomes "take a message" instead of dead air.
     action = f' action="{escape(action_url)}" method="POST"' if action_url else ""
     # With a whisper URL the owner is screened first: Twilio plays that TwiML to the owner's leg and only bridges the
@@ -268,7 +268,7 @@ def send_sms(*, to: str, body: str) -> bool:
     except Exception:
         # A trial account sending to an unverified number, missing A2P 10DLC
         # registration, or a transient Twilio error should never take the
-        # call down with it — the booking already succeeded, this is just
+        # call down with it, the booking already succeeded, this is just
         # the confirmation text.
         logger.exception("Failed to send SMS to %s — booking still stands", to)
         return False

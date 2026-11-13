@@ -21,7 +21,7 @@ _ID_RE = re.compile(r"[A-Za-z0-9_]{1,60}")
 # consumer they're talking to AI when they could otherwise be misled, and Utah
 # requires disclosure on request (proactively for licensed professions).
 # California SB 243 and Washington HB 2225 target companion chatbots and
-# exclude customer-service bots, so they don't apply here — but disclosing up
+# exclude customer-service bots, so they don't apply here, but disclosing up
 # front on every call is cheap, honest, and future-proof. Enforced here at
 # config-validation time, not left to whoever writes a new client's
 # opening_line remembering to include it.

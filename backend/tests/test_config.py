@@ -57,7 +57,7 @@ def test_opening_line_with_automated_passes():
 
 def test_opening_line_false_positive_words_still_rejected():
     # "certain", "captain", "maintain" etc. contain the substring "ai" but
-    # aren't an AI disclosure — the check must be word-boundary aware.
+    # aren't an AI disclosure, the check must be word-boundary aware.
     with pytest.raises(ValidationError):
         ClientConfig.model_validate(
             _minimal_config_kwargs(opening_line="We're certain to maintain your captain's trust.")
@@ -65,6 +65,6 @@ def test_opening_line_false_positive_words_still_rejected():
 
 
 def test_demo_configs_pass_ai_disclosure_validation():
-    # The real shipped configs must actually satisfy this, not just the tests.
+    # The real shipped configs must actually satisfy this, and not only the tests.
     load_client_config("demo_dental")
     load_client_config("demo_hvac")

@@ -219,7 +219,7 @@ def _policy_rules(config: ClientConfig, open_now: bool) -> str:
 
 def _open_status_line(config: ClientConfig, now: datetime) -> str:
     # Computed in code, not left to the model to infer from raw hours + a
-    # timestamp — "AI wrongly claims open/closed" is a documented, common
+    # timestamp, "AI wrongly claims open/closed" is a documented, common
     # real-world failure mode for this exact product category. Removing the
     # class of error beats instructing the model to avoid it.
     today_key = _WEEKDAY_KEYS[now.weekday()]
@@ -345,7 +345,7 @@ class CallSession:
 
 
 _SESSIONS: dict[str, CallSession] = {}
-# In-memory session store — fine for a single-process prototype deployment.
+# In-memory session store, fine for a single-process prototype deployment.
 # Move to Redis (keyed by CallSid, short TTL) before running multiple uvicorn
 # workers or more than one instance, or calls will land on the wrong worker.
 
@@ -591,7 +591,7 @@ def _run_tool(session: CallSession, name: str, tool_input: dict) -> dict:
 
 # A deterministic backstop, not a replacement for the model's own judgment via
 # the transfer_call tool. An explicit, unambiguous request for a human must
-# transfer reliably every time — it can't depend on an LLM correctly noticing
+# transfer reliably every time, it can't depend on an LLM correctly noticing
 # the request in the middle of a longer conversation, especially several
 # turns deep where earlier instructions can get de-prioritized. Word-boundary
 # matched to avoid false positives (e.g. "personal", "impersonate").

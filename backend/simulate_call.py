@@ -1,11 +1,11 @@
-"""Talk to the real AI receptionist from the terminal — the exact agent.py /
+"""Talk to the real AI receptionist from the terminal, the exact agent.py /
 tools.py code path a live phone call runs, just typed instead of spoken.
 
 Usage:
     python simulate_call.py [client_id]
 
 Requires ANTHROPIC_API_KEY to be set (real API calls, real cost, real AI).
-Twilio SMS calls are skipped gracefully if Twilio env vars aren't set —
+Twilio SMS calls are skipped gracefully if Twilio env vars aren't set , 
 you'll just see a log line instead of a text going out.
 """
 from __future__ import annotations
@@ -16,7 +16,7 @@ import uuid
 
 # Windows terminals often fall back to a legacy codepage for stdout, which
 # renders em-dashes and other punctuation in the AI's replies as garbled
-# characters — harmless to the data, but this tool exists specifically to be
+# characters, harmless to the data, but this tool exists specifically to be
 # shown to a real prospect's face, so it has to look clean.
 if sys.platform == "win32":
     try:

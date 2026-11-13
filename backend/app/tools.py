@@ -21,7 +21,7 @@ def clean_text(value, limit: int) -> str:
     """Text that came from a caller (through the AI): no control characters, bounded length."""
     return re.sub(r"[\x00-\x1f\x7f]+", " ", str(value or "")).strip()[:limit]
 
-# Don't offer a slot starting in the next half hour — nobody can show up to it.
+# Don't offer a slot starting in the next half hour, nobody can show up to it.
 MIN_LEAD_MINUTES = 30
 
 

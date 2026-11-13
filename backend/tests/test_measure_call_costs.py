@@ -69,7 +69,7 @@ def test_project_monthly_scales_linearly(m):
 
 
 def test_max_token_cost_for_target_margin(m):
-    # revenue 100, margin 80% -> total cost budget 20; other cost 12 over 100 calls -> 8 left -> $0.08 per call
+    # revenue 100, margin 80% -> total cost budget 20; other cost 12 over 100 calls -> 8 left -> 0.08 per call
     assert m.max_token_cost_per_call(revenue=Decimal(100), margin=Decimal("0.8"), other_cost=Decimal(12), calls=100) == Decimal("0.08")
     # already over budget without any tokens -> negative (no token cost can reach the target)
     assert m.max_token_cost_per_call(revenue=Decimal(100), margin=Decimal("0.8"), other_cost=Decimal(25), calls=100) < 0

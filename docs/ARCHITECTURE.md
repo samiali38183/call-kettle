@@ -1,8 +1,8 @@
 # Architecture
 
-A module-by-module walk-through of the backend. Paths are relative to `backend/`. The README has the overview and the reasoning behind the main decisions; this file is the reference you keep open next to the code.
+A module-by-module walk-through of the backend. Paths are relative to `backend/`. The README has the overview and the reasons behind the main decisions. This file is meant to sit open next to the code.
 
-This is a snapshot of the application code. Operator scripts that touch production, the Twilio voice-fallback function, deployment config and private docs are not included. Where a module refers to a design doc under `docs/` that is not in this repo, the module's own docstring is the source used here.
+This is a snapshot of the application code. Operator scripts that touch production, the Twilio voice-fallback function, the deployment config and private docs are left out. Where a module refers to a design doc under `docs/` that isn't in this repo, I used the module's own docstring.
 
 ## 1. Request lifecycle of one call
 
@@ -19,7 +19,7 @@ Default mode: Twilio does the speech recognition (`<Gather input="speech">`) and
 4. The reply goes back as `<Say>` inside the next `<Gather>`, or as `<Dial>` (transfer) or `<Hangup>`.
 5. **`POST /voice/status`** closes the call record when the caller hangs up, frees the session and queues the post-call summary as a background task.
 
-Failure paths worth knowing:
+Failure paths:
 
 - Any unhandled exception on a `/voice/*` route is caught by `_voice_safety_net`, which returns TwiML that dials the owner (or apologises). Twilio never sees a bare 500.
 - `POST /voice/transfer-result` handles an unanswered transfer: it records an escalation, then hands the caller back to the agent in a "take a message" state instead of dead air.
@@ -39,7 +39,7 @@ Failure paths worth knowing:
 | Failure exits | Model API error, malformed response, or loop exhaustion: escalate to the owner, alert the operator (rate-limited), and either transfer the live call to the owner's phone or promise a callback, depending on policy and whether the number is dialable. |
 | Versioning | `prompt_version`, `tool_version`, `config_version` fingerprint the prompt template, tool schema and tenant config. They are stored per call (`storage.set_call_versions`) so a behaviour change can be traced to what was deployed. |
 
-Two deterministic backstops sit in front of the model on purpose: `_EMERGENCY_RE` (gas, fire, carbon monoxide, medical phrases) and `_HUMAN_REQUEST_RE` (an unambiguous request for a person). `is_identity_question` keeps "am I talking to a robot?" from being treated as a transfer request; the prompt requires an honest "I am an AI receptionist" answer.
+Two deterministic backstops sit in front of the model: `_EMERGENCY_RE` (gas, fire, carbon monoxide, medical phrases) and `_HUMAN_REQUEST_RE` (an unambiguous request for a person). `is_identity_question` keeps "am I talking to a robot?" from being treated as a transfer request; the prompt requires an honest "I am an AI receptionist" answer.
 
 ### `app/cost_guard.py`
 
@@ -85,10 +85,10 @@ SQLite in WAL mode, one file. Tables include `calls`, `bookings`, `cancelled_boo
 
 ## 7. Cost controls and observability
 
-Two separate mechanisms, deliberately not coupled.
+These are two separate mechanisms, and they are not coupled on purpose.
 
-- **Enforcement** (`app/costing.py`, `app/usage_trigger.py`, `app/ops.py: check_cost_levels`): builds an estimate of a tenant's month from what each call recorded (model tokens, characters spoken, minutes, recognitions) and compares it to a per-tenant ceiling. Operator warnings at 75, 90 and 100 percent. At 100 percent new calls go to `ceiling_mode`: take a message with no model call, or ring the owner. After a further cap of degraded calls, `voice_incoming` returns `<Reject>`. The module says plainly that this is an estimate and a smoke alarm, not an invoice. `usage_trigger.py` receives Twilio account-level usage trigger callbacks (signature verified, idempotent) as a second alarm.
-- **Observability** (`app/cost_observability.py`, `scripts/cost_report.py`, `scripts/reconcile_costs.py`): a separate ledger of measured provider evidence (token counts from the API's own usage fields, Twilio-reported seconds, counts of TwiML emitted). It never writes an unknown value as zero, records the source of each number, and does not enforce anything. Writes happen through `agent.observe`, which never raises and is skipped if the database is busy.
+- Enforcement (`app/costing.py`, `app/usage_trigger.py`, `app/ops.py: check_cost_levels`): builds an estimate of a tenant's month from what each call recorded (model tokens, characters spoken, minutes, recognitions) and compares it to a per-tenant ceiling. Operator warnings at 75, 90 and 100 percent. At 100 percent new calls go to `ceiling_mode`: take a message with no model call, or ring the owner. After a further cap of degraded calls, `voice_incoming` returns `<Reject>`. The module says plainly that this is an estimate and a smoke alarm, not an invoice. `usage_trigger.py` receives Twilio account-level usage trigger callbacks (signature verified, idempotent) as a second alarm.
+- Observability (`app/cost_observability.py`, `scripts/cost_report.py`, `scripts/reconcile_costs.py`): a separate ledger of measured provider evidence (token counts from the API's own usage fields, Twilio-reported seconds, counts of TwiML emitted). It never writes an unknown value as zero, records the source of each number, and does not enforce anything. Writes happen through `agent.observe`, which never raises and is skipped if the database is busy.
 - `qa/token_benchmark.py` replays the real `agent.run_turn` against a scripted fake client and measures request size, so a prompt change can be compared before and after. It estimates tokens as characters divided by four and says so in its report. `qa/margin_benchmark.py` replays scripted turns offline. Neither contacts a model or measures voice quality.
 
 ## 8. Calendars

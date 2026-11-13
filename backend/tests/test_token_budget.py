@@ -90,7 +90,7 @@ def test_spoken_brevity_instruction_keeps_required_readbacks_and_safety():
     from app.config import load_client_config
 
     prompt = agent.build_system_prompt(load_client_config("demo_hvac"), "+15555550100")
-    # brevity: a hard word cap, not just "1-2 short sentences"
+    # brevity: a hard word cap, and "1-2 short sentences" alone is not enough
     assert "25 words" in prompt
     # required confirmations are still demanded
     assert "say the full name back" in prompt

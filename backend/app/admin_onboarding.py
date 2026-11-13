@@ -1,7 +1,7 @@
 """Phone-friendly onboarding pages for the operator (Sami), plus the client-facing "turn on your line" page.
 
   /admin/intake/<n>/review   the config generated from the client's form; edit it and press "Go live"
-  /admin/client/<id>/number  find and buy a phone number for the client (one click, about $1.15/month)
+  /admin/client/<id>/number  find and buy a phone number for the client (one click)
   /activate/<id>?key=        what the CLIENT opens: their number and the exact forwarding codes, filled in
 
 All pages except /activate need the master key. /activate accepts the client's own dashboard key.
