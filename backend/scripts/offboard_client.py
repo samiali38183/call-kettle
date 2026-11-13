@@ -77,7 +77,7 @@ def main() -> None:
             n.delete()
             print(f"3. Released {n.phone_number}")
         else:
-            print(f"3. Kept {n.phone_number} (add --release-number to release it and stop paying $1.15/month)")
+            print(f"3. Kept {n.phone_number} (add --release-number to release it and stop paying the monthly number fee)")
 
     r = httpx.post(f"{base}/admin/client/{client_id}/config-remove", params={"key": key, "confirm": client_id}, timeout=60)
     r.raise_for_status()
