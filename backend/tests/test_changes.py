@@ -257,7 +257,9 @@ def test_the_ai_reschedules_with_the_callers_verified_number_not_one_it_makes_up
     assert db.get_booking(bid) is not None                                  # the victim's booking survived the attempt
     assert db.get_booking(mine)["slot_start"] == "2026-01-12T15:00"
     results = [m["content"] for m in session.messages if m["role"] == "user" and isinstance(m["content"], list)]
-    assert any("no appointment with that id" in str(r) for r in results)
+    # The invented caller_phone is not a cancel_appointment argument, so the server gate refuses it before ownership is even checked
+    # (the ownership rule itself is covered by the tools-level tests above and by qa/security_eval.py).
+    assert any("unexpected argument" in str(r) for r in results)
 
 
 def test_the_system_prompt_forbids_booking_twice_to_move_an_appointment():

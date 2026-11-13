@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 
 import anthropic
 
-from app import cost_guard, cost_observability, datefix, storage, tools, twilio_utils
+from app import cost_guard, cost_observability, datefix, storage, toolguard, tools, twilio_utils
 from app.config import ClientConfig
 
 logger = logging.getLogger("callkettle.agent")
@@ -338,6 +338,7 @@ class CallSession:
     tts_chars: int = 0             # characters of text the server put into <Say> for this call (never caller text)
     stt_seconds: float = 0.0       # measured seconds of mu-law audio sent to a streaming STT provider (stream mode only)
     transfer_count: int = 0
+    tool_calls: dict = field(default_factory=dict)   # tool name -> calls the server allowed on this call (per-call budgets, app/toolguard.py)
     # One turn at a time per call: a retried or duplicated webhook must not interleave with the turn already running, or the
     # message history stops alternating and the model API rejects every later turn of the call.
     turn_lock: threading.Lock = field(default_factory=threading.Lock, repr=False, compare=False)
@@ -497,14 +498,54 @@ def record_usage(call_sid: str, response, started: float, tenant: str | None = N
         logger.exception("Could not record model usage for %s", call_sid)
 
 
+_REFUSAL_TEXT = {
+    toolguard.POLICY_DISABLED: "that action is not available for this business; take the caller's name and number and call escalate_to_human with reason callback_requested",
+    toolguard.NOT_OFFERED: "that action is not available for this business; take the caller's name and number and call escalate_to_human with reason callback_requested",
+    toolguard.AFTER_HOURS: "the business does not book by phone after hours; take a message and call escalate_to_human with reason after_hours_message",
+    toolguard.CALL_BUDGET: "that tool has been used as often as one call allows; do not call it again. Tell the caller the team will follow up",
+}
+_POLICY_CONTROLS = {toolguard.POLICY_DISABLED, toolguard.NOT_OFFERED, toolguard.AFTER_HOURS}
+
+
+def authorize_tool_call(session: CallSession, name: object, tool_input: object) -> toolguard.Decision:
+    """Decide whether a tool call the model asked for may run. Nothing here reads what the caller or the model said: it checks the
+    tenant binding, the tool name, this tenant's policy, the tool's declared schema and the per-call budgets."""
+    config = session.config
+    if session.client_id != config.client_id:
+        return toolguard.Decision(False, toolguard.SESSION_BINDING, "the call's session and configuration belong to different tenants")
+    spec = next((t for t in TOOLS if t["name"] == name), None)
+    if spec is None:
+        return toolguard.Decision(False, toolguard.UNKNOWN_TOOL, "no such tool")
+    if not tool_allowed(config, name):
+        return toolguard.Decision(False, toolguard.POLICY_DISABLED, f"policy disables {name}")
+    if name not in {t["name"] for t in tools_for(config)}:
+        return toolguard.Decision(False, toolguard.NOT_OFFERED, f"{name} is not offered to this tenant's assistant")
+    if name in ("book_appointment", "reschedule_appointment") and config.policy.after_hours_action == "message" and not is_open_now(config):
+        return toolguard.Decision(False, toolguard.AFTER_HOURS, "after-hours policy is message-only")
+    bad = toolguard.check_args(spec["input_schema"], tool_input)
+    if bad:
+        return toolguard.Decision(False, toolguard.ARG_SCHEMA, bad)
+    over = toolguard.check_budget(session.tool_calls, name)
+    if over:
+        return toolguard.Decision(False, toolguard.CALL_BUDGET, over)
+    return toolguard.Decision(True, toolguard.ALLOWED)
+
+
 def _dispatch_tool(session: CallSession, name: str, tool_input: dict) -> dict:
     config = session.config
-    if not tool_allowed(config, name):
-        storage.record_metric("policy_blocked_tool", config.client_id)
-        return {"error": "that action is not available for this business; take the caller's name and number and call escalate_to_human with reason callback_requested"}
-    if name in ("book_appointment", "reschedule_appointment") and config.policy.after_hours_action == "message" and not is_open_now(config):
-        storage.record_metric("policy_blocked_tool", config.client_id)
-        return {"error": "the business does not book by phone after hours; take a message and call escalate_to_human with reason after_hours_message"}
+    decision = authorize_tool_call(session, name, tool_input)
+    if not decision.allowed:
+        storage.record_metric("policy_blocked_tool" if decision.control in _POLICY_CONTROLS else "tool_call_refused", config.client_id)
+        toolguard.audit(session.client_id, session.call_sid, str(name), tool_input, decision)
+        return {"error": _REFUSAL_TEXT.get(decision.control, f"that tool call was refused ({decision.reason}); fix the arguments or take a message with escalate_to_human")}
+    session.tool_calls[name] = session.tool_calls.get(name, 0) + 1
+    result = _run_tool(session, name, tool_input)
+    toolguard.audit(session.client_id, session.call_sid, name, tool_input, decision, outcome=toolguard.outcome_of(result))
+    return result
+
+
+def _run_tool(session: CallSession, name: str, tool_input: dict) -> dict:
+    config = session.config
     if name == "check_availability":
         return tools.check_availability(
             config=config, date=tool_input.get("date", ""), preferred_time=tool_input.get("preferred_time"),
@@ -519,6 +560,7 @@ def _dispatch_tool(session: CallSession, name: str, tool_input: dict) -> dict:
             service=tool_input.get("service", ""),
             date=tool_input.get("date", ""),
             time=tool_input.get("time", ""),
+            caller_id=session.caller_number or "",
         )
     if name == "find_my_appointments":
         return tools.find_my_appointments(config=config, caller_id=session.caller_number)
@@ -932,11 +974,11 @@ def _run_turn(session: CallSession, caller_text: str) -> tuple[str, bool, str | 
                 )
                 result = {"error": "that action failed on our end, apologize and offer to have a human follow up"}
             _record_outcome(session, block.name, result)
-            if block.name == "end_call":
+            if block.name == "end_call" and result.get("ended"):
                 should_end = True
                 end_message = block.input.get("closing_message", "Thanks for calling — goodbye!")
-            if block.name == "transfer_call" and tool_allowed(session.config, block.name):
-                # A refused transfer (policy can_transfer false) must not ring the owner anyway: the model gets the refusal and carries on.
+            if block.name == "transfer_call" and result.get("transferring"):
+                # A refused transfer (policy, arguments, budget) must not ring the owner anyway: the model gets the refusal and carries on.
                 should_end = True
                 end_message = block.input.get("handoff_message", "One moment, connecting you now.")
                 transfer_to = session.config.escalation_phone or "(none)"   # a blank destination still reaches the caller's fallback (a message), never a silent goodbye

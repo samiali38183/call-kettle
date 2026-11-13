@@ -77,6 +77,20 @@ CREATE TABLE IF NOT EXISTS metrics (
 );
 CREATE INDEX IF NOT EXISTS metrics_name_at ON metrics (name, at);
 
+CREATE TABLE IF NOT EXISTS tool_audit (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    at TEXT NOT NULL,
+    client_id TEXT NOT NULL,
+    call_sid TEXT NOT NULL,
+    tool TEXT NOT NULL,
+    decision TEXT NOT NULL,      -- 'allowed' or 'refused' (the server-side gate, app/toolguard.py)
+    control TEXT NOT NULL,       -- which check decided it
+    reason TEXT NOT NULL DEFAULT '',
+    outcome TEXT NOT NULL DEFAULT '',   -- for an allowed call: 'ok' or 'rejected_by_tool'
+    args_json TEXT NOT NULL DEFAULT '{}'  -- redacted: personal values are stored as a length only
+);
+CREATE INDEX IF NOT EXISTS tool_audit_call ON tool_audit (call_sid);
+
 CREATE TABLE IF NOT EXISTS intakes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     created_at TEXT NOT NULL,
@@ -793,6 +807,15 @@ def get_booked_slots(client_id: str, day_prefix: str) -> set[str]:
             (client_id, f"{day_prefix}%"),
         ).fetchall()
         return {r[0] for r in rows}
+
+
+def log_tool_call(*, client_id: str, call_sid: str, tool: str, decision: str, control: str, reason: str, args_json: str, outcome: str = "") -> None:
+    """One row per tool call the model asked for (see app/toolguard.py). Live-path write: it may be skipped when the database is busy."""
+    with _live_conn() as conn:
+        conn.execute(
+            "INSERT INTO tool_audit (at, client_id, call_sid, tool, decision, control, reason, outcome, args_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (_now(), client_id, call_sid, tool, decision, control, reason, outcome, args_json),
+        )
 
 
 def log_escalation(

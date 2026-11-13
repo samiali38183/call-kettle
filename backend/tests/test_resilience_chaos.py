@@ -689,7 +689,7 @@ def test_invalid_transfer_destination_on_a_human_request_takes_a_message(client,
 @pytest.mark.parametrize("phone", ["", "not-a-number", "12"])
 def test_invalid_transfer_destination_from_the_model_takes_a_message_and_alerts(client, monkeypatch, db, alerts, phone):
     _with_phone(monkeypatch, phone)
-    _model(monkeypatch, [FakeResponse([FakeToolUseBlock("t", "transfer_call", {"handoff_message": "Connecting you."})], "tool_use")])
+    _model(monkeypatch, [FakeResponse([FakeToolUseBlock("t", "transfer_call", {"reason": "urgent", "handoff_message": "Connecting you."})], "tool_use")])
     _incoming(client, "CA_X4")
     r = _say(client, "CA_X4", "my furnace is out")
     assert r.status_code == 200 and "Gather" in _verbs(r.text) and "Dial" not in _verbs(r.text)
