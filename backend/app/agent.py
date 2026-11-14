@@ -225,12 +225,12 @@ def _open_status_line(config: ClientConfig, now: datetime) -> str:
     today_key = _WEEKDAY_KEYS[now.weekday()]
     today_hours = config.business_hours.get(today_key, "closed")
     if today_hours == "closed" or not isinstance(today_hours, list):
-        return f"Right now: CLOSED — {config.business_name} does not open on {now.strftime('%A')}s."
+        return f"Right now: CLOSED, {config.business_name} does not open on {now.strftime('%A')}s."
     open_t, close_t = today_hours
     current = now.strftime("%H:%M")
     if open_t <= current < close_t:
-        return f"Right now: OPEN — today's hours are {open_t}-{close_t}, closing at {close_t}."
-    return f"Right now: CLOSED — today's hours are {open_t}-{close_t}, but the current time ({current}) is outside that window."
+        return f"Right now: OPEN, today's hours are {open_t}-{close_t}, closing at {close_t}."
+    return f"Right now: CLOSED, today's hours are {open_t}-{close_t}, but the current time ({current}) is outside that window."
 
 
 def _usable_caller_number(number: str | None) -> str | None:
@@ -299,15 +299,15 @@ FAQs:
 
 Rules:
 - You are heard over the phone via text-to-speech. Keep every reply to 1-2 short sentences, at most 25 words: no filler, no repeating what the caller just said, no lists. Only the readbacks required below may run longer.
-- Never invent availability — always call check_availability before promising a time.
+- Never invent availability. Always call check_availability before promising a time.
 - Get the caller's FIRST AND LAST name and phone number before calling book_appointment. Speech recognition often mishears names: if you only caught one name, or it sounds odd, ask again (offer to have them spell it), and say the full name back to confirm before booking. Never book under a name you are unsure of.
 - If the caller asks what something costs, answer that FIRST in one short sentence (the technician explains the cost and gets their approval before any work starts; you cannot quote prices), then continue helping.
 - If something is outside what you know or can do, or the caller seems upset, call escalate_to_human rather than guessing (the team follows up later).
 - If the caller asks whether they are talking to a real person or a robot, answer honestly and briefly that you are an AI receptionist for {config.business_name}, then offer to connect them to a person. Never claim to be human.
-- If the caller asks to speak to a person, the owner, a manager, or anyone real — in ANY phrasing, including casual or indirect ones ("put me through to your mom," "is there a manager I can talk to," "can I talk to the owner") — call transfer_call immediately. Don't ask which they'd prefer or offer a callback; connect them right now. Treat "your mom," "the owner" and "the manager" as the business's real point of contact, and never act confused by the phrasing.
-- Use escalate_to_human only when the caller has NOT asked to be connected live — e.g. they just want a message left, or it's after a limit was hit.
+- If the caller asks to speak to a person, the owner, a manager, or anyone real, in ANY phrasing, including casual or indirect ones ("put me through to your mom," "is there a manager I can talk to," "can I talk to the owner"), call transfer_call immediately. Don't ask which they'd prefer or offer a callback; connect them right now. Treat "your mom," "the owner" and "the manager" as the business's real point of contact, and never act confused by the phrasing.
+- Use escalate_to_human only when the caller has NOT asked to be connected live, e.g. they just want a message left, or it's after a limit was hit.
 - Call end_call once the caller's need is resolved or they say goodbye.
-- Never discuss pricing you are not given above. Never give medical, legal, or safety advice — escalate instead.
+- Never discuss pricing you are not given above. Never give medical, legal, or safety advice. Escalate instead.
 - Speak like a person: say times as "ten a.m." or "two thirty p.m.", dates as "Tuesday the ninth", and read phone numbers back in groups of digits ("five seven one, two nine zero, eight nine zero eight"). Never read out symbols, ISO dates, or 24-hour times.
 - Do not ask for, and do not repeat back, sensitive details such as diagnoses, medications, Social Security numbers, or card numbers. If the caller starts sharing medical or personal details, say you don't need those and only take their name, phone number, and what they're calling about; the team will discuss specifics directly.
 - SAFETY FIRST: if anyone may be in immediate danger (fire, gas smell, carbon monoxide alarm, someone injured, unconscious, or having a medical emergency), tell them to hang up and call 911 right now. That comes before anything else. Then call transfer_call so the owner is alerted, with a handoff_message that starts with the 911 advice.
@@ -624,17 +624,17 @@ _EMERGENCY_RE = re.compile(
 
 
 _MSGS = {
-    "limit": ("Let me get a team member to help you directly from here \u2014 they'll follow up shortly.",
+    "limit": ("Let me get a team member to help you directly from here. They'll follow up shortly.",
               "Voy a pedir a alguien del equipo que le ayude directamente. Le llamar\u00e1n pronto."),
     "error_transfer": ("Sorry, I'm having trouble on my end. I'm connecting you with the team right now.",
                        "Perd\u00f3n, tengo un problema en este momento. Le conecto con el equipo ahora mismo."),
-    "error": ("Sorry, I'm having trouble right now \u2014 I'll have someone from the team call you back shortly.",
+    "error": ("Sorry, I'm having trouble right now. I'll have someone from the team call you back shortly.",
               "Perd\u00f3n, tengo un problema en este momento. Alguien del equipo le llamar\u00e1 pronto."),
     "loop": ("Let me connect you with a team member to finish this up.",
              "Voy a conectarle con alguien del equipo para terminar esto."),
     "emergency": ("This sounds like an emergency. Please hang up and call 911 right now. I'm also alerting the team.",
                   "Esto parece una emergencia. Cuelgue y llame al 911 ahora mismo. Tambi\u00e9n estoy avisando al equipo."),
-    "human": ("Of course \u2014 connecting you now.", "Claro, le conecto ahora mismo."),
+    "human": ("Of course, connecting you now.", "Claro, le conecto ahora mismo."),
     "again": ("Sorry, could you say that again?", "Perd\u00f3n, \u00bfpuede repetirlo?"),
 }
 
@@ -970,13 +970,13 @@ def _run_turn(session: CallSession, caller_text: str) -> tuple[str, bool, str | 
                 result = _dispatch_tool(session, block.name, block.input)
             except Exception:
                 logger.exception(
-                    "Tool %s raised for call_sid=%s — degrading gracefully", block.name, session.call_sid
+                    "Tool %s raised for call_sid=%s, degrading gracefully", block.name, session.call_sid
                 )
                 result = {"error": "that action failed on our end, apologize and offer to have a human follow up"}
             _record_outcome(session, block.name, result)
             if block.name == "end_call" and result.get("ended"):
                 should_end = True
-                end_message = block.input.get("closing_message", "Thanks for calling — goodbye!")
+                end_message = block.input.get("closing_message", "Thanks for calling, goodbye!")
             if block.name == "transfer_call" and result.get("transferring"):
                 # A refused transfer (policy, arguments, budget) must not ring the owner anyway: the model gets the refusal and carries on.
                 should_end = True

@@ -4,7 +4,7 @@ vertical: hvac
 timezone: "America/New_York"
 model: "claude-haiku-4-5-20251001"
 
-opening_line: "Thanks for calling CoolFlow Heating and Air, this is the AI receptionist — what's going on?"
+opening_line: "Thanks for calling CoolFlow Heating and Air, this is the AI receptionist, what's going on?"
 
 business_hours:
   mon: ["07:00", "19:00"]
@@ -27,7 +27,7 @@ services:
 
 faqs:
   - q: "Do you offer emergency service?"
-    a: "Yes — same-day emergency visits are available; urgent calls get flagged for the next available technician."
+    a: "Yes, same-day emergency visits are available; urgent calls get flagged for the next available technician."
   - q: "What's your service area?"
     a: "We cover the whole county, roughly a 20 mile radius from the shop."
 

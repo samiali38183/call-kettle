@@ -85,7 +85,7 @@ def test_silent_ceiling_hangup_message_counted(env, monkeypatch):
     assert "<Gather" not in r.text
     ev = _ev()
     assert ev["gather_count"]["value"] == 1
-    assert ev["tts_chars"]["value"] == _greeting_len(main) + len("I'm not hearing anything \u2014 I'll have someone from the team follow up. Goodbye.")
+    assert ev["tts_chars"]["value"] == _greeting_len(main) + len("I'm not hearing anything. I'll have someone from the team follow up. Goodbye.")
 
 
 def test_spanish_call_counts(env, monkeypatch):

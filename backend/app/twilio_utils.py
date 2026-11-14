@@ -22,19 +22,19 @@ def validate_signature(*, url: str, form: dict[str, str], signature: str) -> boo
         return True
     if not _AUTH_TOKEN:
         logger.error(
-            "Rejecting webhook to %s — TWILIO_AUTH_TOKEN is not set. "
+            "Rejecting webhook to %s: TWILIO_AUTH_TOKEN is not set. "
             "Set it in .env, or set CALLKETTLE_SKIP_SIGNATURE_CHECK=1 for local testing only.",
             url,
         )
         return False
     if not signature:
-        logger.warning("Rejecting webhook to %s — no X-Twilio-Signature header on the request", url)
+        logger.warning("Rejecting webhook to %s: no X-Twilio-Signature header on the request", url)
         return False
     validator = RequestValidator(_AUTH_TOKEN)
     valid = validator.validate(url, form, signature)
     if not valid:
         logger.warning(
-            "Rejecting webhook to %s — signature did not match. Usual cause: this URL doesn't "
+            "Rejecting webhook to %s: signature did not match. Usual cause: this URL doesn't "
             "exactly match what Twilio signed (scheme/host behind a proxy, or query string mismatch).",
             url,
         )
@@ -260,7 +260,7 @@ def update_call_twiml(call_sid: str, twiml: str) -> None:
 def send_sms(*, to: str, body: str) -> bool:
     client = _client()
     if client is None or not _FROM_NUMBER:
-        logger.warning("Twilio SMS not configured — would have sent to %s: %s", to, body)
+        logger.warning("Twilio SMS not configured, would have sent to %s: %s", to, body)
         return False
     try:
         client.messages.create(to=to, from_=_FROM_NUMBER, body=body)
@@ -270,5 +270,5 @@ def send_sms(*, to: str, body: str) -> bool:
         # registration, or a transient Twilio error should never take the
         # call down with it, the booking already succeeded, this is just
         # the confirmation text.
-        logger.exception("Failed to send SMS to %s — booking still stands", to)
+        logger.exception("Failed to send SMS to %s, booking still stands", to)
         return False

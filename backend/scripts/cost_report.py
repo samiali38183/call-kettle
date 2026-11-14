@@ -94,7 +94,7 @@ def render_worst_case(block) -> str:
 def render(report: dict) -> str:
     lines = []
     lines.append("=" * 72)
-    lines.append("PRIVATE cost-observability report — operator eyes only, do not share")
+    lines.append("PRIVATE cost-observability report, operator eyes only, do not share")
     lines.append("All dollar figures are estimates derived from configured rates, not")
     lines.append("provider invoices. UNKNOWN components are listed, never zeroed out.")
     lines.append("=" * 72)

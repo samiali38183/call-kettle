@@ -104,4 +104,4 @@ def summarize_call(call_sid: str) -> None:
         if text:
             storage.set_call_summary(call_sid, text)
     except Exception:
-        logger.exception("Call summary failed for %s — non-fatal", call_sid)
+        logger.exception("Call summary failed for %s, non-fatal", call_sid)

@@ -23,7 +23,7 @@ FORM = {"CallSid": "CA_G1", "From": "+15555554567", "To": "+15555550000"}
 GOLDEN_INCOMING = (
     '<?xml version="1.0" encoding="UTF-8"?><Response><Gather input="speech" action="http://testserver/voice/gather?client_id=demo_dental&amp;retry=0" '
     'method="POST" language="en-US" speechTimeout="auto" timeout="5" hints="Bright Smile Dental,Routine cleaning,Filling,Emergency exam">'
-    '<Say voice="Polly.Joanna-Neural">This call may be recorded and monitored for quality. Thanks for calling Bright Smile Dental, this is the AI receptionist \u2014 how can I help?</Say></Gather>'
+    '<Say voice="Polly.Joanna-Neural">This call may be recorded and monitored for quality. Thanks for calling Bright Smile Dental, this is the AI receptionist, how can I help?</Say></Gather>'
     "<Say voice=\"Polly.Joanna-Neural\">Sorry, I didn't catch that.</Say>"
     '<Redirect method="POST">http://testserver/voice/gather?client_id=demo_dental&amp;retry=0</Redirect></Response>'
 )

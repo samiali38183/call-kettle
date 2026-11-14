@@ -182,10 +182,10 @@ def book_appointment(
     if start not in _slot_grid(config, start.replace(hour=0, minute=0)):
         return {
             "success": False,
-            "error": "that time isn't one of the bookable slots — call check_availability and offer one of those",
+            "error": "that time isn't one of the bookable slots, call check_availability and offer one of those",
         }
     if start < _local_now(config) + timedelta(minutes=MIN_LEAD_MINUTES):
-        return {"success": False, "error": "that time has already passed or is too soon — offer a later slot"}
+        return {"success": False, "error": "that time has already passed or is too soon, offer a later slot"}
 
     if len(re.sub(r"\D", "", caller_phone or "")) < 10:
         return {"success": False, "error": "that isn't a usable phone number. Ask the caller for a 10-digit number (or confirm the one they're calling from)."}

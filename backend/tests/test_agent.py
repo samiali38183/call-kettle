@@ -202,7 +202,7 @@ def test_tool_failure_degrades_gracefully_instead_of_crashing(monkeypatch):
             content=[FakeToolUseBlock(id="t1", name="book_appointment", input={})],
             stop_reason="tool_use",
         ),
-        FakeResponse(content=[FakeTextBlock(text="Sorry, something went wrong — I'll have someone call you.")], stop_reason="end_turn"),
+        FakeResponse(content=[FakeTextBlock(text="Sorry, something went wrong, I'll have someone call you.")], stop_reason="end_turn"),
     ]
     fake = FakeAnthropicClient(responses)
     monkeypatch.setattr(agent, "_anthropic_client", lambda: fake)
