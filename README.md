@@ -2,6 +2,12 @@
 
 An AI phone receptionist for small home-service businesses. It answers the phone, books, moves and cancels appointments inside the hours the owner set, takes a message or puts the caller through to the owner, and gives the owner a portal with every booking, call summary and transcript.
 
+What makes it more than a demo is the part around the model. A caller can try to talk the AI into doing something the business never allowed, such as cancelling someone else's booking, so every action the AI asks for is checked by plain code that does not read the AI's words. The repo ships a repeatable test of exactly that.
+
+![Security evaluation result: 44 of 44 cases pass. Of 99 actions a scripted AI attempted, the server refused 25, the tools' own rules rejected 12 and 62 normal ones were allowed. Zero network connections and zero personal data in the audit log. One example: an 'admin mode' prompt to cancel another customer's booking is refused and the booking stays confirmed.](docs/img/hero-security-eval.png)
+
+*Result of `python -m qa.security_eval`: 44 of 44 cases pass, including 39 attacks and 5 normal-use controls. The model in the run is a script, not a live model. Figures come from [`docs/security_eval/results.json`](docs/security_eval/results.json), and `scripts/make_hero.py` redraws the image from it.*
+
 The voice is the easy part. The hard part is putting a language model on a public phone line. Anyone can call, speech recognition mishears names and numbers, the model can invent availability or say "you're booked" when nothing was saved, every second of a call costs money, and Twilio gives the server about 15 seconds to answer each turn. Most of this codebase is the machinery around the model. The model only suggests actions, and plain code checks and performs them.
 
 It runs on Fly.io. I'm Sami Ali ([site](https://samiali38183.github.io/#also)) and I built it with Claude Code and Hermes Agent as development tools; see [How it was built](#how-it-was-built). There are no paying customers. I've tested it end to end with calls from my own phones. This repository is a sanitized public snapshot exported on 2026-10-05, with no secrets, production data or private business documents. Later changes in the private codebase are not here.
