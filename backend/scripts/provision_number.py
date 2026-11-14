@@ -52,7 +52,7 @@ def main() -> None:
     try:
         config = load_client_config(args.client_id)
     except ClientNotFoundError:
-        sys.exit(f"No clients/{args.client_id}.yaml — run scripts/onboard_client.py first.")
+        sys.exit(f"No clients/{args.client_id}.yaml, run scripts/onboard_client.py first.")
 
     settings = webhook_settings(args.client_id, config.escalation_phone)
     client = Client(os.environ["TWILIO_ACCOUNT_SID"], os.environ["TWILIO_AUTH_TOKEN"])

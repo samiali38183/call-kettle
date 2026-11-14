@@ -1,11 +1,11 @@
-# Fictional sample tenant #9/10 — not a real customer.
+# Fictional sample tenant #9/10, not a real customer.
 client_id: sample_dental
 business_name: "Oakview Family Dental"
 vertical: dental
 timezone: "America/New_York"
 model: "claude-haiku-4-5-20251001"
 
-opening_line: "Thanks for calling Oakview Family Dental, this is the AI receptionist — how can I help?"
+opening_line: "Thanks for calling Oakview Family Dental, this is the AI receptionist, how can I help?"
 
 business_hours:
   mon: ["08:00", "17:00"]
@@ -26,7 +26,7 @@ services:
 
 faqs:
   - q: "Do you offer free estimates?"
-    a: "Yes — estimates are scheduled during business hours."
+    a: "Yes, estimates are scheduled during business hours."
   - q: "What is your service area?"
     a: "We cover the local metro area. Share your zip code and I will check."
 

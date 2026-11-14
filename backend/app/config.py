@@ -288,7 +288,7 @@ class ClientConfig(BaseModel):
     def _opening_line_must_disclose_ai(cls, v: str) -> str:
         if not _discloses_ai(v):
             raise ValueError(
-                "opening_line must clearly disclose this is AI, not a human — e.g. contain "
+                "opening_line must clearly disclose this is AI, not a human, e.g. contain "
                 "'AI receptionist', 'automated', or 'virtual assistant'. Maine requires this by "
                 "law and Utah on request; the service discloses on every call regardless."
             )

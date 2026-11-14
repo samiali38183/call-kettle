@@ -160,7 +160,7 @@ async def _voice_safety_net(request: Request, exc: Exception) -> Response:
     if isinstance(exc, StarletteHTTPException):
         raise exc
     if request.url.path.startswith("/voice/"):
-        logger.exception("Unhandled error on %s — degrading gracefully", request.url.path)
+        logger.exception("Unhandled error on %s, degrading gracefully", request.url.path)
         ops.alert_operator(
             "Error on a live call",
             f"{request.url.path} for client {request.query_params.get('client_id', '?')} crashed; the caller was "
@@ -810,7 +810,7 @@ async def _voice_gather_turn(request: Request, background_tasks: BackgroundTasks
             goodbye = (
                 "No escucho nada. Alguien del equipo le llamar\u00e1. Adi\u00f3s."
                 if session is not None and session.lang == "es"
-                else "I'm not hearing anything — I'll have someone from the team follow up. Goodbye."
+                else "I'm not hearing anything. I'll have someone from the team follow up. Goodbye."
             )
             twiml = twilio_utils.say_and_hangup_twiml(goodbye, session.lang if session is not None else "en")
             _observe_emission(session, say_text=goodbye)
@@ -1168,7 +1168,7 @@ def book_availability(date: str, limit: int = 3) -> dict:
 @app.post("/book/confirm")
 def book_confirm(booking: BookingRequest, request: Request) -> JSONResponse:
     if _booking_rate_limited(_client_ip(request)):
-        return JSONResponse({"success": False, "error": "Too many attempts — please try again later."}, status_code=429)
+        return JSONResponse({"success": False, "error": "Too many attempts. Please try again later."}, status_code=429)
     config = load_client_config(_SALES_CLIENT_ID)
     if datetime.strptime(booking.date, "%Y-%m-%d").date() > datetime.now(ZoneInfo(config.timezone)).date() + timedelta(days=_BOOKING_WINDOW_DAYS):
         return JSONResponse({"success": False, "error": f"Bookings open up to {_BOOKING_WINDOW_DAYS} days ahead."}, status_code=409)
@@ -1895,7 +1895,7 @@ def report_page(client_id: str, key: str = "") -> HTMLResponse:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta http-equiv="refresh" content="120">
-<title>{_h(config.business_name)} — Dashboard</title>
+<title>{_h(config.business_name)} | Dashboard</title>
 <style>
 body{{font-family:-apple-system,Segoe UI,sans-serif;max-width:900px;margin:24px auto;padding:0 16px;color:#20293A;background:#F9FAFA;}}
 h1{{font-size:22px;margin-bottom:4px;}} h2{{font-size:15px;margin:30px 0 8px;text-transform:uppercase;letter-spacing:.06em;color:#5B6472;}}
