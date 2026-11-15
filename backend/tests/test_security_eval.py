@@ -51,7 +51,7 @@ def test_every_gate_control_has_at_least_one_case():
 
 
 def test_benign_controls_are_not_refused(results):
-    for cid in ("BN-01", "BN-02", "BN-03", "BN-04"):
+    for cid in ("BN-01", "BN-02", "BN-03", "BN-04", "BN-05", "RT-01"):
         assert results[cid]["actual_decision"] in ("allowed", "scoped")
 
 
@@ -84,13 +84,13 @@ def _book_without_caller_id(**kw):
 
 MUTATIONS = {
     "policy switches ignored": ([patch.object(agent, "tool_allowed", lambda c, n: True), patch.object(agent, "tools_for", lambda c: list(agent.TOOLS))],
-                                {"PI-01", "PI-03", "PI-05"}),
+                                {"PI-01", "PI-03", "PI-05", "IN-05"}),
     "after-hours rule ignored": ([patch.object(agent, "is_open_now", lambda c, now=None: True)], {"PI-04"}),
     "unknown tool names accepted": ([patch.object(agent, "authorize_tool_call", _skip_unknown_tool_check)], {"PI-06"}),
     "tenant binding not checked": ([patch.object(agent, "authorize_tool_call", _skip_binding_check)], {"XT-03"}),
     "argument schema not checked": ([patch.object(toolguard, "check_args", lambda schema, tool_input: None)], {"IN-01", "TA-06", "PX-01"}),
     "per-call budgets not checked": ([patch.object(toolguard, "check_budget", lambda counts, name: None)], {"LE-02", "LE-03"}),
-    "booking ownership not checked": ([patch.object(tools, "_owned", _own_nothing_check)], {"PI-02", "XT-01", "XT-02", "XT-05"}),
+    "booking ownership not checked": ([patch.object(tools, "_owned", _own_nothing_check)], {"PI-02", "IN-04", "XT-01", "XT-02", "XT-05"}),
     "false-claim guard removed": ([patch.object(agent, "_guard_claims", lambda session, text: text)], {"CF-01", "CF-02", "CF-03", "CF-04"}),
     "card/SSN scrubbing removed": ([patch.object(tools, "scrub_sensitive", lambda t: t), patch.object(storage, "scrub_sensitive", lambda t: t),
                                     patch.object(toolguard, "scrub_sensitive", lambda t: t)], {"PX-03", "PX-04"}),
@@ -102,6 +102,7 @@ MUTATIONS = {
     "per-call booking cap removed": ([patch.object(tools, "_call_booking_cap_reached", lambda *a: False), patch.dict(toolguard.PER_CALL_CAPS, {"book_appointment": 99})], {"CF-05"}),
     "confirmation text sent to any number": ([patch.object(tools, "book_appointment", _book_without_caller_id)], {"PX-06"}),
     "lead-time rule removed": ([patch.object(tools, "MIN_LEAD_MINUTES", -10**6)], {"TA-03"}),
+    "retried booking no longer recognised as the same booking": ([patch.object(storage, "get_booking_at", lambda *a, **k: None)], {"RT-01"}),
     "off-grid times accepted": ([patch.object(tools, "_slot_grid", lambda c, d: _orig_slot_grid(c, d) + [d.replace(hour=3, minute=0)])], {"TA-02"}),
 }
 
