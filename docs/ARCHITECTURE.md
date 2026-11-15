@@ -1,6 +1,6 @@
 # Architecture
 
-A module-by-module walk-through of the backend. Paths are relative to `backend/`. The README has the overview and the reasons behind the main decisions. This file is meant to sit open next to the code.
+A module-by-module walk-through of the backend. Paths are relative to `backend/`. [DESIGN.md](DESIGN.md) has the call flow and the reasons behind the main decisions. This file is meant to sit open next to the code.
 
 This is a snapshot of the application code. Operator scripts that touch production, the Twilio voice-fallback function, the deployment config and private docs are left out. Where a module refers to a design doc under `docs/` that isn't in this repo, I used the module's own docstring.
 
@@ -34,7 +34,7 @@ Failure paths:
 | `CallSession` | Message history, caller number, a `done` set of outcomes that really happened (`book`, `reschedule`, `cancel`, `lookup`), turn count, language, cost-evidence counters, and a lock so one call has one turn in flight. |
 | `_run_turn` | Order of checks before the model is called: turn/duration limits (`cost_guard.check_limits`), control-character strip and 600-character cap on caller text, emergency regexes (English and Spanish), explicit "get me a person" regex, language detection. Only then does it call the model. |
 | The tool loop | At most `cost_guard.MAX_TOOL_ITERATIONS_PER_TURN` (4) model calls per turn, each with `max_tokens=MAX_REPLY_TOKENS` (220), a 6 s client timeout and 1 retry, and a turn budget (`TURN_BUDGET_SECONDS`, 8 s) checked before each further model call, so a slow turn hands off instead of starting another round trip past Twilio's webhook deadline. |
-| Claim guard | `claimed_actions`, `unsupported_claims`, `_guard_claims`, `_record_outcome`. See README, "Never claim an action that did not happen". |
+| Claim guard | `claimed_actions`, `unsupported_claims`, `_guard_claims`, `_record_outcome`. See [DESIGN.md](DESIGN.md), "Never claim an action that did not happen". |
 | `_fix_dates` + `datefix.py` | Recomputes the weekday for any "Weekday, Month day" the model is about to say and corrects it when wrong. |
 | Failure exits | Model API error, malformed response, or loop exhaustion: escalate to the owner, alert the operator (rate-limited), and either transfer the live call to the owner's phone or promise a callback, depending on policy and whether the number is dialable. |
 | Versioning | `prompt_version`, `tool_version`, `config_version` fingerprint the prompt template, tool schema and tenant config. They are stored per call (`storage.set_call_versions`) so a behaviour change can be traced to what was deployed. |
@@ -127,7 +127,7 @@ These are two separate mechanisms, and they are not coupled on purpose.
 
 ## 12. Test layout
 
-See the Tests section of the README for counts. By area:
+See the Verified testing section of the README for counts. By area:
 
 | Area | Files |
 |---|---|
