@@ -2,7 +2,7 @@
 
 The backend of an AI phone receptionist. It answers inbound calls, talks about the business it is configured for, checks real availability, books appointments, transfers to the owner on request, takes a message when nobody picks up, and gives the owner a dashboard with bookings, callbacks, call summaries and transcripts. A new client is a config file and not new code.
 
-It runs on Fly.io as one always-on machine with a persistent volume for the database. The repo-level [README](../README.md) has the overview, the architecture diagrams and the test results. This file is about running and operating the backend.
+It runs on Fly.io as one always-on machine with a persistent volume for the database. The repo-level [README](../README.md) has the overview, the security evaluation and the test results; [docs/DESIGN.md](../docs/DESIGN.md) has the architecture diagrams. This file is about running and operating the backend.
 
 ## What it does
 
