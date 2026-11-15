@@ -2,9 +2,9 @@
 
 Call Kettle is a phone receptionist backend for small home-service businesses. It answers inbound calls through Twilio, lets a Claude model hold the conversation with a small set of tools (check availability, book, find, move and cancel appointments, take a message, ring the owner), and gives the owner a portal with bookings, call summaries and transcripts. Each business is one YAML file, and the stack is Python 3.12, FastAPI, SQLite and the Anthropic API.
 
-The interesting part is the boundary around the model. A caller can talk to it, so a caller can try to talk it into something the business never allowed, such as cancelling another customer's booking. The model therefore only proposes actions. Plain code that does not read the model's words decides whether each one runs, records every decision in an audit table, and the repo ships a repeatable evaluation of that boundary.
+The design centers on the boundary around the model. A caller can talk to it, so a caller can try to talk it into something the business never allowed, such as cancelling another customer's booking. The model therefore only proposes actions. Plain code that does not read the model's words decides whether each one runs, records every decision in an audit table, and the repo ships a repeatable evaluation of that boundary.
 
-## What is technically interesting
+## Design
 
 - **A server-side gate on every tool call** (`agent.authorize_tool_call`): tenant binding, known tool, tenant policy, after-hours rule, argument schema and per-call budgets, with default deny. The tool's own rules (ownership, service list, slot grid, booking cap) and a SQLite overlap check sit behind it.
 - **Authority comes from the call, not from the model's arguments.** A transfer goes to the tenant's configured number, a lookup uses the caller ID and takes no phone argument, and a confirmation text goes only to the caller ID.
@@ -45,15 +45,15 @@ To run the server, copy `.env.example` to `.env`, fill in your own values (never
 | Tool-use agent: bounded loop, history repair, fail-over to the owner | yes | yes | yes |
 | Booking rules and double-booking protection in SQLite | yes | yes | yes |
 | Claim guard (no unsupported "booked" or "cancelled") | yes | yes, with a scripted model | yes, part of the deployed agent |
-| Tool-call gate (schema checks, per-call budgets), audit table, SMS recipient rule | yes, added 2026-11-13 | yes | no: not in the private codebase, whose last commit is 2026-11-02 |
-| Google Calendar free/busy read and event write (service account) | yes | partly | yes: a spoken test call booked and cancelled an event, 2026-10-22 |
+| Tool-call gate (schema checks, per-call budgets), audit table, SMS recipient rule | yes | yes | no: not in the private codebase (see Status) |
+| Google Calendar free/busy read and event write (service account) | yes | partly | yes: a spoken test call booked and cancelled an event (see Status) |
 | iCal busy-time reader (read only) | yes | yes | not recorded |
 | Owner portal and accounts (scrypt, lockout, CSRF) | yes | yes | yes |
 | Owner notifications: email with `.ics`, ntfy push, SMS behind a flag | yes | yes | email yes; SMS flag-gated |
 | Per-tenant spend and call ceilings, concurrency cap, repeat-caller limit | yes | yes | not recorded |
 | Cost observability ledger (measured provider usage) | yes | yes | not recorded |
 | Outbound signed webhooks with a durable outbox | yes | yes | not recorded |
-| Streaming speech-to-text (Media Streams and Deepgram adapter), off by default | yes | yes, with a fake connection and recorded audio | scripted test calls only, 2026-10-28 |
+| Streaming speech-to-text (Media Streams and Deepgram adapter), off by default | yes | yes, with a fake connection and recorded audio | scripted test calls only (see Status) |
 | Encrypted offsite database backups | yes | yes | not configured |
 | Spanish calls (beta, off by default) | yes | yes | no |
 | Shared session store for more than one instance | planned | | |
@@ -66,7 +66,7 @@ How the pieces fit is in [docs/DESIGN.md](docs/DESIGN.md) (call flow, what the m
 
 `python -m qa.security_eval` runs 48 cases against the real agent loop, gate, tools and a fresh SQLite database with two synthetic tenants: 42 attacks in 11 categories (direct and indirect prompt injection, argument tampering, cross-tenant and cross-customer access, claim forgery, PII exfiltration, sensitive data, input sanitization, loop exhaustion, retry and replay) and 6 normal-use controls, so a gate that refused everything would fail. All 48 pass. The scripted model made 106 tool calls: the gate refused 26, the tools' own rules rejected 14 and 66 were allowed. There were 0 network connection attempts and 0 audit rows holding a name or phone number. `tests/test_security_eval.py` also removes 19 boundaries one at a time and requires the matching cases to fail.
 
-The model in this evaluation is a script that does whatever the attacker wants, not a live model, and the gate it exercises exists only in this repository (see the table above). The results show what the server does when the model misbehaves, not how often a real model would, and prompt-only rules are not tested. The data is synthetic and the run has no production traffic. The figures come from [`docs/security_eval/results.json`](docs/security_eval/results.json), and `scripts/make_hero.py` redraws this summary from it.
+The model in this evaluation is a script that does whatever the attacker wants, not a live model, and the gate it exercises is not in the deployed private codebase (see Limitations). The results show what the server does when the model misbehaves, not how often a real model would, and prompt-only rules are not tested. The data is synthetic and the run has no production traffic. The figures come from [`docs/security_eval/results.json`](docs/security_eval/results.json), and `scripts/make_hero.py` redraws this summary from it.
 
 ![Security evaluation result: 48 of 48 cases pass. Of 106 actions a scripted AI attempted, the server refused 26, the tools' own rules rejected 14 and 66 normal ones were allowed. Zero network connections and zero personal data in the audit log.](docs/img/hero-security-eval.png)
 
@@ -87,10 +87,11 @@ CI runs this command on Python 3.12. It is offline: fakes drive the agent, with 
 
 There are 96 test files. The largest groups are failure injection and chaos (`test_resilience_chaos.py`), the agent loop (`test_agent.py`), outbound webhooks (`test_webhooks.py`), streaming speech-to-text with fixtures (`test_stream_stt.py`), cost observability, iCal, the claim guard (`test_truth_invariant.py`), failure handling, tenant isolation (`test_isolation.py`) and the security evaluation with its boundary-removal tests.
 
-This repository is a sanitized export of a larger private codebase, dated 2026-10-05, with no secrets, production data or private business documents. 101 tests either read something the export left out or depend on fixtures the export rewrote. Each is listed with its reason in `backend/tests/snapshot_known_failures.txt` and marked `xfail` in `backend/tests/conftest.py`, so they show up in the counts, and two more test files that cannot be imported here are skipped at collection (`test_practice.py`, `test_sales_recheck.py`). Counts for the full private suite are not published here.
+This repository is a sanitized export of a larger private codebase, with no secrets, production data or private business documents. 101 tests either read something the export left out or depend on fixtures the export rewrote. Each is listed with its reason in `backend/tests/snapshot_known_failures.txt` and marked `xfail` in `backend/tests/conftest.py`, so they show up in the counts, and two more test files that cannot be imported here are skipped at collection (`test_practice.py`, `test_sales_recheck.py`). Counts for the full private suite are not published here.
 
 ## Limitations
 
+- **The tool-call gate, audit table and SMS recipient rule are not deployed.** They exist only in this repository and not in the private codebase.
 - **Call state is in memory**, in one process on one machine. A restart in the middle of a call is recovered from the database, but running two instances needs a shared session store first.
 - **The claim guard is pattern based.** It covers booked, cancelled and rescheduled claims in common English and Spanish phrasings. A paraphrase it misses, or a different kind of false claim ("a technician is on the way"), is caught only by the prompt.
 - **Some policy switches live only in the prompt.** `can_book`, `can_reschedule`, `can_cancel` and `can_transfer` are enforced in code; `can_quote`, the dispatch-fee text and address collection are prompt rules.
@@ -115,6 +116,10 @@ This repository is a sanitized export of a larger private codebase, dated 2026-1
 | [backend/README.md](backend/README.md) | Backend operations notes |
 
 `backend/` holds the application, `backend/clients/` the fictional sample tenants, `backend/qa/` the evaluation and benchmarks, `backend/tests/` the offline suite, and `marketing/` a scanner for a configured private price in public text. Built by Sami Ali ([site](https://samiali38183.github.io/#also)).
+
+## Status
+
+The tool-call gate, audit table and SMS recipient rule were added on 2026-11-13; the private codebase's last commit is 2026-11-02. The Google Calendar spoken test call that booked and cancelled an event was on 2026-10-22, and the streaming speech-to-text scripted test calls were on 2026-10-28. This repository is a sanitized export dated 2026-10-05 of the larger private codebase.
 
 ## License
 
